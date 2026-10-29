@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selected Work & Project Archive | The Social Kollab</title>
+  <meta name="description" content="Explore verified digital flagships, headless Shopify builds, custom WebGL experiences, and high-conversion platforms engineered by The Social Kollab.">
+  
+  <link rel="canonical" href="https://thesocialkollab.com/work.html">
+  <meta name="theme-color" content="#181513">
+  <meta name="robots" content="index, follow">
+  
+  <!-- OpenGraph Metadata -->
+  <meta property="og:site_name" content="The Social Kollab">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://thesocialkollab.com/work.html">
+  <meta property="og:title" content="Selected Work | The Social Kollab">
+  <meta property="og:description" content="Verified Deployments. Real Commercial Returns. Case studies in headless e-commerce and bespoke creative engineering.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://thesocialkollab.com/assets/images/hero-studio.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@thesocialkollab">
+  <meta name="twitter:creator" content="@thesocialkollab">
+  <meta name="twitter:title" content="Selected Work | The Social Kollab">
+  <meta name="twitter:description" content="Verified Deployments. Real Commercial Returns. Case studies in headless e-commerce and bespoke creative engineering.">
+  <meta name="twitter:image" content="https://thesocialkollab.com/assets/images/hero-studio.jpg">
+
+  <!-- Typography: Syne, Playfair Display, Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Master Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23181513'/%3E%3Ctext x='50%25' y='65%25' font-family='sans-serif' font-weight='800' font-size='48' fill='%23ff4820' text-anchor='middle'%3ESK%3C/text%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Layer 0: Procedural SVG Film Grain Overlay -->
+  <svg class="noise-overlay" aria-hidden="true">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.04 0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+  </svg>
+
+  <!-- Layer 1: GPU-Accelerated Three.js Liquid GLSL Wave Canvas -->
+  <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+
+    <!-- Custom Fluid Velocity Cursor (Single Unified Pointer, Zero Double Cursor) -->
+  <div class="fluid-cursor-wrap" id="fluid-cursor-wrap" aria-hidden="true">
+    <div class="fluid-droplet" id="fluid-droplet">
+      <span class="fluid-cursor-text" id="fluid-cursor-text"></span>
+    </div>
+  </div>
+
+  <!-- Site Navigation -->
+  <header class="site-header" id="header">
+    <div class="scroll-progress-line" id="scroll-progress-line" aria-hidden="true"></div>
+    <div class="header-inner container">
+      <a href="index.html" class="brand-logo" aria-label="The Social Kollab Home">
+        <span class="logo-mark">SK</span>
+        <div class="logo-text-group">
+          <span class="logo-text">THE SOCIAL KOLLAB</span>
+          <span class="logo-descriptor">Digital Architecture & Creative Engineering</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link active">Work</a></li>
+          <li><a href="services.html" class="nav-link">Capabilities</a></li>
+          <li><a href="services.html#engagement-model" class="nav-link">Pricing</a></li>
+          <li><a href="collective.html" class="nav-link">Collective</a></li>
+          <li><a href="#testimonials" class="nav-link">Proof</a></li>
+          <li><a href="contact.html#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm" id="header-start-project-btn">Start Project</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page Hero Monolith -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-breadcrumbs">
+          <a href="index.html">The Social Kollab</a>
+          <span class="crumb-sep">/</span>
+          <span>Selected Work & Archive</span>
+        </div>
+        <h1 class="page-hero-title">
+          Verified Deployments.<br>
+          High-Return Flagships.
+        </h1>
+        <p class="page-hero-desc">
+          We reject synthetic templates, drag-and-drop bloat, and vanity designs. Every platform below was hand-coded in Pune with bespoke WebGL shaders, strict typography tokens, and conversion-hardened headless architecture.
+        </p>
+      </div>
+    </section>
+
+    <!-- Work Archive Section -->
+    <section class="section" style="padding-top: 2rem;">
+      <div class="container">
+        
+        <!-- Archive Controls: Categories + View Mode Switcher -->
+        <div class="archive-controls-bar">
+          <div class="filter-pills" role="tablist" aria-label="Filter Case Studies">
+            <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All (4)</button>
+            <button class="filter-btn" data-filter="ecommerce" role="tab" aria-selected="false">E-Commerce & D2C (2)</button>
+            <button class="filter-btn" data-filter="edtech" role="tab" aria-selected="false">Medical & EdTech (1)</button>
+            <button class="filter-btn" data-filter="corporate" role="tab" aria-selected="false">Executive Advisory (1)</button>
+          </div>
+
+          <div class="view-mode-toggles">
+            <button class="view-toggle-btn active" data-mode="list" id="toggle-list-view">List (Interactive)</button>
+            <button class="view-toggle-btn" data-mode="grid" id="toggle-grid-view">Visual Grid</button>
+          </div>
+        </div>
+
+        <!-- 1. Interactive Dennis Snellenberg Row List View (Default) -->
+        <div id="project-list-view">
+          <!-- Dennis Snellenberg Floating Cursor Project Reveal Container -->
+          <div class="floating-project-preview" id="floating-project-preview" aria-hidden="true">
+            <div class="preview-slider" id="preview-slider">
+              <div class="preview-slide"><img src="assets/images/case-fashion.jpg" alt="The Uniform Lab Preview"></div>
+              <div class="preview-slide"><img src="assets/images/case-tech.jpg" alt="T-REX Lifestyle Preview"></div>
+              <div class="preview-slide"><img src="assets/images/case-beauty.jpg" alt="OrthoChronicles EdTech Preview"></div>
+              <div class="preview-slide"><img src="assets/images/hero-studio.jpg" alt="KK Associates Advisory Preview"></div>
+            </div>
+          </div>
+
+          <div class="project-list" id="project-list">
+            
+            <!-- Project 1: The Uniform Lab (Deep Dive Available) -->
+            <a href="work-uniform-lab.html" class="project-row" data-index="0" data-case="uniform-lab" data-category="ecommerce" style="text-decoration: none; color: inherit;">
+              <div class="project-num">01 /</div>
+              <div class="project-name-wrap">
+                <h2 class="project-name" style="font-size: 1.6rem;">The Uniform Lab</h2>
+                <span class="project-category-tag">Headless Shopify Plus • Bespoke Next.js Architecture</span>
+              </div>
+              <div class="project-impact">
+                <span class="impact-metric">3.8x</span>
+                <span class="impact-label">Conversion Lift</span>
+              </div>
+              <div class="project-arrow" style="font-size: 1.4rem;">↗</div>
+              <div class="project-mobile-thumb" aria-hidden="true">
+                <img src="assets/images/case-fashion.jpg" alt="The Uniform Lab Mobile Preview" loading="lazy">
+                <span class="mobile-thumb-badge">Read Full Case Study ↗</span>
+              </div>
+            </a>
+
+            <!-- Project 2: T-REX Store -->
+            <div class="project-row" data-index="1" data-case="trex" data-category="ecommerce" role="button" tabindex="0" aria-label="Inspect T-REX Dossier">
+              <div class="project-num">02 /</div>
+              <div class="project-name-wrap">
+                <h2 class="project-name" style="font-size: 1.6rem;">T-REX Store</h2>
+                <span class="project-category-tag">D2C Lifestyle • 3D Product Customizer Canvas</span>
+              </div>
+              <div class="project-impact">
+                <span class="impact-metric">4.6x</span>
+                <span class="impact-label">Direct ROAS</span>
+              </div>
+              <div class="project-arrow" style="font-size: 1.4rem;">↗</div>
+              <div class="project-mobile-thumb" aria-hidden="true">
+                <img src="assets/images/case-tech.jpg" alt="T-REX Store Mobile Preview" loading="lazy">
+                <span class="mobile-thumb-badge">Inspect Dossier ↗</span>
+              </div>
+            </div>
+
+            <!-- Project 3: OrthoChronicles -->
+            <div class="project-row" data-index="2" data-case="orthochronicles" data-category="edtech" role="button" tabindex="0" aria-label="Inspect OrthoChronicles Dossier">
+              <div class="project-num">03 /</div>
+              <div class="project-name-wrap">
+                <h2 class="project-name" style="font-size: 1.6rem;">OrthoChronicles</h2>
+                <span class="project-category-tag">Medical EdTech • Interactive Surgical Atlas WebGL</span>
+              </div>
+              <div class="project-impact">
+                <span class="impact-metric">32K+</span>
+                <span class="impact-label">Active Surgeons</span>
+              </div>
+              <div class="project-arrow" style="font-size: 1.4rem;">↗</div>
+              <div class="project-mobile-thumb" aria-hidden="true">
+                <img src="assets/images/case-beauty.jpg" alt="OrthoChronicles Mobile Preview" loading="lazy">
+                <span class="mobile-thumb-badge">Inspect Dossier ↗</span>
+              </div>
+            </div>
+
+            <!-- Project 4: KK Associates & Yashply -->
+            <div class="project-row" data-index="3" data-case="kk-associates" data-category="corporate" role="button" tabindex="0" aria-label="Inspect KK Associates Dossier">
+              <div class="project-num">04 /</div>
+              <div class="project-name-wrap">
+                <h2 class="project-name" style="font-size: 1.6rem;">KK Associates & Yashply</h2>
+                <span class="project-category-tag">Executive Advisory • Material Visualizer Catalog</span>
+              </div>
+              <div class="project-impact">
+                <span class="impact-metric">+80%</span>
+                <span class="impact-label">High-Intent Leads</span>
+              </div>
+              <div class="project-arrow" style="font-size: 1.4rem;">↗</div>
+              <div class="project-mobile-thumb" aria-hidden="true">
+                <img src="assets/images/hero-studio.jpg" alt="KK Associates Advisory Preview" loading="lazy">
+                <span class="mobile-thumb-badge">Inspect Dossier ↗</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. Rich Editorial Visual Grid View (Alternative Mode) -->
+        <div class="archive-grid-view" id="project-grid-view" style="display: none;">
+          
+          <a href="work-uniform-lab.html" class="archive-card open-dossier-card" data-category="ecommerce" data-case="uniform-lab">
+            <div class="archive-card-thumb">
+              <img src="assets/images/case-fashion.jpg" alt="The Uniform Lab Flagship" loading="lazy">
+              <span class="archive-card-badge">Headless Shopify Plus</span>
+            </div>
+            <div class="archive-card-body">
+              <h3 class="archive-card-title">
+                <span>The Uniform Lab</span>
+                <span class="archive-card-arrow">↗</span>
+              </h3>
+              <p class="archive-card-desc">
+                Complete re-architecture of an enterprise uniform manufacturer onto headless Next.js with sub-800ms page transitions and dynamic corporate ordering portal.
+              </p>
+              <div class="archive-card-meta">
+                <span>REVENUE IMPACT</span>
+                <span class="archive-card-metric">3.8x Checkout Conversion</span>
+              </div>
+            </div>
+          </a>
+
+          <div class="archive-card open-dossier-card" data-case="trex" data-category="ecommerce" role="button" tabindex="0">
+            <div class="archive-card-thumb">
+              <img src="assets/images/case-tech.jpg" alt="T-REX Store Experience" loading="lazy">
+              <span class="archive-card-badge">D2C Lifestyle & WebGL</span>
+            </div>
+            <div class="archive-card-body">
+              <h3 class="archive-card-title">
+                <span>T-REX Store</span>
+                <span class="archive-card-arrow">↗</span>
+              </h3>
+              <p class="archive-card-desc">
+                High-octane apparel flagship featuring real-time 3D fabric simulations, custom audio tactile feedback, and frictionless one-click Apple Pay checkout.
+              </p>
+              <div class="archive-card-meta">
+                <span>ROAS LIFT</span>
+                <span class="archive-card-metric">4.6x Direct Ad Returns</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="archive-card open-dossier-card" data-case="orthochronicles" data-category="edtech" role="button" tabindex="0">
+            <div class="archive-card-thumb">
+              <img src="assets/images/case-beauty.jpg" alt="OrthoChronicles Surgical Platform" loading="lazy">
+              <span class="archive-card-badge">Medical EdTech</span>
+            </div>
+            <div class="archive-card-body">
+              <h3 class="archive-card-title">
+                <span>OrthoChronicles</span>
+                <span class="archive-card-arrow">↗</span>
+              </h3>
+              <p class="archive-card-desc">
+                Interactive surgical atlas and CME knowledge repository designed for precision bone and joint specialists, rendered in high-performance WebGL.
+              </p>
+              <div class="archive-card-meta">
+                <span>GLOBAL ADOPTION</span>
+                <span class="archive-card-metric">32K+ Active Practitioners</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="archive-card open-dossier-card" data-case="kk-associates" data-category="corporate" role="button" tabindex="0">
+            <div class="archive-card-thumb">
+              <img src="assets/images/hero-studio.jpg" alt="KK Associates Advisory" loading="lazy">
+              <span class="archive-card-badge">Corporate Architecture</span>
+            </div>
+            <div class="archive-card-body">
+              <h3 class="archive-card-title">
+                <span>KK Associates & Yashply</span>
+                <span class="archive-card-arrow">↗</span>
+              </h3>
+              <p class="archive-card-desc">
+                Digital transformation of a premier timber and hardware supplier, replacing legacy PDFs with a high-fidelity interactive architectural veneer selector.
+              </p>
+              <div class="archive-card-meta">
+                <span>LEAD CONVERSION</span>
+                <span class="archive-card-metric">+80% Qualified Architect Leads</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Testimonials / Verified Client Proof -->
+    <section class="section testimonials-section" id="testimonials" style="border-top: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">02 // CLIENT ENDORSEMENTS</div>
+          <h2 class="section-title">Verified Founder Feedback.</h2>
+          <p class="section-subtext">Commercial returns measured in hard balance sheet improvements, not vanity design awards.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card interactive-tilt">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote class="testimonial-quote">
+              "The Social Kollab transformed our digital presence completely. The headless architecture took our checkout conversion from 1.2% to 4.6% within sixty days of deployment."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: linear-gradient(135deg, #181513, #ff4820);">UL</div>
+              <div class="author-info">
+                <div class="author-name">Managing Director</div>
+                <div class="author-title">The Uniform Lab • Enterprise E-Commerce</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card interactive-tilt">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote class="testimonial-quote">
+              "They don't just build websites; they craft digital institutions. Our D2C customers constantly message support asking who designed our platform."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: linear-gradient(135deg, #181513, #f59e0b);">TR</div>
+              <div class="author-info">
+                <div class="author-name">Founder & CEO</div>
+                <div class="author-title">T-REX Store • Lifestyle D2C</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card interactive-tilt">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote class="testimonial-quote">
+              "Working with The Social Kollab was a masterclass in architectural engineering. The custom WebGL atlas runs at 60 FPS on mobile hospital iPads with zero latency."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: linear-gradient(135deg, #181513, #7d736a);">OC</div>
+              <div class="author-info">
+                <div class="author-name">Editorial Director</div>
+                <div class="author-title">OrthoChronicles • Medical Publisher</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Card -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-inner">
+            <div class="section-label text-accent">COMMISSION THE STUDIO</div>
+            <h2 class="cta-title">Ready to build the flagship your industry compares everyone else to?</h2>
+            <p class="cta-subtext">
+              We onboard strictly 2 client engagements per quarter to maintain uncompromising authorial quality.
+            </p>
+            <div class="cta-buttons">
+              <a href="contact.html" class="btn btn-primary btn-lg">
+                <span>Initiate Project Brief</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="services.html" class="btn btn-outline btn-lg">Explore Capabilities & Pricing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="index.html" class="brand-logo" aria-label="The Social Kollab Home">
+            <span class="logo-mark">SK</span>
+            <span class="logo-text">THE SOCIAL KOLLAB</span>
+          </a>
+          <p class="footer-manifesto">
+            Independent creative development and digital flagships engineered in Pune. Handcrafted WebGL, strict typography tokens, and conversion-hardened headless architecture.
+          </p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/thesocialkollab/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">IG</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">LI</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">GH</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">X</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">DIRECTORY</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Selected Work</a></li>
+            <li><a href="work-uniform-lab.html">Case Study: Uniform Lab</a></li>
+            <li><a href="services.html">Capabilities Matrix</a></li>
+            <li><a href="services.html#engagement-model">Investment Blueprint</a></li>
+            <li><a href="collective.html">Creative Collective</a></li>
+            <li><a href="contact.html">Contact & Brief</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">DISCIPLINES</div>
+          <ul class="footer-links">
+            <li><a href="services.html">Spatial UI/UX Systems</a></li>
+            <li><a href="services.html">Three.js & GLSL Shaders</a></li>
+            <li><a href="services.html">Headless Shopify Plus</a></li>
+            <li><a href="services.html">Brand Architecture</a></li>
+            <li><a href="services.html">Conversion Engineering</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">STUDIO DISPATCH</div>
+          <p class="footer-dispatch-desc">Quarterly architectural memos on creative development and conversion economics.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to The Kollab Dispatch.');">
+            <input type="email" id="newsletter-email-footer" name="newsletter_email" placeholder="founder@company.com" class="newsletter-input" required aria-label="Your email">
+            <button type="submit" class="newsletter-submit" aria-label="Subscribe">→</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2026 THE SOCIAL KOLLAB. ALL ARCHITECTURAL RIGHTS RESERVED.
+        </div>
+        <div class="footer-legal">
+          <a href="collective.html#ethics">Ethics Protocol</a>
+          <span class="sep">•</span>
+          <a href="contact.html#faq">Terms of Engagement</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Campaign Dossier Modal (Reusable) -->
+  <div class="modal-backdrop" id="dossier-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card dossier-card">
+      <button class="modal-close-btn" id="close-dossier-modal" aria-label="Close Case Study Dossier">✕</button>
+      <div class="dossier-modal-content" id="dossier-modal-content">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette Modal -->
+  <div class="cmd-palette-backdrop" id="cmd-palette-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="cmd-palette-card">
+      <div class="cmd-input-wrap">
+        <span class="cmd-search-icon">🔍</span>
+        <input type="text" class="cmd-search-input" id="cmd-search-input" placeholder="Type a destination or command..." autocomplete="off" spellcheck="false">
+        <span class="cmd-esc-badge" id="cmd-esc-badge">ESC</span>
+      </div>
+      <div class="cmd-palette-results" id="cmd-palette-results" role="listbox"></div>
+      <div class="cmd-palette-footer">
+        <span class="cmd-footer-tip">Navigate: <kbd>↑</kbd> <kbd>↓</kbd></span>
+        <span class="cmd-footer-tip">Select: <kbd>↵</kbd></span>
+        <span class="cmd-footer-tip">Dismiss: <kbd>ESC</kbd></span>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Core Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  
+  <script src="script.js"></script>
+
+    <!-- Top Kinetic Navigation Filament (Silk Page Transition) -->
+  <div class="top-nav-filament" id="nav-filament" aria-hidden="true"></div>
+  </div>
+
+</body>
+</html>
+

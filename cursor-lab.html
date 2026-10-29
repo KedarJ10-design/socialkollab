@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor Design Laboratory — The Social Kollab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* -------------------------------------------------------------
+       Cursor Lab Custom Styling & Interactive Sandbox
+       ------------------------------------------------------------- */
+    body.cursor-lab-active {
+      background: #ECE4D5;
+      color: #181513;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Top Mode Switcher Bar */
+    .lab-controller {
+      position: sticky;
+      top: 1.5rem;
+      z-index: 10000;
+      margin: 1.5rem auto;
+      max-width: 1100px;
+      width: calc(100% - 2rem);
+      background: rgba(24, 21, 19, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.35);
+    }
+
+    .lab-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-left: 0.75rem;
+      color: #ECE4D5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: -0.01em;
+    }
+
+    .lab-brand-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      background: #FF4820;
+      color: #FFFFFF;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .lab-modes-list {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .lab-mode-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: rgba(236, 228, 213, 0.7);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.55rem 1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .lab-mode-btn:hover {
+      color: #ECE4D5;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .lab-mode-btn.active {
+      background: #ECE4D5;
+      color: #181513;
+      border-color: #ECE4D5;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .lab-mode-btn.active .mode-num {
+      background: #FF4820;
+      color: #FFFFFF;
+    }
+
+    .mode-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.8);
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-weight: 600;
+    }
+
+    /* Lab Header */
+    .lab-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 2rem auto 2.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .lab-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #FF4820;
+      background: rgba(255, 72, 32, 0.08);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 72, 32, 0.2);
+    }
+
+    .lab-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: #181513;
+    }
+
+    .lab-subtitle {
+      font-size: 1.05rem;
+      color: #7D736A;
+      line-height: 1.6;
+    }
+
+    /* Current Mode Descriptor Card */
+    .current-mode-card {
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+      background: #F7F3EA;
+      border: 1px solid rgba(24, 21, 19, 0.1);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .mode-icon-box {
+      width: 52px;
+      height: 52px;
+      background: #181513;
+      color: #FF4820;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .mode-info h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+      color: #181513;
+    }
+
+    .mode-info p {
+      font-size: 0.9rem;
+      color: #7D736A;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .mode-status-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      background: rgba(24, 21, 19, 0.06);
+      color: #181513;
+      border: 1px solid rgba(24, 21, 19, 0.1);
+    }
+
+    /* Interactive Playground Grid */
+    .lab-playground {
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 860px) {
+      .lab-playground {
+        grid-template-columns: 1fr;
+      }
+      .current-mode-card {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+      .lab-controller {
+        border-radius: 20px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .lab-modes-list {
+        justify-content: center;
+      }
+    }
+
+    /* Playground Cards */
+    .interactive-card {
+      background: #F7F3EA;
+      border: 1px solid rgba(24, 21, 19, 0.1);
+      border-radius: 20px;
+      padding: 2.25rem;
+      position: relative;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+      cursor: pointer;
+    }
+
+    .interactive-card:hover {
+      box-shadow: 0 20px 40px -12px rgba(24, 21, 19, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .card-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #FF4820;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+      color: #181513;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: #7D736A;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-media-mock {
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #181513 0%, #2A2420 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(236, 228, 213, 0.4);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(24, 21, 19, 0.08);
+    }
+
+    .card-media-mock::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 72, 32, 0.15) 0%, transparent 70%);
+    }
+
+    /* Button Testing Area */
+    .button-test-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+
+    .magnetic-btn-target {
+      position: relative;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Editorial Text Block */
+    .editorial-test-block {
+      grid-column: 1 / -1;
+      background: #FFFFFF;
+      border: 1px solid rgba(24, 21, 19, 0.08);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .editorial-test-block p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #181513;
+      margin-bottom: 1.25rem;
+      max-width: 900px;
+    }
+
+    .editorial-test-block strong {
+      color: #FF4820;
+    }
+
+    /* -------------------------------------------------------------
+       THE 4 CURSOR SYSTEM IMPLEMENTATIONS
+       ------------------------------------------------------------- */
+    
+    /* Global Base */
+    #lab-cursor-root {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999999;
+    }
+
+    /* -------------------------------------------------------------
+       MODE 1: Contextual Kinetic Capsule (Dennis Snellenberg Style)
+       ------------------------------------------------------------- */
+    .mode-1-active body {
+      cursor: default; /* Natural OS cursor for clean readability */
+    }
+
+    .capsule-follower {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      transform: translate3d(-100px, -100px, 0);
+      opacity: 0;
+      scale: 0.6;
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), scale 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #181513;
+      color: #ECE4D5;
+      padding: 0.55rem 1.15rem;
+      border-radius: 9999px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      gap: 0.4rem;
+    }
+
+    .capsule-follower.visible {
+      opacity: 1;
+      scale: 1;
+    }
+
+    .capsule-follower .badge-icon {
+      color: #FF4820;
+      font-size: 0.85rem;
+    }
+
+    /* -------------------------------------------------------------
+       MODE 2: Architectural CAD Reticle & Viewfinder
+       ------------------------------------------------------------- */
+    .mode-2-active body {
+      cursor: crosshair;
+    }
+
+    .cad-reticle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      transform: translate3d(-100px, -100px, 0);
+      display: none;
+    }
+
+    .mode-2-active .cad-reticle {
+      display: block;
+    }
+
+    .cad-crosshair-center {
+      width: 14px;
+      height: 14px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+    }
+
+    .cad-crosshair-center::before,
+    .cad-crosshair-center::after {
+      content: '';
+      position: absolute;
+      background: #FF4820;
+    }
+
+    .cad-crosshair-center::before {
+      top: 6px;
+      left: 0;
+      width: 14px;
+      height: 2px;
+    }
+
+    .cad-crosshair-center::after {
+      top: 0;
+      left: 6px;
+      width: 2px;
+      height: 14px;
+    }
+
+    .cad-brackets {
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease;
+      pointer-events: none;
+    }
+
+    .cad-brackets span {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-color: #181513;
+      border-style: solid;
+      border-width: 0;
+    }
+
+    .bracket-tl { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+    .bracket-tr { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+    .bracket-bl { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+    .bracket-br { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
+
+    .cad-brackets.targeting {
+      width: 58px;
+      height: 58px;
+    }
+
+    .cad-brackets.targeting span {
+      border-color: #FF4820;
+    }
+
+    .cad-telemetry-pill {
+      position: absolute;
+      top: 14px;
+      left: 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      background: rgba(24, 21, 19, 0.85);
+      color: #ECE4D5;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      border: 1px solid rgba(255, 72, 32, 0.4);
+    }
+
+    /* -------------------------------------------------------------
+       MODE 3: Fluid Velocity-Stretching Ink Droplet
+       ------------------------------------------------------------- */
+    .mode-3-active body {
+      cursor: none;
+    }
+
+    .fluid-droplet {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      background: #FF4820;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+      display: none;
+      mix-blend-mode: multiply;
+    }
+
+    .mode-3-active .fluid-droplet {
+      display: block;
+    }
+
+    .fluid-droplet.hovering {
+      width: 54px;
+      height: 54px;
+      background: rgba(255, 72, 32, 0.35);
+      border: 1.5px solid #FF4820;
+    }
+
+    /* -------------------------------------------------------------
+       MODE 4: Pure Native Precision + Magnetic Gravity
+       ------------------------------------------------------------- */
+    .mode-4-active body {
+      cursor: default;
+    }
+
+    /* Back Link to Flagship */
+    .lab-footer-bar {
+      margin-top: auto;
+      background: #F7F3EA;
+      border-top: 1px solid rgba(24, 21, 19, 0.08);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #7D736A;
+    }
+
+    .lab-footer-bar a {
+      color: #FF4820;
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body class="cursor-lab-active mode-1-active">
+
+  <!-- Interactive Cursor Elements Layer -->
+  <div id="lab-cursor-root" aria-hidden="true">
+    <!-- Mode 1: Contextual Kinetic Capsule -->
+    <div id="capsule-follower" class="capsule-follower">
+      <span class="badge-icon">↗</span>
+      <span id="capsule-label">View Project</span>
+    </div>
+
+    <!-- Mode 2: CAD Reticle & Viewfinder -->
+    <div id="cad-reticle" class="cad-reticle">
+      <div class="cad-crosshair-center"></div>
+      <div id="cad-brackets" class="cad-brackets">
+        <span class="bracket-tl"></span>
+        <span class="bracket-tr"></span>
+        <span class="bracket-bl"></span>
+        <span class="bracket-br"></span>
+      </div>
+      <div id="cad-telemetry" class="cad-telemetry-pill">X: 0 Y: 0</div>
+    </div>
+
+    <!-- Mode 3: Fluid Velocity Droplet -->
+    <div id="fluid-droplet" class="fluid-droplet"></div>
+  </div>
+
+  <!-- Top Controller Bar -->
+  <nav class="lab-controller" aria-label="Cursor Mode Switcher">
+    <div class="lab-brand">
+      <span>THE SOCIAL KOLLAB</span>
+      <span class="lab-brand-pill">Cursor Lab</span>
+    </div>
+
+    <div class="lab-modes-list">
+      <button class="lab-mode-btn active" data-mode="1">
+        <span class="mode-num">1</span>
+        <span>Contextual Capsule</span>
+      </button>
+      <button class="lab-mode-btn" data-mode="2">
+        <span class="mode-num">2</span>
+        <span>CAD Reticle</span>
+      </button>
+      <button class="lab-mode-btn" data-mode="3">
+        <span class="mode-num">3</span>
+        <span>Fluid Droplet</span>
+      </button>
+      <button class="lab-mode-btn" data-mode="4">
+        <span class="mode-num">4</span>
+        <span>Pure Magnetic</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Lab Hero -->
+  <header class="lab-header">
+    <div class="lab-badge">Creative Direction Evaluation</div>
+    <h1 class="lab-title">Test 4 Bespoke Cursor Systems Live</h1>
+    <p class="lab-subtitle">Move your mouse across the interactive cards, buttons, and text blocks below. Click any mode in the top dock to switch immediately.</p>
+  </header>
+
+  <!-- Current Mode Information Card -->
+  <div class="current-mode-card" id="mode-detail-card">
+    <div class="mode-icon-box" id="mode-icon">✦</div>
+    <div class="mode-info">
+      <h3 id="mode-title">Mode 1: Contextual Kinetic Capsule (Dennis Snellenberg / Studio Freight)</h3>
+      <p id="mode-desc">Native OS pointer for 100% clean reading over text. The moment you hover over a case study, craftsman, or media, a smooth tactile pill springs out displaying contextual action cues.</p>
+    </div>
+    <div class="mode-status-tag" id="mode-badge">RECOMMENDED // HIGH CRAFT</div>
+  </div>
+
+  <!-- Interactive Testing Playground -->
+  <main class="lab-playground">
+    
+    <!-- Project Card 1 -->
+    <article class="interactive-card" data-cursor-action="View Case Study ↗" data-target-name="Uniform Lab">
+      <div class="card-meta">01 // Architectural E-Commerce</div>
+      <h2 class="card-title">Uniform Lab Flagship</h2>
+      <p class="card-desc">Sub-second headless Shopify store engineered with Next.js 14, WebGL liquid fabric shaders, and 99/100 Lighthouse performance.</p>
+      <div class="card-media-mock">
+        <span>[ INTERACTIVE FABRIC PREVIEW ]</span>
+      </div>
+    </article>
+
+    <!-- Project Card 2 -->
+    <article class="interactive-card" data-cursor-action="Explore Vault ↗" data-target-name="Sovereign Capital">
+      <div class="card-meta">02 // Quantitative Finance</div>
+      <h2 class="card-title">Sovereign Capital</h2>
+      <p class="card-desc">Real-time portfolio management dashboard with WebGL particle visualizer, low-latency WebSockets, and Swiss typographic grid.</p>
+      <div class="card-media-mock">
+        <span>[ 3D PORTFOLIO PARTICLE GRID ]</span>
+      </div>
+    </article>
+
+    <!-- Button & Magnetic Proximity Testing Area -->
+    <article class="interactive-card" style="grid-column: 1 / -1;" data-cursor-action="Select Discipline">
+      <div class="card-meta">Interactive Controls & Magnetic Physics</div>
+      <h2 class="card-title">Tactile Buttons & Action Triggers</h2>
+      <p class="card-desc">Hover over these CTA buttons. In Mode 4 (and across modes), notice how the buttons physically pull magnetically toward your pointer.</p>
+      
+      <div class="button-test-grid">
+        <button class="btn btn-primary magnetic-btn-target" data-cursor-action="Initiate Brief">
+          Initiate Project Brief ↗
+        </button>
+        <button class="btn btn-secondary magnetic-btn-target" data-cursor-action="View Archive">
+          Explore Selected Work
+        </button>
+        <button class="btn btn-sm magnetic-btn-target" style="border: 1px solid rgba(24, 21, 19, 0.2); background: transparent;" data-cursor-action="Schedule Call">
+          Book Atelier Sprint (30m)
+        </button>
+      </div>
+    </article>
+
+    <!-- Editorial Readability Block (Showing zero interference on text) -->
+    <section class="editorial-test-block">
+      <div class="card-meta">Typographic Ergonomics Test</div>
+      <h2 class="card-title" style="margin-bottom: 1.25rem;">Why Generic AI Cursors Fail Ergonomics</h2>
+      <p>
+        The ubiquitous "dot and trailing hollow ring" was popularized by design templates in 2021. Today, it has become an instant tell of AI-generated boilerplate. Because the hollow ring continuously floats behind the pointer, it overlaps and obscures body paragraphs, creates visual motion sickness, and lags noticeably on 60Hz and 120Hz displays.
+      </p>
+      <p>
+        A <strong>Principal-grade studio cursor</strong> respects the reader's eye: it either remains the pristine native OS pointer during editorial reading and only surfaces as a high-tactile badge over interactive media, or provides razor-sharp architectural CAD alignment without floating distractions.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="lab-footer-bar">
+    <span>The Social Kollab Design Studio</span> •
+    <a href="index.html">← Return to Studio Flagship</a>
+  </footer>
+
+  <!-- Laboratory Interaction Engine -->
+  <script>
+    (function() {
+      let currentMode = 1;
+      const body = document.body;
+      const capsule = document.getElementById('capsule-follower');
+      const capsuleLabel = document.getElementById('capsule-label');
+      const cadReticle = document.getElementById('cad-reticle');
+      const cadBrackets = document.getElementById('cad-brackets');
+      const cadTelemetry = document.getElementById('cad-telemetry');
+      const fluidDroplet = document.getElementById('fluid-droplet');
+      const modeButtons = document.querySelectorAll('.lab-mode-btn');
+
+      const modeDetails = {
+        1: {
+          icon: '✦',
+          title: 'Mode 1: Contextual Kinetic Capsule (Dennis Snellenberg / Studio Freight)',
+          desc: 'Native OS pointer for 100% clean reading over text. The moment you hover over a case study, craftsman, or media, a smooth tactile pill springs out displaying contextual action cues.',
+          badge: 'RECOMMENDED // HIGH CRAFT'
+        },
+        2: {
+          icon: '⌖',
+          title: 'Mode 2: Architectural CAD Reticle & Viewfinder',
+          desc: 'Hairline drafting crosshair with realtime coordinate telemetry. When hovering elements, four corner brackets expand to lock onto the target with engineering precision.',
+          badge: 'ENGINEERING PRECISION'
+        },
+        3: {
+          icon: '●',
+          title: 'Mode 3: Fluid Velocity-Stretching Ink Droplet',
+          desc: 'Dynamic liquid droplet that squashes, stretches, and rotates along your mouse velocity vector, expanding into a soft inversion lens over interactive targets.',
+          badge: 'ORGANIC MOTION'
+        },
+        4: {
+          icon: '🧲',
+          title: 'Mode 4: Pure Native Precision with Magnetic Gravity',
+          desc: 'Zero custom cursor DOM elements. 100% native OS arrow. Buttons and interactive cards physically gravitate toward the mouse within proximity field.',
+          badge: 'ZERO-GIMMICK PURITY'
+        }
+      };
+
+      // Switch Modes
+      function setMode(mode) {
+        currentMode = parseInt(mode);
+        body.className = `cursor-lab-active mode-${currentMode}-active`;
+        
+        modeButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-mode') == currentMode);
+        });
+
+        const detail = modeDetails[currentMode];
+        document.getElementById('mode-icon').textContent = detail.icon;
+        document.getElementById('mode-title').textContent = detail.title;
+        document.getElementById('mode-desc').textContent = detail.desc;
+        document.getElementById('mode-badge').textContent = detail.badge;
+
+        // Reset visibility
+        capsule.classList.remove('visible');
+        cadBrackets.classList.remove('targeting');
+        fluidDroplet.classList.remove('hovering');
+      }
+
+      modeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setMode(btn.getAttribute('data-mode'));
+        });
+      });
+
+      // Mouse Physics Tracking
+      let mouse = { x: -100, y: -100 };
+      let prevMouse = { x: -100, y: -100 };
+      let capsulePos = { x: -100, y: -100 };
+      let dropletPos = { x: -100, y: -100 };
+      let velocity = { x: 0, y: 0, speed: 0 };
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+
+        velocity.x = mouse.x - prevMouse.x;
+        velocity.y = mouse.y - prevMouse.y;
+        velocity.speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+
+        prevMouse.x = mouse.x;
+        prevMouse.y = mouse.y;
+
+        // Mode 2 Reticle Immediate Update
+        if (currentMode === 2) {
+          cadReticle.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0)`;
+          cadTelemetry.textContent = `X: ${Math.round(mouse.x)} Y: ${Math.round(mouse.y)}`;
+        }
+      }, { passive: true });
+
+      // Physics Animation Loop
+      function renderPhysics() {
+        // Mode 1: Capsule Follower (Smooth Spring Lerp at cursor offset)
+        if (currentMode === 1) {
+          capsulePos.x += (mouse.x + 16 - capsulePos.x) * 0.16;
+          capsulePos.y += (mouse.y + 16 - capsulePos.y) * 0.16;
+          capsule.style.transform = `translate3d(${capsulePos.x}px, ${capsulePos.y}px, 0)`;
+        }
+
+        // Mode 3: Fluid Droplet with Velocity Stretch
+        if (currentMode === 3) {
+          dropletPos.x += (mouse.x - dropletPos.x) * 0.22;
+          dropletPos.y += (mouse.y - dropletPos.y) * 0.22;
+          
+          const angle = Math.atan2(velocity.y, velocity.x);
+          const stretch = Math.min(velocity.speed * 0.04, 0.85);
+          
+          fluidDroplet.style.transform = `translate3d(${dropletPos.x}px, ${dropletPos.y}px, 0) translate(-50%, -50%) rotate(${angle}rad) scale(${1 + stretch}, ${Math.max(0.6, 1 - stretch * 0.5)})`;
+        }
+
+        requestAnimationFrame(renderPhysics);
+      }
+      requestAnimationFrame(renderPhysics);
+
+      // Interactive Element Hover Detection
+      const targets = document.querySelectorAll('.interactive-card, .btn, .card-media-mock');
+      targets.forEach(target => {
+        target.addEventListener('mouseenter', () => {
+          const actionText = target.getAttribute('data-cursor-action') || 'EXPLORE';
+          
+          if (currentMode === 1) {
+            capsuleLabel.textContent = actionText;
+            capsule.classList.add('visible');
+          } else if (currentMode === 2) {
+            cadBrackets.classList.add('targeting');
+          } else if (currentMode === 3) {
+            fluidDroplet.classList.add('hovering');
+          }
+        });
+
+        target.addEventListener('mouseleave', () => {
+          capsule.classList.remove('visible');
+          cadBrackets.classList.remove('targeting');
+          fluidDroplet.classList.remove('hovering');
+        });
+      });
+
+      // Magnetic Proximity on Buttons (For Mode 4 and all modes)
+      const magneticButtons = document.querySelectorAll('.magnetic-btn-target');
+      magneticButtons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const btnCenterX = rect.left + rect.width / 2;
+          const btnCenterY = rect.top + rect.height / 2;
+          const deltaX = (e.clientX - btnCenterX) * 0.32;
+          const deltaY = (e.clientY - btnCenterY) * 0.32;
+          btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = 'translate(0px, 0px)';
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
+

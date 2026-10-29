@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Collective & Studio Heritage | The Social Kollab</title>
+  <meta name="description" content="Discover The Social Kollab: an independent Pune atelier and creative syndicate of senior UI/UX architects, WebGL developers, and headless e-commerce engineers.">
+  
+  <link rel="canonical" href="https://thesocialkollab.com/collective.html">
+  <meta name="theme-color" content="#181513">
+  <meta name="robots" content="index, follow">
+  
+  <!-- OpenGraph Metadata -->
+  <meta property="og:site_name" content="The Social Kollab">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://thesocialkollab.com/collective.html">
+  <meta property="og:title" content="The Collective & Studio Heritage | The Social Kollab">
+  <meta property="og:description" content="The Anti-AI Atelier. Hand-Crafted in Pune. Meet the resident craftsmen and explore our studio manifesto.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://thesocialkollab.com/assets/images/hero-studio.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@thesocialkollab">
+  <meta name="twitter:creator" content="@thesocialkollab">
+  <meta name="twitter:title" content="The Collective & Studio Heritage | The Social Kollab">
+  <meta name="twitter:description" content="The Anti-AI Atelier. Hand-Crafted in Pune. Meet the resident craftsmen and explore our studio manifesto.">
+  <meta name="twitter:image" content="https://thesocialkollab.com/assets/images/hero-studio.jpg">
+
+  <!-- Typography: Syne, Playfair Display, Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Master Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23181513'/%3E%3Ctext x='50%25' y='65%25' font-family='sans-serif' font-weight='800' font-size='48' fill='%23ff4820' text-anchor='middle'%3ESK%3C/text%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Layer 0: Procedural SVG Film Grain Overlay -->
+  <svg class="noise-overlay" aria-hidden="true">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.04 0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+  </svg>
+
+  <!-- Layer 1: GPU-Accelerated Three.js Liquid GLSL Wave Canvas -->
+  <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+
+    <!-- Custom Fluid Velocity Cursor (Single Unified Pointer, Zero Double Cursor) -->
+  <div class="fluid-cursor-wrap" id="fluid-cursor-wrap" aria-hidden="true">
+    <div class="fluid-droplet" id="fluid-droplet">
+      <span class="fluid-cursor-text" id="fluid-cursor-text"></span>
+    </div>
+  </div>
+
+  <!-- Site Navigation -->
+  <header class="site-header" id="header">
+    <div class="scroll-progress-line" id="scroll-progress-line" aria-hidden="true"></div>
+    <div class="header-inner container">
+      <a href="index.html" class="brand-logo" aria-label="The Social Kollab Home">
+        <span class="logo-mark">SK</span>
+        <div class="logo-text-group">
+          <span class="logo-text">THE SOCIAL KOLLAB</span>
+          <span class="logo-descriptor">Digital Architecture & Creative Engineering</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Capabilities</a></li>
+          <li><a href="services.html#engagement-model" class="nav-link">Pricing</a></li>
+          <li><a href="collective.html" class="nav-link active">Collective</a></li>
+          <li><a href="work.html#testimonials" class="nav-link">Proof</a></li>
+          <li><a href="contact.html#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm" id="header-start-project-btn">Start Project</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page Hero Monolith -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-breadcrumbs">
+          <a href="index.html">The Social Kollab</a>
+          <span class="crumb-sep">/</span>
+          <span>Studio Heritage & The Collective</span>
+        </div>
+        <h1 class="page-hero-title">
+          Digital Architecture &<br>
+          <em>Creative Engineering.</em>
+        </h1>
+        <p class="page-hero-desc">
+          Founded in Pune by Principal Creative Technologist Karan Malhotra, The Social Kollab is an independent studio practice and curated specialist guild. We partner with ambitious founders, enterprise visionaries, and cultural leaders to engineer category-defining digital flagships.
+        </p>
+      </div>
+    </section>
+
+    <!-- Studio Origin & Photographic Filmstrip -->
+    <section class="section" style="padding-top: 2rem; padding-bottom: 3.5rem;">
+      <div class="container">
+        
+        <div class="hero-filmstrip" style="aspect-ratio: 21 / 8; margin-bottom: 4rem;">
+          <img src="assets/images/hero-studio.jpg" alt="The Social Kollab Pune Studio Workspace" class="filmstrip-img">
+          <div class="filmstrip-overlay"></div>
+          <div class="filmstrip-caption">
+            <span class="caption-pulse"></span>
+            <span>PUNE STUDIO HQ • ATELIER DISCIPLINE • PHYSICAL RESEARCH & SYSTEM TOKENS</span>
+          </div>
+        </div>
+
+        <!-- The Manifesto Columns -->
+        <div class="case-narrative-split">
+          <div class="narrative-sticky-side">
+            <div class="narrative-kicker">OUR POSITION</div>
+            <h2 class="narrative-heading">Architecture That Endures.</h2>
+          </div>
+          <div class="narrative-body">
+            <p>
+              Founded in Pune by Karan Malhotra, The Social Kollab operates on a foundational architectural principle: digital flagships should possess the permanence, typographic balance, and tactile clarity of physical structures.
+            </p>
+            <p>
+              In an era of disposable digital interfaces, genuine distinction requires unhurried craft. The internet is crowded with interchangeable templates and superficial trends that erode brand credibility. We take on a maximum of three clients per quarter to ensure direct founding partner direction on every line of code and every typographic token.
+            </p>
+            <p>
+              <strong>The Social Kollab was founded on the opposite conviction:</strong> When everyone has access to the same synthetic shortcuts, real commercial value accrues to the brands with unmistakable human craft, mathematical elegance, and conversion-hardened engineering.
+            </p>
+            <p>
+              Every layout we author is designed around human cognitive psychology. Every line of CSS adheres to strict architectural tokens. Every WebGL shader is handwritten to reflect physical materials—paper, slate, woven fabric, solar caustics.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- The Creative Collective Roster -->
+    <section class="section roster-section" id="roster" style="border-top: 1px solid var(--border-subtle); padding-top: 4rem;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">RESIDENT CRAFTSMEN</div>
+          <h2 class="section-title">The Kollab Creative Collective.</h2>
+          <p class="section-subtext">Senior specialists with 8+ years of battle-tested domain authority across architecture, shaders, and commerce.</p>
+        </div>
+
+        <div class="guild-overview-card">
+          <div class="guild-narrative">
+            <div class="card-meta" style="color: var(--accent-bronze); margin-bottom: 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Atelier Structure</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.85rem; font-weight: 600; line-height: 1.25; margin-bottom: 1rem;">Core Atelier & Specialist Guild.</h3>
+            <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.5rem;">
+              We operate as a compact, senior-led creative engineering practice based in Pune, India. Rather than maintaining a bloated agency bench, every project is directed by our core founding principals and assembled with a vetted guild of specialist 3D shader developers, type designers, and commerce architects.
+            </p>
+            <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+              <span class="proof-pill">Direct Senior Direction</span>
+              <span class="proof-pill">Zero Junior Delegation</span>
+              <span class="proof-pill">Sub-Second Delivery Cadence</span>
+            </div>
+          </div>
+
+          <div class="guild-pillars-list">
+            <div class="guild-pillar-item">
+              <div class="guild-pillar-title">01 / Principal Direction</div>
+              <p class="guild-pillar-desc">Spatial UI/UX, brand typography systems, and high-conversion e-commerce architecture directed from our Pune studio.</p>
+            </div>
+            <div class="guild-pillar-item">
+              <div class="guild-pillar-title">02 / Specialist Shading & WebGL</div>
+              <p class="guild-pillar-desc">Custom GLSL liquid physics, Three.js shaders, and GPU-accelerated canvas interactions engineered for 60–120 FPS.</p>
+            </div>
+            <div class="guild-pillar-item">
+              <div class="guild-pillar-title">03 / Headless Systems & Infrastructure</div>
+              <p class="guild-pillar-desc">Sub-second Shopify Storefront API integrations, Next.js 14 App Router, and Cloudflare global edge caching.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </section>
+
+    <!-- Studio Ethics & Governance -->
+    <section class="section" id="ethics" style="border-top: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">STUDIO GOVERNANCE</div>
+          <h2 class="section-title">The Three Unbreakable Ethics.</h2>
+          <p class="section-subtext">How we protect client investments and maintain world-class creative integrity.</p>
+        </div>
+
+        <div class="stats-grid" style="margin-top: 2rem;">
+          <div class="stat-card interactive-tilt">
+            <div class="stat-number" style="color: var(--color-primary-3);">Max 2</div>
+            <div class="stat-label">Commissions Per Quarter</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+              We never run factory assembly lines. We deliberately cap our bandwidth so senior architects author your code directly.
+            </p>
+          </div>
+          <div class="stat-card interactive-tilt">
+            <div class="stat-number" style="color: var(--color-primary-3);">Zero</div>
+            <div class="stat-label">Page Builders in Production</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+              No Webflow, WordPress, or Elementor themes passed off as custom builds. Every line of CSS, HTML, and JS is authored by hand.
+            </p>
+          </div>
+          <div class="stat-card interactive-tilt">
+            <div class="stat-number" style="color: var(--color-primary-3);">Fixed</div>
+            <div class="stat-label">Transparent Sprint Pricing</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+              No billable hourly creep. Engagements are contracted on fixed-scope sprint milestones with defined deliverable SLAs.
+            </p>
+          </div>
+          <div class="stat-card interactive-tilt">
+            <div class="stat-number" style="color: var(--color-primary-3);">100%</div>
+            <div class="stat-label">Direct Creator Access</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+              No non-technical account managers filtering communications. Clients collaborate directly in Slack/GitHub with the builders.
+            </p>
+          </div>
+        </div>
+
+        <!-- Collaborator Callout Banner -->
+        <div class="creator-cta-banner" style="margin-top: 4rem;">
+          <div class="creator-cta-text">
+            <h3 class="creator-cta-heading">Are you an elite creative technologist or spatial designer?</h3>
+            <p class="creator-cta-sub">
+              The Collective accepts applications on a rolling basis from world-class independent creators. We pay industry-leading sprint rates with zero corporate bureaucracy.
+            </p>
+          </div>
+          <a href="contact.html" class="btn btn-primary btn-md">Apply to Join Collective →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-inner">
+            <div class="section-label text-accent">COLLABORATE WITH THE ATELIER</div>
+            <h2 class="cta-title">Ready to work directly with senior creative architects?</h2>
+            <p class="cta-subtext">
+              We are currently accepting briefs for select Q4 engagements.
+            </p>
+            <div class="cta-buttons">
+              <a href="contact.html" class="btn btn-primary btn-lg">
+                <span>Initiate Project Brief</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="work.html" class="btn btn-outline btn-lg">Inspect Project Archive</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="index.html" class="brand-logo" aria-label="The Social Kollab Home">
+            <span class="logo-mark">SK</span>
+            <span class="logo-text">THE SOCIAL KOLLAB</span>
+          </a>
+          <p class="footer-manifesto">
+            Independent creative development and digital flagships engineered in Pune. Handcrafted WebGL, strict typography tokens, and conversion-hardened headless architecture.
+          </p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/thesocialkollab/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">IG</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">LI</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">GH</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">X</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">DIRECTORY</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Selected Work</a></li>
+            <li><a href="work-uniform-lab.html">Case Study: Uniform Lab</a></li>
+            <li><a href="services.html">Capabilities Matrix</a></li>
+            <li><a href="services.html#engagement-model">Investment Blueprint</a></li>
+            <li><a href="collective.html">Creative Collective</a></li>
+            <li><a href="contact.html">Contact & Brief</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">DISCIPLINES</div>
+          <ul class="footer-links">
+            <li><a href="services.html">Spatial UI/UX Systems</a></li>
+            <li><a href="services.html">Three.js & GLSL Shaders</a></li>
+            <li><a href="services.html">Headless Shopify Plus</a></li>
+            <li><a href="services.html">Brand Architecture</a></li>
+            <li><a href="services.html">Conversion Engineering</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">STUDIO DISPATCH</div>
+          <p class="footer-dispatch-desc">Quarterly architectural memos on creative development and conversion economics.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to The Kollab Dispatch.');">
+            <input type="email" id="newsletter-email-footer" name="newsletter_email" placeholder="founder@company.com" class="newsletter-input" required aria-label="Your email">
+            <button type="submit" class="newsletter-submit" aria-label="Subscribe">→</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2026 THE SOCIAL KOLLAB. ALL ARCHITECTURAL RIGHTS RESERVED.
+        </div>
+        <div class="footer-legal">
+          <a href="collective.html#ethics">Ethics Protocol</a>
+          <span class="sep">•</span>
+          <a href="contact.html#faq">Terms of Engagement</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Command Palette Modal -->
+  <div class="cmd-palette-backdrop" id="cmd-palette-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="cmd-palette-card">
+      <div class="cmd-input-wrap">
+        <span class="cmd-search-icon">🔍</span>
+        <input type="text" class="cmd-search-input" id="cmd-search-input" placeholder="Type a destination or command..." autocomplete="off" spellcheck="false">
+        <span class="cmd-esc-badge" id="cmd-esc-badge">ESC</span>
+      </div>
+      <div class="cmd-palette-results" id="cmd-palette-results" role="listbox"></div>
+      <div class="cmd-palette-footer">
+        <span class="cmd-footer-tip">Navigate: <kbd>↑</kbd> <kbd>↓</kbd></span>
+        <span class="cmd-footer-tip">Select: <kbd>↵</kbd></span>
+        <span class="cmd-footer-tip">Dismiss: <kbd>ESC</kbd></span>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Core Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  
+  <script src="script.js"></script>
+
+    <!-- Top Kinetic Navigation Filament (Silk Page Transition) -->
+  <div class="top-nav-filament" id="nav-filament" aria-hidden="true"></div>
+  </div>
+
+</body>
+</html>
+

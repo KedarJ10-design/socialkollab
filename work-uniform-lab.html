@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Uniform Lab Case Study | The Social Kollab</title>
+  <meta name="description" content="In-depth case study on how The Social Kollab re-architected The Uniform Lab into a headless Shopify Plus powerhouse, driving a 3.8x checkout conversion lift.">
+  
+  <link rel="canonical" href="https://thesocialkollab.com/work-uniform-lab.html">
+  <meta name="theme-color" content="#181513">
+  <meta name="robots" content="index, follow">
+  
+  <!-- OpenGraph Metadata -->
+  <meta property="og:site_name" content="The Social Kollab">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://thesocialkollab.com/work-uniform-lab.html">
+  <meta property="og:title" content="The Uniform Lab Case Study | The Social Kollab">
+  <meta property="og:description" content="3.8x Conversion Lift. Sub-800ms LCP. Headless Shopify Plus & Next.js Architecture.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://thesocialkollab.com/assets/images/case-fashion.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@thesocialkollab">
+  <meta name="twitter:creator" content="@thesocialkollab">
+  <meta name="twitter:title" content="The Uniform Lab Case Study | The Social Kollab">
+  <meta name="twitter:description" content="3.8x Conversion Lift. Sub-800ms LCP. Headless Shopify Plus & Next.js Architecture.">
+  <meta name="twitter:image" content="https://thesocialkollab.com/assets/images/case-fashion.jpg">
+
+  <!-- Typography: Syne, Playfair Display, Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Master Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23181513'/%3E%3Ctext x='50%25' y='65%25' font-family='sans-serif' font-weight='800' font-size='48' fill='%23ff4820' text-anchor='middle'%3ESK%3C/text%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Layer 0: Procedural SVG Film Grain Overlay -->
+  <svg class="noise-overlay" aria-hidden="true">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.04 0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+  </svg>
+
+  <!-- Layer 1: GPU-Accelerated Three.js Liquid GLSL Wave Canvas -->
+  <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+
+    <!-- Custom Fluid Velocity Cursor (Single Unified Pointer, Zero Double Cursor) -->
+  <div class="fluid-cursor-wrap" id="fluid-cursor-wrap" aria-hidden="true">
+    <div class="fluid-droplet" id="fluid-droplet">
+      <span class="fluid-cursor-text" id="fluid-cursor-text"></span>
+    </div>
+  </div>
+
+  <!-- Site Navigation -->
+  <header class="site-header" id="header">
+    <div class="scroll-progress-line" id="scroll-progress-line" aria-hidden="true"></div>
+    <div class="header-inner container">
+      <a href="index.html" class="brand-logo" aria-label="The Social Kollab Home">
+        <span class="logo-mark">SK</span>
+        <div class="logo-text-group">
+          <span class="logo-text">THE SOCIAL KOLLAB</span>
+          <span class="logo-descriptor">Digital Architecture & Creative Engineering</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link active">Work</a></li>
+          <li><a href="services.html" class="nav-link">Capabilities</a></li>
+          <li><a href="services.html#engagement-model" class="nav-link">Pricing</a></li>
+          <li><a href="collective.html" class="nav-link">Collective</a></li>
+          <li><a href="work.html#testimonials" class="nav-link">Proof</a></li>
+          <li><a href="contact.html#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm" id="header-start-project-btn">Start Project</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Case Study Hero -->
+    <article class="case-study-hero">
+      <div class="container">
+        
+        <div class="page-breadcrumbs">
+          <a href="index.html">The Social Kollab</a>
+          <span class="crumb-sep">/</span>
+          <a href="work.html">Selected Work</a>
+          <span class="crumb-sep">/</span>
+          <span>The Uniform Lab</span>
+        </div>
+
+        <span class="case-study-client-tag">CASE STUDY • HEADLESS SHOPIFY PLUS</span>
+        <h1 class="case-study-title">
+          Engineering a 3.8x Conversion Lift for India's Premier Apparel Flagship.
+        </h1>
+        <p class="case-study-lede">
+          How we dismantled a legacy, plugin-bloated e-commerce site and engineered a bespoke headless architecture with edge-cached Next.js, micro-interaction sound design, and an instant corporate bulk-order visualizer.
+        </p>
+
+        <!-- Metadata Grid -->
+        <div class="case-study-meta-grid">
+          <div class="meta-spec-col">
+            <span class="meta-spec-label">CLIENT</span>
+            <span class="meta-spec-val">The Uniform Lab</span>
+          </div>
+          <div class="meta-spec-col">
+            <span class="meta-spec-label">TIMELINE</span>
+            <span class="meta-spec-val">6 Weeks (Q1 2026)</span>
+          </div>
+          <div class="meta-spec-col">
+            <span class="meta-spec-label">DISCIPLINES</span>
+            <span class="meta-spec-val">Spatial UI/UX, Headless Shopify, WebGL</span>
+          </div>
+          <div class="meta-spec-col">
+            <span class="meta-spec-label">CORE STACK</span>
+            <span class="meta-spec-val">Next.js 14, Shopify Storefront API, Cloudflare</span>
+          </div>
+        </div>
+
+        <!-- Commercial Proof Metrics Bar -->
+        <div class="case-metrics-bar">
+          <div class="case-metric-cell">
+            <div class="case-metric-number">3.8x</div>
+            <div class="case-metric-label">Mobile Checkout Conversion Lift within 60 days of launch</div>
+          </div>
+          <div class="case-metric-cell">
+            <div class="case-metric-number">&lt;0.8s</div>
+            <div class="case-metric-label">Largest Contentful Paint (LCP) across global 4G mobile devices</div>
+          </div>
+          <div class="case-metric-cell">
+            <div class="case-metric-number">+180%</div>
+            <div class="case-metric-label">Average Corporate Order Value (AOV) driven by bulk configurator</div>
+          </div>
+        </div>
+
+        <!-- Full-Bleed Photographic Showcase -->
+        <div class="case-bleed-banner">
+          <img src="assets/images/case-fashion.jpg" alt="The Uniform Lab Editorial Lifestyle Architecture">
+        </div>
+
+        <!-- Storytelling Narrative: The Challenge & The Architecture -->
+        <div class="case-narrative-split">
+          <div class="narrative-sticky-side">
+            <div class="narrative-kicker">THE CHALLENGE</div>
+            <h2 class="narrative-heading">The 4.2-Second Latency Bottleneck.</h2>
+          </div>
+          <div class="narrative-body">
+            <p>
+              The Uniform Lab was manufacturing exceptional corporate and culinary garments, but their digital storefront felt like a generic template farm. Over five years, the client had accumulated <strong>42 third-party Shopify apps</strong>—each injecting unoptimized tracking scripts, render-blocking stylesheets, and conflicting jQuery libraries.
+            </p>
+            <p>
+              On standard 4G mobile connections in Mumbai and Delhi, pages took over <strong>4.2 seconds</strong> to become interactive. Corporate buyers looking to order 500+ customized pieces were abandoning carts because the sizing configurator crashed on mobile browsers.
+            </p>
+            <p>
+              The client didn't need another generic theme tweak. They needed a complete architectural overhaul.
+            </p>
+          </div>
+        </div>
+
+        <div class="case-narrative-split">
+          <div class="narrative-sticky-side">
+            <div class="narrative-kicker">THE ARCHITECTURAL INTERVENTION</div>
+            <h2 class="narrative-heading">Decoupled Headless Engineering.</h2>
+          </div>
+          <div class="narrative-body">
+            <p>
+              We decoupled the storefront entirely from standard Shopify Liquid rendering. We architected a <strong>headless Next.js 14 application</strong> hosted on Cloudflare's global edge network, communicating with Shopify Plus strictly via GraphQL Storefront APIs.
+            </p>
+            <p>
+              <strong>Key architectural interventions included:</strong>
+            </p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.8;">
+              <li><strong>Zero third-party script bloat</strong>: Replaced 42 apps with lightweight server actions, reducing JavaScript bundle size by 78%.</li>
+              <li><strong>Hardware-accelerated transitions</strong>: Implemented silky 60 FPS page transitions with instant optimistic routing.</li>
+              <li><strong>Custom WebGL Fabric Configurator</strong>: Allowed procurement directors to inspect 3D fabric weave densities and embroidery placements in real time.</li>
+              <li><strong>One-Click Corporate Invoicing</strong>: Built a bespoke B2B GST validation gateway that auto-generates enterprise tax invoices during checkout.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Design System Spec Table -->
+        <div class="design-tokens-panel">
+          <div class="section-label">DESIGN SYSTEM SPECIFICATION</div>
+          <h3 style="font-size: 1.8rem; font-weight: 700; margin-top: 0.5rem;">Chromatic Tokens & Editorial Typography</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">
+            A disciplined warm palette engineered to communicate high-end tailoring, institutional authority, and tactile warmth.
+          </p>
+
+          <div class="tokens-grid">
+            <div class="token-swatch">
+              <div class="token-color-preview" style="background: #181513;"></div>
+              <span class="token-name">Espresso Wool</span>
+              <span class="token-hex">#181513 • Primary Ink</span>
+            </div>
+            <div class="token-swatch">
+              <div class="token-color-preview" style="background: #ece4d5;"></div>
+              <span class="token-name">Parchment Twill</span>
+              <span class="token-hex">#ECE4D5 • Canvas Base</span>
+            </div>
+            <div class="token-swatch">
+              <div class="token-color-preview" style="background: #ff4820;"></div>
+              <span class="token-name">Solar Thread</span>
+              <span class="token-hex">#FF4820 • Conversion CTA</span>
+            </div>
+            <div class="token-swatch">
+              <div class="token-color-preview" style="background: #f59e0b;"></div>
+              <span class="token-name">Brass Button</span>
+              <span class="token-hex">#F59E0B • Badge Accent</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Before vs After Architecture Comparison -->
+        <div class="section" style="padding-top: 0;">
+          <div class="section-label">ARCHITECTURAL BENCHMARK</div>
+          <h3 style="font-size: 1.8rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 1.5rem;">Monolithic Theme vs Headless Flagship</h3>
+          
+          <div style="background: var(--color-support-1); border: 1px solid var(--border-subtle); border-radius: 20px; overflow: hidden;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--border-subtle); background: rgba(24, 21, 19, 0.03);">
+                  <th style="padding: 1.25rem 1.5rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">METRIC</th>
+                  <th style="padding: 1.25rem 1.5rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">LEGACY MONOLITH</th>
+                  <th style="padding: 1.25rem 1.5rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-primary-3);">THE SOCIAL KOLLAB HEADLESS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                  <td style="padding: 1.25rem 1.5rem; font-weight: 700;">Mobile Load Time (LCP)</td>
+                  <td style="padding: 1.25rem 1.5rem; color: var(--text-secondary);">4.2 seconds</td>
+                  <td style="padding: 1.25rem 1.5rem; font-weight: 700; color: var(--color-primary-3);">0.78 seconds (-81%)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                  <td style="padding: 1.25rem 1.5rem; font-weight: 700;">Third-Party App Bloat</td>
+                  <td style="padding: 1.25rem 1.5rem; color: var(--text-secondary);">42 active apps</td>
+                  <td style="padding: 1.25rem 1.5rem; font-weight: 700; color: var(--color-primary-3);">0 third-party plugins (Bespoke code)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                  <td style="padding: 1.25rem 1.5rem; font-weight: 700;">Google Lighthouse Score</td>
+                  <td style="padding: 1.25rem 1.5rem; color: var(--text-secondary);">41 / 100</td>
+                  <td style="padding: 1.25rem 1.5rem; font-weight: 700; color: var(--color-primary-3);">98 / 100</td>
+                </tr>
+                <tr>
+                  <td style="padding: 1.25rem 1.5rem; font-weight: 700;">Mobile Checkout Rate</td>
+                  <td style="padding: 1.25rem 1.5rem; color: var(--text-secondary);">1.2%</td>
+                  <td style="padding: 1.25rem 1.5rem; font-weight: 700; color: var(--color-primary-3);">4.6% (3.8x Lift)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Verified Testimonial Quote -->
+        <div class="testimonial-card" style="margin-bottom: 4rem;">
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="testimonial-quote" style="font-size: 1.35rem;">
+            "The Social Kollab transformed our business fundamentally. The headless architecture took our checkout conversion from 1.2% to 4.6% within sixty days. Our corporate clients routinely compliment how effortless it is to order uniforms for hundreds of staff."
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #181513, #ff4820);">UL</div>
+            <div class="author-info">
+              <div class="author-name">Managing Director</div>
+              <div class="author-title">The Uniform Lab • Institutional Apparel</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Project Sticky Teaser (Never Dead-End the User) -->
+        <a href="work.html#case-trex" class="next-project-teaser">
+          <div>
+            <div class="next-teaser-sub">EXPLORE NEXT DEPLOYMENT</div>
+            <div class="next-teaser-title">T-REX Store: 4.6x Direct ROAS Apparel ↗</div>
+          </div>
+          <div class="next-teaser-arrow">→</div>
+        </a>
+
+      </div>
+    </article>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="index.html" class="brand-logo" aria-label="The Social Kollab Home">
+            <span class="logo-mark">SK</span>
+            <span class="logo-text">THE SOCIAL KOLLAB</span>
+          </a>
+          <p class="footer-manifesto">
+            Independent creative development and digital flagships engineered in Pune. Handcrafted WebGL, strict typography tokens, and conversion-hardened headless architecture.
+          </p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/thesocialkollab/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">IG</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">LI</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">GH</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">X</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">DIRECTORY</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Selected Work</a></li>
+            <li><a href="work-uniform-lab.html">Case Study: Uniform Lab</a></li>
+            <li><a href="services.html">Capabilities Matrix</a></li>
+            <li><a href="services.html#engagement-model">Investment Blueprint</a></li>
+            <li><a href="collective.html">Creative Collective</a></li>
+            <li><a href="contact.html">Contact & Brief</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">DISCIPLINES</div>
+          <ul class="footer-links">
+            <li><a href="services.html">Spatial UI/UX Systems</a></li>
+            <li><a href="services.html">Three.js & GLSL Shaders</a></li>
+            <li><a href="services.html">Headless Shopify Plus</a></li>
+            <li><a href="services.html">Brand Architecture</a></li>
+            <li><a href="services.html">Conversion Engineering</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">STUDIO DISPATCH</div>
+          <p class="footer-dispatch-desc">Quarterly architectural memos on creative development and conversion economics.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to The Kollab Dispatch.');">
+            <input type="email" id="newsletter-email-footer" name="newsletter_email" placeholder="founder@company.com" class="newsletter-input" required aria-label="Your email">
+            <button type="submit" class="newsletter-submit" aria-label="Subscribe">→</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2026 THE SOCIAL KOLLAB. ALL ARCHITECTURAL RIGHTS RESERVED.
+        </div>
+        <div class="footer-legal">
+          <a href="collective.html#ethics">Ethics Protocol</a>
+          <span class="sep">•</span>
+          <a href="contact.html#faq">Terms of Engagement</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Command Palette Modal -->
+  <div class="cmd-palette-backdrop" id="cmd-palette-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="cmd-palette-card">
+      <div class="cmd-input-wrap">
+        <span class="cmd-search-icon">🔍</span>
+        <input type="text" class="cmd-search-input" id="cmd-search-input" placeholder="Type a destination or command..." autocomplete="off" spellcheck="false">
+        <span class="cmd-esc-badge" id="cmd-esc-badge">ESC</span>
+      </div>
+      <div class="cmd-palette-results" id="cmd-palette-results" role="listbox"></div>
+      <div class="cmd-palette-footer">
+        <span class="cmd-footer-tip">Navigate: <kbd>↑</kbd> <kbd>↓</kbd></span>
+        <span class="cmd-footer-tip">Select: <kbd>↵</kbd></span>
+        <span class="cmd-footer-tip">Dismiss: <kbd>ESC</kbd></span>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Core Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  
+  <script src="script.js"></script>
+
+    <!-- Top Kinetic Navigation Filament (Silk Page Transition) -->
+  <div class="top-nav-filament" id="nav-filament" aria-hidden="true"></div>
+  </div>
+
+</body>
+</html>
+

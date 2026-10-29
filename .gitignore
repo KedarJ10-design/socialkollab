@@ -1,0 +1,19 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Agent & Brain Metadata
+.gemini/
+.system_generated/
+*.tmp
+*.log
+
+# Node & Package Managers (if added later)
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+
+# Python bytecode
+__pycache__/
+*.pyc

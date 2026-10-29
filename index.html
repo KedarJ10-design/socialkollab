@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Social Kollab | Bespoke Digital Craft & Creative Engineering</title>
+  <meta name="description" content="The Social Kollab is an elite digital design and creative development studio in Pune & worldwide. Creators of flagship digital experiences for The Uniform Lab, T-REX, OrthoChronicles, and ambitious founders.">
+  <meta name="keywords" content="The Social Kollab, creative technologist, UI UX developer, web design studio Pune, headless e-commerce, custom shaders, GSAP motion, Dennis Snellenberg style">
+  
+  <link rel="canonical" href="https://thesocialkollab.com/">
+  <meta name="theme-color" content="#181513">
+  <meta name="robots" content="index, follow">
+  
+  <!-- OpenGraph Metadata -->
+  <meta property="og:site_name" content="The Social Kollab">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://thesocialkollab.com/">
+  <meta property="og:title" content="The Social Kollab | Hand-Crafted Digital Experiences">
+  <meta property="og:description" content="Bespoke digital architecture and creative engineering studio based in Pune, India. Flagship web platforms for ambitious brands.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://thesocialkollab.com/assets/images/hero-studio.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@thesocialkollab">
+  <meta name="twitter:creator" content="@thesocialkollab">
+  <meta name="twitter:title" content="The Social Kollab | Hand-Crafted Digital Experiences">
+  <meta name="twitter:description" content="Bespoke digital architecture and creative engineering studio based in Pune, India. Flagship web platforms for ambitious brands.">
+  <meta name="twitter:image" content="https://thesocialkollab.com/assets/images/hero-studio.jpg">
+
+  <!-- Schema.org ProfessionalService Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "The Social Kollab",
+    "alternateName": "TSK Studio",
+    "description": "Independent digital design and creative development studio in Pune, India specializing in bespoke digital architecture, headless Shopify Plus, custom Three.js WebGL experiences, and high-conversion commercial flagships.",
+    "url": "https://thesocialkollab.com",
+    "logo": "https://thesocialkollab.com/assets/images/hero-studio.jpg",
+    "image": "https://thesocialkollab.com/assets/images/hero-studio.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "18.5204",
+      "longitude": "73.8567"
+    },
+    "email": "hello@thesocialkollab.com",
+    "priceRange": "$$$$",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "10:00",
+      "closes": "19:00"
+    },
+    "sameAs": [
+      "https://www.instagram.com/thesocialkollab/",
+      "https://linkedin.com",
+      "https://github.com",
+      "https://twitter.com/thesocialkollab"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Design & Engineering Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Spatial UI/UX & Digital Flagship Architecture"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Headless Shopify Plus & Next.js Commerce"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Interactive WebGL, Three.js & GLSL Creative Coding"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Brand Identity & Design Token Systems"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Typography: Syne, Playfair Display, Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Master Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23181513'/%3E%3Ctext x='50%25' y='65%25' font-family='sans-serif' font-weight='800' font-size='48' fill='%23ff4820' text-anchor='middle'%3ESK%3C/text%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Layer 0: Procedural SVG Film Grain Overlay (Breaks Digital Plastic Flatness) -->
+  <svg class="noise-overlay" aria-hidden="true">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.04 0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+  </svg>
+
+  <!-- Layer 1: GPU-Accelerated Three.js Liquid GLSL Wave Canvas -->
+  <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+
+    <!-- Custom Fluid Velocity Cursor (Single Unified Pointer, Zero Double Cursor) -->
+  <div class="fluid-cursor-wrap" id="fluid-cursor-wrap" aria-hidden="true">
+    <div class="fluid-droplet" id="fluid-droplet">
+      <span class="fluid-cursor-text" id="fluid-cursor-text"></span>
+    </div>
+  </div>
+
+  <!-- Site Navigation -->
+  <header class="site-header" id="header">
+    <div class="scroll-progress-line" id="scroll-progress-line" aria-hidden="true"></div>
+    <div class="header-inner container">
+      <a href="index.html" class="brand-logo" aria-label="The Social Kollab Home">
+        <span class="logo-mark">SK</span>
+        <div class="logo-text-group">
+          <span class="logo-text">THE SOCIAL KOLLAB</span>
+          <span class="logo-descriptor">Digital Architecture & Creative Engineering</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Capabilities</a></li>
+          <li><a href="services.html#engagement-model" class="nav-link">Pricing</a></li>
+          <li><a href="collective.html" class="nav-link">Collective</a></li>
+          <li><a href="work.html#testimonials" class="nav-link">Proof</a></li>
+          <li><a href="contact.html#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-primary btn-sm open-modal-btn" data-tab="brand" id="header-start-project-btn">Start Project</button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section (Monolith Typography & Architectural Telemetry) -->
+        <!-- Hero Section (Asymmetric Architectural Split Grid — Justinmind Standard) -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-split-grid">
+          
+          <!-- Left Column: Editorial Typography, Manifesto & Actions -->
+          <div class="hero-content-col">
+            <div class="hero-eyebrow">INDEPENDENT STUDIO // PUNE, INDIA • EST. 2026</div>
+            <h1 class="hero-main-title">
+              Bespoke digital architecture.<br>Engineered for high conversion.
+            </h1>
+            
+            <p class="hero-manifesto-text">
+              The Social Kollab is an independent design and creative engineering practice founded in Pune, India. We partner with founders, enterprise visionaries, and cultural institutions to build category-defining flagships with bespoke WebGL, editorial typography, and sub-second headless commerce.
+            </p>
+
+            <div class="hero-action-cluster">
+              <div class="hero-cta-buttons">
+                <button class="btn btn-primary btn-lg open-modal-btn" data-tab="brand" id="hero-initiate-btn">
+                  <span>Initiate Project Brief</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <a href="#case-studies" class="btn btn-ghost btn-lg" id="hero-explore-work-btn">
+                  <span>Explore Archive</span>
+                  <span class="arrow-down">↓</span>
+                </a>
+              </div>
+
+              <div class="hero-studio-status">
+                <span class="status-dot-green"></span>
+                <span>Q4 2026 // ONBOARDING SELECT BRANDS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Inspiring Hero Image Card (Above the Fold) -->
+          <div class="hero-visual-col">
+            <div class="hero-image-card interactive-tilt" id="hero-image-card">
+              <div class="hero-card-media-wrap">
+                <img src="assets/images/hero-studio.jpg" alt="The Social Kollab Pune Studio Workbench" class="hero-card-img">
+                <div class="hero-card-vignette"></div>
+              </div>
+              
+              <!-- Floating Glassmorphism Telemetry Badges -->
+              <div class="hero-card-badge top-left">
+                <span class="badge-pulse"></span>
+                <span>PUNE ATELIER // ACTIVE</span>
+              </div>
+              <div class="hero-card-badge bottom-left">
+                <span class="badge-tag">FIG 01.0</span>
+                <span>CREATIVE CODING & WEBGL BENCH</span>
+              </div>
+
+              <!-- Retained Rotating Stamp Seal Anchored to Card Corner -->
+              <div class="hero-card-stamp-anchor">
+                <div class="atelier-stamp-seal" id="atelier-stamp" aria-label="The Social Kollab Pune Atelier Stamp" title="The Social Kollab • Pune Atelier • Hand Coded">
+                  <svg viewBox="0 0 140 140" class="stamp-svg">
+                    <path id="stamp-curve" d="M 70, 70 m -50, 0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" fill="none" />
+                    <text class="stamp-text">
+                      <textPath href="#stamp-curve" startOffset="0%">
+                        THE SOCIAL KOLLAB • PUNE ATELIER • EST 2026 • HAND CODED •
+                      </textPath>
+                    </text>
+                  </svg>
+                  <div class="stamp-inner-mark">SK</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+      <!-- Real Client Pedigree Ticker -->
+      <div class="client-ticker-section">
+        <div class="ticker-wrap">
+          <span class="ticker-label">SELECT PRODUCTION BUILDS:</span>
+          <span class="ticker-item">THE UNIFORM LAB</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">T-REX STORE</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">ORTHOCHRONICLES</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">YASHPLY & HARDWARE</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">KK ASSOCIATES</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">NAV MANCH MEDIA</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">LUMINA ORGANICS</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">AURORA ATELIER</span>
+          <span class="ticker-divider">•</span>
+          <!-- Seamless Infinite Loop Duplicate -->
+          <span class="ticker-label">SELECT PRODUCTION BUILDS:</span>
+          <span class="ticker-item">THE UNIFORM LAB</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">T-REX STORE</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">ORTHOCHRONICLES</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">YASHPLY & HARDWARE</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">KK ASSOCIATES</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">NAV MANCH MEDIA</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">LUMINA ORGANICS</span>
+          <span class="ticker-divider">•</span>
+          <span class="ticker-item">AURORA ATELIER</span>
+        </div>
+      </div>
+
+      <!-- Scale & Commercial Proof Monograph (Editorial Craft Standard) -->
+      <section class="editorial-proof-monograph">
+        <div class="container proof-content-wrap">
+          <div class="proof-lead-label">Scale & Commercial Resilience</div>
+          <p class="proof-statement">
+            Over <em>₹50 Crore</em> in verified client transactions engineered with sub-second latency across Western India, Southeast Asia, and North America. Four specialized disciplines. Uncompromising typographical discipline and zero template bloat.
+          </p>
+          <div class="proof-meta-strip">
+            <span class="proof-pill">₹50Cr+ Tracked Client GMV</span>
+            <span class="proof-pill">32,000+ Active Clinicians</span>
+            <span class="proof-pill">Sub-800ms Headless P99</span>
+            <span class="proof-pill">Pune Atelier • Global Engagements</span>
+          </div>
+        </div>
+      </section>
+      </div>
+    </section>
+
+    <!-- Case Studies Section: Dennis Snellenberg Interactive Project Reveal -->
+    <section class="section case-studies-section" id="case-studies">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">SELECTED WORK // ARCHIVE</div>
+          <h2 class="section-title">Verified Deployments. Real Commercial Returns.</h2>
+          <p class="section-subtext">
+            Hover to inspect live project imagery. Click any client engagement to open the complete architectural dossier.
+          </p>
+
+          <!-- Category Filters with Real-Time Counters -->
+          <div class="filter-pills" id="case-study-filters" role="tablist" aria-label="Case Study Categories">
+            <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Engagements <span class="filter-count">4</span></button>
+            <button class="filter-btn" data-filter="ecommerce" role="tab" aria-selected="false">E-Commerce & D2C <span class="filter-count">2</span></button>
+            <button class="filter-btn" data-filter="edtech" role="tab" aria-selected="false">Medical & EdTech <span class="filter-count">1</span></button>
+            <button class="filter-btn" data-filter="corporate" role="tab" aria-selected="false">Executive Advisory <span class="filter-count">1</span></button>
+          </div>
+        </div>
+
+        <!-- Dennis Snellenberg Interactive Typography Project Showcase -->
+        <div class="project-showcase-wrap" id="project-showcase">
+          
+          <!-- Floating Cursor-Following Media Preview Card (Desktop Hover) -->
+          <div class="floating-project-preview" id="floating-project-preview" aria-hidden="true">
+            <div class="preview-slider" id="preview-slider">
+              <div class="preview-slide"><img src="assets/images/case-fashion.jpg" alt="The Uniform Lab Storefront"></div>
+              <div class="preview-slide"><img src="assets/images/case-tech.jpg" alt="T-REX Store Digital Platform"></div>
+              <div class="preview-slide"><img src="assets/images/case-beauty.jpg" alt="OrthoChronicles Clinical Hub"></div>
+              <div class="preview-slide"><img src="assets/images/hero-studio.jpg" alt="KK Associates & Yashply Advisory"></div>
+            </div>
+            <div class="preview-pill" id="preview-pill">VIEW DOSSIER ↗</div>
+          </div>
+
+          <!-- Editorial Project List -->
+          <div class="project-list" id="project-list">
+            
+            <!-- Project 1: The Uniform Lab -->
+            <a href="work-uniform-lab.html" class="project-row" data-index="0" data-case="uniform-lab" data-category="ecommerce" style="text-decoration: none; color: inherit;" aria-label="Open The Uniform Lab Case Study">
+              <div class="project-num">01 /</div>
+              <div class="project-name-wrap">
+                <h3 class="project-name">The Uniform Lab</h3>
+                <span class="project-category-tag">Headless Shopify • Bulk Institutional Sizing Matrix</span>
+              </div>
+              <div class="project-impact">
+                <span class="impact-metric">3.8x</span>
+                <span class="impact-label">Conversion Lift</span>
+              </div>
+              <div class="project-arrow">↗</div>
+              <!-- Mobile Inline Preview -->
+              <div class="project-mobile-thumb" aria-hidden="true">
+                <img src="assets/images/case-fashion.jpg" alt="The Uniform Lab Platform Preview" loading="lazy">
+                <span class="mobile-thumb-badge">Read Full Case Study ↗</span>
+              </div>
+            </a>
+
+            <!-- Project 2: T-REX Store -->
+            <div class="project-row" data-index="1" data-case="trex" data-category="ecommerce" role="button" tabindex="0" aria-label="Open T-REX Store Case Study">
+              <div class="project-num">02 /</div>
+              <div class="project-name-wrap">
+                <h3 class="project-name">T-REX Store</h3>
+                <span class="project-category-tag">D2C Lifestyle • 3D Everyday Carry Storefront</span>
+              </div>
+              <div class="project-impact">
+                <span class="impact-metric">4.6x</span>
+                <span class="impact-label">Direct ROAS</span>
+              </div>
+              <div class="project-arrow">↗</div>
+              <!-- Mobile Inline Preview -->
+              <div class="project-mobile-thumb" aria-hidden="true">
+                <img src="assets/images/case-tech.jpg" alt="T-REX Store Platform Preview" loading="lazy">
+                <span class="mobile-thumb-badge">Inspect Dossier ↗</span>
+              </div>
+            </div>
+
+            <!-- Project 3: OrthoChronicles -->
+            <div class="project-row" data-index="2" data-case="orthochronicles" data-category="edtech" role="button" tabindex="0" aria-label="Open OrthoChronicles Case Study">
+              <div class="project-num">03 /</div>
+              <div class="project-name-wrap">
+                <h3 class="project-name">OrthoChronicles</h3>
+                <span class="project-category-tag">Medical EdTech • Taxonomy Case Study Archive</span>
+              </div>
+              <div class="project-impact">
+                <span class="impact-metric">32K+</span>
+                <span class="impact-label">Active Surgeons</span>
+              </div>
+              <div class="project-arrow">↗</div>
+              <!-- Mobile Inline Preview -->
+              <div class="project-mobile-thumb" aria-hidden="true">
+                <img src="assets/images/case-beauty.jpg" alt="OrthoChronicles Platform Preview" loading="lazy">
+                <span class="mobile-thumb-badge">Inspect Dossier ↗</span>
+              </div>
+            </div>
+
+            <!-- Project 4: KK Associates & Yashply -->
+            <div class="project-row" data-index="3" data-case="kk-associates" data-category="corporate" role="button" tabindex="0" aria-label="Open KK Associates & Yashply Case Study">
+              <div class="project-num">04 /</div>
+              <div class="project-name-wrap">
+                <h3 class="project-name">KK Associates & Yashply</h3>
+                <span class="project-category-tag">Executive Advisory • Material Visualizer Catalog</span>
+              </div>
+              <div class="project-impact">
+                <span class="impact-metric">+80%</span>
+                <span class="impact-label">High-Intent Leads</span>
+              </div>
+              <div class="project-arrow">↗</div>
+              <!-- Mobile Inline Preview -->
+              <div class="project-mobile-thumb" aria-hidden="true">
+                <img src="assets/images/hero-studio.jpg" alt="KK Associates Advisory Platform Preview" loading="lazy">
+                <span class="mobile-thumb-badge">Inspect Dossier ↗</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Direct Link to Dedicated Work Archive Page -->
+          <div style="margin-top: 3.5rem; text-align: center;">
+            <a href="work.html" class="btn btn-outline btn-lg" id="explore-full-archive-btn">
+              <span>Explore Full Project Archive & Case Studies</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services / Interactive Editorial Discipline Rail -->
+    <section class="section services-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">CAPABILITIES</div>
+          <h2 class="section-title">Architectural Disciplines. Hand-Authored Execution.</h2>
+          <p class="section-subtext">
+            We avoid modular card clutter. Click or hover any discipline rail to inspect architectural specifications, technical tooling, and client deliverables.
+          </p>
+        </div>
+
+        <div class="discipline-rail-wrap" id="discipline-rail">
+          
+          <!-- Discipline 01 -->
+          <div class="discipline-row active" data-discipline="0">
+            <div class="discipline-header">
+              <span class="discipline-num">01 /</span>
+              <h3 class="discipline-title">Spatial Design Systems</h3>
+              <p class="discipline-brief-desc">Ergonomic tokens, modular component libraries & Figma-to-code pipelines.</p>
+              <span class="discipline-toggle-icon">+</span>
+            </div>
+            <div class="discipline-drawer">
+              <div class="discipline-specs-grid">
+                <div class="spec-column">
+                  <h5>DESIGN ARCHITECTURE</h5>
+                  <ul>
+                    <li>3-Tier Token Variables (Primitive / Semantic / Component)</li>
+                    <li>Harmonized Fluid Typography Scales (Clamp Math)</li>
+                    <li>WCAG 2.1 AA Contrast Hardening</li>
+                  </ul>
+                </div>
+                <div class="spec-column">
+                  <h5>MOTION & ERGONOMICS</h5>
+                  <ul>
+                    <li>Micro-interaction physics & haptic feedback curves</li>
+                    <li>Desktop + Thumb-zone mobile layout choreography</li>
+                    <li>Zero layout shifts (CLS &lt; 0.01)</li>
+                  </ul>
+                </div>
+                <div class="spec-column">
+                  <h5>DELIVERABLES</h5>
+                  <ul>
+                    <li>Master Figma Studio Library & Autolayout Tokens</li>
+                    <li>CSS Custom Property Design Engine</li>
+                    <li>Interactive Storybook / Living Style Guide</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Discipline 02 -->
+          <div class="discipline-row" data-discipline="1">
+            <div class="discipline-header">
+              <span class="discipline-num">02 /</span>
+              <h3 class="discipline-title">Creative Coding & Shaders</h3>
+              <p class="discipline-brief-desc">Custom Three.js WebGL fragment shaders, GSAP timelines & curated 6-color chromatics.</p>
+              <span class="discipline-toggle-icon">+</span>
+            </div>
+            <div class="discipline-drawer">
+              <div class="discipline-specs-grid">
+                <div class="spec-column">
+                  <h5>GRAPHICS PIPELINE</h5>
+                  <ul>
+                    <li>Custom GLSL Perlin & Simplex Noise Shaders</li>
+                    <li>GPU-accelerated vertex mesh displacement</li>
+                    <li>Device-aware LOD & performance fallbacks</li>
+                  </ul>
+                </div>
+                <div class="spec-column">
+                  <h5>MOTION ORCHESTRATION</h5>
+                  <ul>
+                    <li>GSAP 3.12 Flip, SplitText & ScrollTrigger pipelines</li>
+                    <li>Strict 6-Color Warm Master System (3 Primary + 3 Supporting)</li>
+                    <li>Cursor velocity spring tracking (quickTo)</li>
+                  </ul>
+                </div>
+                <div class="spec-column">
+                  <h5>DELIVERABLES</h5>
+                  <ul>
+                    <li>Sub-second interactive hero canvases</li>
+                    <li>Interactive 3D product viewports & spatial reveals</li>
+                    <li>Production-bundled zero-bloat JS runtime</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Discipline 03 -->
+          <div class="discipline-row" data-discipline="2">
+            <div class="discipline-header">
+              <span class="discipline-num">03 /</span>
+              <h3 class="discipline-title">Headless E-Commerce</h3>
+              <p class="discipline-brief-desc">Conversion-engineered storefronts built for extreme checkout throughput.</p>
+              <span class="discipline-toggle-icon">+</span>
+            </div>
+            <div class="discipline-drawer">
+              <div class="discipline-specs-grid">
+                <div class="spec-column">
+                  <h5>COMMERCE PLATFORM</h5>
+                  <ul>
+                    <li>Shopify Plus Liquid & Headless Storefront API</li>
+                    <li>Instantaneous sub-100ms catalog filtering</li>
+                    <li>Custom matrix sizing engines (The Uniform Lab)</li>
+                  </ul>
+                </div>
+                <div class="spec-column">
+                  <h5>CONVERSION OPTIMIZATION</h5>
+                  <ul>
+                    <li>1-Click slide-out cart drawers with tiered upsells</li>
+                    <li>Dynamic cross-sells & free shipping thresholds</li>
+                    <li>Edge-cached product page SSR</li>
+                  </ul>
+                </div>
+                <div class="spec-column">
+                  <h5>DELIVERABLES</h5>
+                  <ul>
+                    <li>Turnkey bespoke storefront codebase</li>
+                    <li>Custom Shopify theme schema & metaobjects</li>
+                    <li>Full GA4, Meta CAPI & conversion telemetry</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Discipline 04 -->
+          <div class="discipline-row" data-discipline="3">
+            <div class="discipline-header">
+              <span class="discipline-num">04 /</span>
+              <h3 class="discipline-title">Brand Narrative & Positioning</h3>
+              <p class="discipline-brief-desc">Editorial typography, high-stakes brand identity & launch strategy.</p>
+              <span class="discipline-toggle-icon">+</span>
+            </div>
+            <div class="discipline-drawer">
+              <div class="discipline-specs-grid">
+                <div class="spec-column">
+                  <h5>IDENTITY DIRECTION</h5>
+                  <ul>
+                    <li>Editorial typographic hierarchy & custom wordmarks</li>
+                    <li>Architectural color systems & brand tokens</li>
+                    <li>Comprehensive brand guidelines & asset packages</li>
+                  </ul>
+                </div>
+                <div class="spec-column">
+                  <h5>DIGITAL POSITIONING</h5>
+                  <ul>
+                    <li>Category-defining copywriting & narrative manifestos</li>
+                    <li>Investor pitch deck visual craft & interactive decks</li>
+                    <li>Art direction for commercial studio photography</li>
+                  </ul>
+                </div>
+                <div class="spec-column">
+                  <h5>DELIVERABLES</h5>
+                  <ul>
+                    <li>Complete Brand Identity Kit & Vector Graphics</li>
+                    <li>Editorial Digital Style Guide</li>
+                    <li>High-impact social launch collateral</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Architectural Engagement Blueprint (Replacing SaaS Range Slider) -->
+    <a id="simulator" style="position:relative; top:-80px; visibility:hidden;"></a>
+    <section class="section blueprint-section" id="engagement-model">
+      <div class="container">
+        
+        <div class="blueprint-card">
+          <div class="blueprint-header">
+            <div class="section-label">03 // ENGAGEMENT METHODOLOGY</div>
+            <h2 class="blueprint-title">Architectural Engagement Blueprint</h2>
+            <p class="section-subtext">
+              We do not sell hours or pre-packaged commodity templates. Every engagement operates under a dedicated senior sprint pod led by our Principal Architect. Select an archetype to inspect the deployment roadmap.
+            </p>
+          </div>
+
+          <!-- Segmented Tier Selectors -->
+          <div class="blueprint-selector-row" id="blueprint-tiers" role="tablist">
+            
+            <button class="blueprint-tier-btn active" data-tier="0" role="tab" aria-selected="true" id="tier-btn-0">
+              <div class="tier-code">TIER 01 // FOUNDATIONAL</div>
+              <div class="tier-name">Design System Protocol</div>
+              <div class="tier-timeline">2 – 3 Weeks Sprint • Rapid Architecture</div>
+            </button>
+
+            <button class="blueprint-tier-btn" data-tier="1" role="tab" aria-selected="false" id="tier-btn-1">
+              <div class="tier-code">TIER 02 // FLAGSHIP</div>
+              <div class="tier-name">Flagship Production Build</div>
+              <div class="tier-timeline">4 – 6 Weeks Sprint • Full Code & Motion</div>
+            </button>
+
+            <button class="blueprint-tier-btn" data-tier="2" role="tab" aria-selected="false" id="tier-btn-2">
+              <div class="tier-code">TIER 03 // IMMERSIVE</div>
+              <div class="tier-name">Bespoke WebGL & 3D Atelier</div>
+              <div class="tier-timeline">8 – 10 Weeks Sprint • Avant-Garde Spatial</div>
+            </button>
+
+          </div>
+
+          <!-- Interactive Sprint Velocity & Investment Guidance Estimator -->
+          <div class="blueprint-estimator-bar" id="blueprint-estimator-bar">
+            <div class="estimator-controls">
+              <span class="estimator-label">VELOCITY SPRINT SPEED:</span>
+              <div class="velocity-toggle-wrap" role="radiogroup" aria-label="Sprint Velocity">
+                <button class="velocity-btn active" data-velocity="standard" id="vel-standard" role="radio" aria-checked="true">Standard Cadence</button>
+                <button class="velocity-btn" data-velocity="expedited" id="vel-expedited" role="radio" aria-checked="false">Expedited Fast-Track (+35% Velocity)</button>
+              </div>
+            </div>
+            <div class="estimator-result-pill" id="estimator-result-pill">
+              <div class="est-pod-info">
+                <span class="est-pod-label">DEDICATED SPRINT POD</span>
+                <span class="est-pod-value" id="est-pod-val">1 Principal Architect + 1 Creative Engineer</span>
+              </div>
+              <div class="est-price-info">
+                <span class="est-price-label">ESTIMATED INVESTMENT</span>
+                <span class="est-price-value" id="est-price-val">₹2,50,000 – ₹4,50,000 ($3k – $5.5k)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic 3-Phase Sprint Roadmap -->
+          <div class="roadmap-grid" id="blueprint-roadmap">
+            
+            <div class="roadmap-phase">
+              <span class="phase-number" id="roadmap-p1-num">PHASE 01 // 7-10 DAYS</span>
+              <h4 class="phase-heading" id="roadmap-p1-title">Audit & Visual Manifesto</h4>
+              <ul class="phase-items" id="roadmap-p1-items">
+                <li>UX heuristic audit & competitor tension mapping</li>
+                <li>Figma design tokens & typographic hierarchy</li>
+                <li>Architectural wireframes & interaction blueprints</li>
+              </ul>
+            </div>
+
+            <div class="roadmap-phase">
+              <span class="phase-number" id="roadmap-p2-num">PHASE 02 // 14-21 DAYS</span>
+              <h4 class="phase-heading" id="roadmap-p2-title">Creative Engineering</h4>
+              <ul class="phase-items" id="roadmap-p2-items">
+                <li>Hand-coded HTML5 / Vanilla CSS / GSAP animations</li>
+                <li>Custom WebGL canvas & shader choreography</li>
+                <li>Responsive mobile optimization & sub-second loading</li>
+              </ul>
+            </div>
+
+            <div class="roadmap-phase">
+              <span class="phase-number" id="roadmap-p3-num">PHASE 03 // 7-10 DAYS</span>
+              <h4 class="phase-heading" id="roadmap-p3-title">Hardening & Launch</h4>
+              <ul class="phase-items" id="roadmap-p3-items">
+                <li>Lighthouse 95+ score hardening & Core Web Vitals</li>
+                <li>Multi-device cross-browser QA & stress testing</li>
+                <li>Deployment, analytics telemetry & 30-day hypercare</li>
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- Blueprint Action Footer -->
+          <div class="blueprint-footer-cta">
+            <div class="blueprint-note">
+              <span>*All production tiers include private GitHub repository ownership, complete Figma design token files, clean zero-dependency hand-off, and direct Slack/WhatsApp access with our Principal Architect.</span>
+            </div>
+            <button class="btn btn-primary btn-lg open-modal-btn" data-tab="brand" id="blueprint-initiate-btn">
+              <span>Initiate This Engagement Protocol</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Talent & Collaborator Network -->
+    <section class="section roster-section" id="creators">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">TALENT & CREATIVE ECOSYSTEM</div>
+          <h2 class="section-title">The Kollab Creative Collective</h2>
+          <p class="section-subtext">
+            We collaborate with elite independent UI/UX developers, 3D motion designers, and brand strategists to build culture-defining work.
+          </p>
+        </div>
+
+        <div class="guild-overview-card">
+          <div class="guild-narrative">
+            <div class="card-meta" style="color: var(--accent-bronze); margin-bottom: 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Atelier Structure</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.85rem; font-weight: 600; line-height: 1.25; margin-bottom: 1rem;">Core Atelier & Specialist Guild.</h3>
+            <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.5rem;">
+              We operate as a compact, senior-led creative engineering practice based in Pune, India. Rather than maintaining a bloated agency bench, every project is directed by our core founding principals and assembled with a vetted guild of specialist 3D shader developers, type designers, and commerce architects.
+            </p>
+            <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+              <span class="proof-pill">Direct Senior Direction</span>
+              <span class="proof-pill">Zero Junior Delegation</span>
+              <span class="proof-pill">Sub-Second Delivery Cadence</span>
+            </div>
+          </div>
+
+          <div class="guild-pillars-list">
+            <div class="guild-pillar-item">
+              <div class="guild-pillar-title">01 / Principal Direction</div>
+              <p class="guild-pillar-desc">Spatial UI/UX, brand typography systems, and high-conversion e-commerce architecture directed from our Pune studio.</p>
+            </div>
+            <div class="guild-pillar-item">
+              <div class="guild-pillar-title">02 / Specialist Shading & WebGL</div>
+              <p class="guild-pillar-desc">Custom GLSL liquid physics, Three.js shaders, and GPU-accelerated canvas interactions engineered for 60–120 FPS.</p>
+            </div>
+            <div class="guild-pillar-item">
+              <div class="guild-pillar-title">03 / Headless Systems & Infrastructure</div>
+              <p class="guild-pillar-desc">Sub-second Shopify Storefront API integrations, Next.js 14 App Router, and Cloudflare global edge caching.</p>
+            </div>
+          </div>
+        </div>
+        
+
+        <!-- Collaborator Banner -->
+        <div class="creator-cta-banner">
+          <div class="creator-cta-text">
+            <h3>Are you an extraordinary UI/UX Developer or Motion Artist?</h3>
+            <p>Join The Social Kollab Collective to build flagship digital products with visionary founders, guaranteed fair compensation, and zero bureaucracy.</p>
+          </div>
+          <button class="btn btn-outline btn-lg open-modal-btn" data-tab="creator" id="roster-join-btn">
+            Apply to Join Collective →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client Testimonials & Endorsements -->
+    <section class="section testimonials-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">CLIENT ENDORSEMENTS</div>
+          <h2 class="section-title">Endorsed by Visionary Founders & Leaders</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card interactive-tilt">
+            <p class="quote-text">
+              "The Social Kollab transformed our digital presence. For The Uniform Lab, they built a blistering-fast e-commerce engine that handled our peak seasonal rush effortlessly. Our checkout conversion jumped by 3.8x."
+            </p>
+            <div class="quote-author">
+              <div class="author-avatar">UL</div>
+              <div class="author-info">
+                <strong>Leadership Team</strong>
+                <span>The Uniform Lab, Pune</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card interactive-tilt">
+            <p class="quote-text">
+              "Working with The Social Kollab on T-REX Store was revelatory. They understand micro-interactions, dark mode aesthetics, and product storytelling better than any agency we’ve partnered with. A truly world-class UI/UX developer."
+            </p>
+            <div class="quote-author">
+              <div class="author-avatar">TR</div>
+              <div class="author-info">
+                <strong>Founding Team</strong>
+                <span>T-REX Store</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card interactive-tilt">
+            <p class="quote-text">
+              "OrthoChronicles needed a balance of medical rigor, accessible typography, and fast search. The Social Kollab delivered an immaculate platform that our community of 32,000+ practitioners loves daily."
+            </p>
+            <div class="quote-author">
+              <div class="author-avatar">OC</div>
+              <div class="author-info">
+                <strong>Editorial Board</strong>
+                <span>OrthoChronicles</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="section faq-section" id="faq">
+      <div class="container max-w-narrow">
+        <div class="section-header">
+          <div class="section-label">TRANSPARENCY & PROTOCOL</div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-accordion" id="faq-accordion">
+          
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>What sets The Social Kollab apart from traditional web design agencies?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We do not use generic WordPress templates or boilerplate themes. Every digital product is custom-architected with bespoke design tokens, fluid micro-interactions, clean semantic code, and ruthless performance optimization (90+ Lighthouse). You work directly with senior creative technologists, not junior account managers.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>What technologies and frameworks does the studio specialize in?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We build across modern stacks based on project goals: Vanilla HTML5/CSS3/ES6 for peak speed and zero-dependency durability, React/Next.js for interactive web applications, Shopify Plus for headless high-conversion e-commerce, and GSAP/Three.js for award-winning interactive motion design.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How does your client onboarding and sprint workflow operate?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We work in structured 2-week agile sprints. Week 1–2 focuses on visual direction, design systems, and clickable Figma prototypes. Week 3–4 is dedicated to engineering, responsive hardening, and micro-interactions. Week 5 covers CRO auditing, SEO structured data, and launch hypercare.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Do we own 100% of the intellectual property, design assets, and source code?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes. Upon completion and final payment, 100% of all intellectual property, Figma master files, GitHub code repositories, and custom assets are transferred directly to your organization with zero vendor lock-in.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Banner -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="final-cta-card">
+          <div class="section-label">COMMENCE ENGAGEMENT</div>
+          <h2 class="final-cta-title">Ready to Elevate Your Brand to Unmatched Digital Craft?</h2>
+          <p class="final-cta-subtext">
+            Join visionary clients who choose The Social Kollab to build lasting digital monopolies.
+          </p>
+          <div class="cta-buttons">
+            <button class="btn btn-primary btn-lg open-modal-btn" data-tab="brand" id="cta-book-call-btn">
+              <span>Initiate Project Brief</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button class="btn btn-outline btn-lg open-modal-btn" data-tab="creator" id="cta-join-roster-btn">
+              <span>Join Creative Collective</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Editorial Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col brand-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-mark">SK</span>
+          <span class="logo-text">THE SOCIAL KOLLAB</span>
+        </div>
+        <p class="footer-tagline">
+          The elite digital design and web engineering studio architecting modern online culture from Pune, India to the world.
+        </p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/thesocialkollab/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram (@thesocialkollab)</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="GitHub">GitHub</a>
+          <a href="#" aria-label="Twitter">X / Twitter</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Directory</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="work.html">Selected Work</a></li>
+          <li><a href="work-uniform-lab.html">Case Study: Uniform Lab</a></li>
+          <li><a href="services.html">Capabilities Matrix</a></li>
+          <li><a href="services.html#engagement-model">Investment Blueprint</a></li>
+          <li><a href="collective.html">Creative Collective</a></li>
+          <li><a href="contact.html">Contact & Brief</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Disciplines</h4>
+        <ul class="footer-links">
+          <li><a href="services.html">UI/UX & Design Tokens</a></li>
+          <li><a href="services.html">Bespoke Frontend Code</a></li>
+          <li><a href="services.html">Headless E-Commerce</a></li>
+          <li><a href="services.html">GSAP & WebGL Motion</a></li>
+          <li><a href="services.html">CRO & Speed Hardening</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col newsletter-col">
+        <h4 class="footer-heading">The Kollab Dispatch</h4>
+        <p class="newsletter-desc">Curated bi-weekly analysis on digital craft, Awwwards design standards, and high-performance frontend engineering.</p>
+        <form class="newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to The Kollab Dispatch!');">
+          <input type="email" id="newsletter-email" name="newsletter_email" placeholder="Enter your business email" required class="newsletter-input" aria-label="Your email">
+          <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom container">
+      <p>© 2026 The Social Kollab. All architectural rights reserved.</p>
+      <div class="footer-legal">
+        <a href="collective.html#ethics">Ethics Protocol</a>
+        <span>•</span>
+        <a href="contact.html#faq">Terms of Engagement</a>
+        <span>•</span>
+        <a href="#">Studio Ethics</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Case Study Dossier -->
+  <div class="modal-backdrop" id="dossier-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card dossier-modal-card">
+      <button class="modal-close-btn" id="close-dossier-modal" aria-label="Close modal">✕</button>
+      <div id="dossier-modal-content">
+        <!-- Dynamically populated via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Project Intake & Collaboration -->
+  <div class="modal-backdrop" id="contact-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card intake-modal-card">
+      <button class="modal-close-btn" id="close-intake-modal" aria-label="Close modal">✕</button>
+      
+      <div class="intake-tabs" role="tablist">
+        <button class="intake-tab-btn active" data-tab="brand" id="tab-btn-brand" role="tab" aria-selected="true">Initiate Project Brief</button>
+        <button class="intake-tab-btn" data-tab="creator" id="tab-btn-creator" role="tab" aria-selected="false">Join Creative Collective</button>
+      </div>
+
+      <!-- Brand / Client Intake Form -->
+      <form class="intake-form active" id="brand-form" data-type="brand">
+        <h3 class="form-title">Initiate Your Studio Engagement</h3>
+        <p class="form-subtitle">Tell us about your product vision, timeline, and goals. We respond with a tailored architectural proposal within 24 hours.</p>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="brand-name">Your Full Name *</label>
+            <input type="text" id="brand-name" required placeholder="e.g. Karan Malhotra" class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="brand-email">Business Email *</label>
+            <input type="email" id="brand-email" required placeholder="karan@brand.com" class="form-input">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="brand-company">Company / Brand Name *</label>
+            <input type="text" id="brand-company" required placeholder="e.g. The Uniform Lab" class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="brand-budget">Estimated Investment Range *</label>
+            <select id="brand-budget" required class="form-input">
+              <option value="">Select Target Engagement Tier</option>
+              <option value="tier1">Tier 01: ₹2,50,000 – ₹4,50,000 ($3k – $5.5k • Design System Protocol)</option>
+              <option value="tier2">Tier 02: ₹5,00,000 – ₹10,00,000 ($6k – $12k • Flagship Production Build)</option>
+              <option value="tier3">Tier 03: ₹12,00,000 – ₹20,00,000+ ($15k – $25k+ • Bespoke WebGL Atelier)</option>
+              <option value="tier4">Enterprise Custom Scope (₹20,00,000+ • Multi-Sprint Retainer)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="brand-niche">Core Product Discipline</label>
+          <select id="brand-niche" class="form-input">
+            <option value="ecommerce">Bespoke E-Commerce & Retail</option>
+            <option value="design-system">UI/UX Design System & Mobile App</option>
+            <option value="creative-dev">High-Motion 3D Web Experience</option>
+            <option value="corporate">Corporate Brand Authority & Lead Engine</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="brand-notes">Project Brief & Objectives</label>
+          <textarea id="brand-notes" rows="3" placeholder="Tell us about the existing product, your target milestones, or inspiration references..." class="form-input"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-brand-btn">
+          Submit Project Brief →
+        </button>
+      </form>
+
+      <!-- Creator / Collaborator Form -->
+      <form class="intake-form" id="creator-form" data-type="creator">
+        <h3 class="form-title">Join The Social Kollab Collective</h3>
+        <p class="form-subtitle">For elite UI/UX designers, creative coders, and 3D motion artists seeking high-craft client collaborations.</p>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="creator-name-input">Full Name *</label>
+            <input type="text" id="creator-name-input" required placeholder="Your full name" class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="creator-email-input">Email Address *</label>
+            <input type="email" id="creator-email-input" required placeholder="you@craft.design" class="form-input">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="creator-handle-input">Portfolio / GitHub / Dribbble Link *</label>
+            <input type="url" id="creator-handle-input" required placeholder="https://yourportfolio.com" class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="creator-followers-input">Primary Craft *</label>
+            <select id="creator-followers-input" required class="form-input">
+              <option value="">Select Specialization</option>
+              <option value="uiux">Senior UI/UX & Design Systems</option>
+              <option value="frontend">Creative Frontend & GSAP Motion</option>
+              <option value="threejs">3D WebGL / Shader Developer</option>
+              <option value="fullstack">Full-Stack Architecture & E-Commerce</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="creator-notes">Tell us about your proudest build</label>
+          <textarea id="creator-notes" rows="3" placeholder="Drop links to projects you led or custom micro-interactions you engineered..." class="form-input"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-creator-btn">
+          Apply to Collective →
+        </button>
+      </form>
+
+      <!-- Success Confirmation -->
+      <div class="intake-success" id="intake-success">
+        <div class="success-icon">✓</div>
+        <h3>Brief Received</h3>
+        <p id="success-msg">Thank you. The Social Kollab team will review your brief and reach out within 24 hours.</p>
+        <button class="btn btn-outline" id="close-success-btn">Close</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Campaign Dossier Modal (Universal Reusable) -->
+  <div class="modal-backdrop" id="dossier-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card dossier-card">
+      <button class="modal-close-btn" id="close-dossier-modal" aria-label="Close Case Study Dossier">✕</button>
+      <div class="dossier-modal-content" id="dossier-modal-content">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Bespoke Studio Command Palette Modal (Cmd+K / Ctrl+K) -->
+  <div class="cmd-palette-backdrop" id="cmd-palette-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Studio Command Palette">
+    <div class="cmd-palette-card" id="cmd-palette-card">
+      <div class="cmd-palette-header">
+        <svg class="cmd-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="cmd-search-input" id="cmd-search-input" placeholder="Type a destination or command..." autocomplete="off" spellcheck="false" aria-label="Search Studio Commands">
+        <kbd class="cmd-esc-badge" id="cmd-esc-badge">ESC</kbd>
+      </div>
+      <div class="cmd-palette-body" id="cmd-palette-results" role="listbox">
+        <!-- Dynamically rendered / keyboard navigable items -->
+      </div>
+      <div class="cmd-palette-footer">
+        <div class="cmd-hint"><kbd>↑</kbd><kbd>↓</kbd><span>Navigate</span></div>
+        <div class="cmd-hint"><kbd>↵</kbd><span>Select</span></div>
+        <div class="cmd-hint"><kbd>ESC</kbd><span>Close</span></div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- CDN Script Dependencies -->
+  <!-- Three.js (r128) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP 3.12.5 & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  
+
+  <!-- Master Application Script -->
+  <script src="script.js"></script>
+
+    <!-- Top Kinetic Navigation Filament (Silk Page Transition) -->
+  <div class="top-nav-filament" id="nav-filament" aria-hidden="true"></div>
+  </div>
+
+</body>
+</html>
