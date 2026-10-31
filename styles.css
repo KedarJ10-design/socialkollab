@@ -38,10 +38,12 @@
   --bg-glass: rgba(247, 243, 234, 0.94);
   --bg-subtle-tint: rgba(24, 21, 19, 0.04);
 
-  /* Typography */
+  /* Typography & WCAG AA Contrast-Hardened Semantic Tokens (>= 4.5:1) */
   --text-primary: var(--color-primary-2);
-  --text-secondary: var(--color-support-3);
-  --text-muted: var(--color-support-3);
+  --text-secondary: #5e554d;           /* 5.5:1 contrast on #ece4d5 (Pass AA) */
+  --text-secondary-dark: #b8aea5;      /* 6.2:1 contrast on #181513 (Pass AA) */
+  --text-muted: #5e554d;
+  --text-muted-dark: #b8aea5;
   --text-inverse: var(--color-primary-1);
 
   /* Accents strictly mapped to Primary 3 & Supporting 2 */
@@ -67,6 +69,13 @@
   --space-xl: 64px;
   --space-2xl: 96px;
   --space-3xl: 140px;
+
+  /* Concentric Bento Radii Scale (better-interface & bento-board-ui: Router = Rinner + Padding) */
+  --radius-inner-sm: 8px;              /* Chips, badges, buttons */
+  --radius-inner-md: 12px;             /* Nested cards, image viewports */
+  --radius-tile-standard: 24px;        /* Standard 1x1, 2x1 tiles (padding 16px + inner 8px = 24px) */
+  --radius-tile-hero: 32px;            /* Hero 2x2 tiles (padding 20px + inner 12px = 32px) */
+  --radius-modal: 28px;
 
   /* Typography Stacks */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -101,6 +110,35 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Universal WCAG 2.4.7 Compliant Focus Rings (accessibility-review) */
+:focus-visible {
+  outline: 2px solid var(--accent-solar) !important;
+  outline-offset: 3px !important;
+  border-radius: inherit;
+}
+
+/* In dark sections / modals / footer, ensure solar vermilion pops with high visibility */
+.modal-card :focus-visible,
+.site-footer :focus-visible,
+footer :focus-visible,
+.final-cta-card :focus-visible,
+.cmd-palette-card :focus-visible {
+  outline: 2px solid #ff4820 !important;
+  outline-offset: 3px !important;
+}
+
+/* Dark Container Contextual Contrast Hardening (WCAG 2.1 / 2.2 AA >= 6.2:1) */
+.site-footer,
+.final-cta-card,
+.next-project-teaser,
+.toast-notice,
+.copy-toast,
+[data-theme="dark"],
+.dark-theme {
+  --text-secondary: var(--text-secondary-dark);
+  --text-muted: var(--text-muted-dark);
 }
 
 html {
@@ -344,6 +382,29 @@ button {
 /* --------------------------------------------------------------------------
    4. Buttons & Interactive Controls
    -------------------------------------------------------------------------- */
+/* Emil Kowalski Gate 2 (Feedback) & Gate 3 (120ms Budget) - find-animation-opportunities */
+.btn,
+.btn-primary,
+.btn-secondary,
+.filter-btn,
+.blueprint-tier-btn,
+.open-dossier-card {
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 160ms ease, 
+              border-color 160ms ease, 
+              box-shadow 160ms ease;
+}
+
+.btn:active,
+.btn-primary:active,
+.btn-secondary:active,
+.btn-outline:active,
+.filter-btn:active,
+.blueprint-tier-btn:active,
+.open-dossier-card:active {
+  transform: scale(0.97) !important;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -355,7 +416,6 @@ button {
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
   white-space: nowrap;
@@ -600,7 +660,7 @@ button {
   border-radius: 8px;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--color-support-3);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s var(--ease-out-expo);
   box-shadow: var(--shadow-sm);
@@ -1464,6 +1524,354 @@ button {
   color: var(--accent-solar);
 }
 
+/* ==========================================================================
+   9B. ARCHITECTURAL BENTO BOARD GRID SYSTEM (bento-board-ui & better-interface)
+   ========================================================================== */
+.bento-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: dense;
+  gap: 24px;
+  margin-top: var(--space-xl);
+}
+
+.bento-tile {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-tile-standard);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.35s var(--ease-out-expo), 
+              border-color 0.35s var(--ease-out-expo), 
+              box-shadow 0.35s var(--ease-out-expo);
+  will-change: transform;
+}
+
+.bento-tile:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 72, 32, 0.35);
+  box-shadow: 0 16px 36px rgba(24, 21, 19, 0.07);
+}
+
+/* Bento Tile Span Presets */
+.bento-tile-hero {
+  grid-column: span 2;
+  grid-row: span 2;
+  border-radius: var(--radius-tile-hero);
+  padding: clamp(28px, 4vw, 36px);
+}
+
+.bento-tile-wide {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.bento-tile-tall {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.bento-tile-unit {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* Ambient Cursor Proximity Illumination */
+.bento-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 72, 32, 0.07), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.bento-tile:hover::before {
+  opacity: 1;
+}
+
+/* Ensure content stays above ambient cursor illumination */
+.bento-tile > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Bento Tile Typography & Components */
+.bento-tile-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-meta-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.bento-index-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-terracotta);
+  font-weight: 700;
+  background: rgba(24, 21, 19, 0.04);
+  padding: 3px 8px;
+  border-radius: var(--radius-inner-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.bento-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-solar);
+  background: rgba(255, 72, 32, 0.08);
+  border: 1px solid rgba(255, 72, 32, 0.22);
+  padding: 3px 9px;
+  border-radius: var(--radius-inner-sm);
+  font-weight: 600;
+}
+
+.bento-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-solar);
+  box-shadow: 0 0 8px rgba(255, 72, 32, 0.6);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.bento-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.015em;
+}
+
+.bento-tile-hero .bento-title {
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.bento-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 65ch;
+  margin-bottom: 1.25rem;
+}
+
+/* Concentric Inner Viewports & Specs Containers */
+.bento-inner-viewport {
+  background: rgba(24, 21, 19, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-inner-md);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  transition: border-color 0.25s ease;
+}
+
+.bento-tile:hover .bento-inner-viewport {
+  border-color: rgba(24, 21, 19, 0.18);
+}
+
+.bento-specs-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+.bento-spec-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-inner-sm);
+  background: rgba(24, 21, 19, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Bento KPI Metric Strip */
+.bento-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.bento-kpi-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-kpi-num {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-solar);
+  line-height: 1.1;
+}
+
+.bento-kpi-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.2rem;
+}
+
+/* Chromatic Palette Swatch Strip in Bento Tile */
+.bento-swatch-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 1rem 0;
+}
+
+.bento-swatch-cell {
+  height: 52px;
+  border-radius: var(--radius-inner-sm);
+  border: 1px solid rgba(24, 21, 19, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+/* Concentric Bento Radii on Services Page Spec Blocks */
+.spec-block {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-inner-md);
+  padding: 1.25rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.spec-block:hover {
+  border-color: rgba(255, 72, 32, 0.3);
+  box-shadow: 0 4px 16px rgba(24, 21, 19, 0.04);
+}
+
+.spec-block .spec-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-terracotta);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.spec-block .spec-list li {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* 45-75 Character Line Length Enforcement */
+.section-subtext,
+.discipline-brief-desc,
+.phase-desc,
+.spec-list,
+.dossier-section p,
+.bento-desc,
+.cta-subtext,
+.stat-card p,
+.blueprint-note span,
+.blueprint-header p {
+  max-width: 65ch;
+}
+
+/* Responsive Bento Collapse */
+@media (max-width: 1024px) {
+  .bento-board {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-tile-hero,
+  .bento-tile-wide {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+  .bento-tile-tall {
+    grid-column: span 1;
+    grid-row: auto;
+  }
+  .bento-tile-unit {
+    grid-column: span 1;
+    grid-row: auto;
+  }
+  .bento-tile-unit:last-of-type {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-board {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .bento-tile-hero,
+  .bento-tile-wide,
+  .bento-tile-tall,
+  .bento-tile-unit {
+    grid-column: span 1;
+    grid-row: auto;
+    padding: 22px;
+    border-radius: var(--radius-tile-standard);
+  }
+}
+
+/* System-Wide Reduced Motion Accessibility Guard */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .bento-tile:hover {
+    transform: none !important;
+  }
+  .btn:active,
+  .btn-primary:active,
+  .btn-secondary:active,
+  .filter-btn:active,
+  .blueprint-tier-btn:active {
+    transform: none !important;
+  }
+  .bento-tile::before {
+    display: none !important;
+  }
+}
+
 /* --------------------------------------------------------------------------
    10. Architectural Engagement Blueprint (Eradicating the SaaS Slider)
    -------------------------------------------------------------------------- */
@@ -1564,7 +1972,7 @@ button {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
-  color: var(--color-support-3);
+  color: var(--text-secondary);
   font-weight: 600;
 }
 
@@ -1585,7 +1993,7 @@ button {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-support-3);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -1618,7 +2026,7 @@ button {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.08em;
-  color: var(--color-support-3);
+  color: var(--text-secondary);
   margin-bottom: 2px;
 }
 
@@ -2458,7 +2866,7 @@ gradient-4 {
 }
 
 .cmd-search-input::placeholder {
-  color: var(--color-support-3);
+  color: var(--text-secondary);
   font-size: 0.95rem;
 }
 
@@ -2469,7 +2877,7 @@ gradient-4 {
   background: rgba(24, 21, 19, 0.06);
   border: 1px solid var(--border-subtle);
   border-radius: 5px;
-  color: var(--color-support-3);
+  color: var(--text-secondary);
   cursor: pointer;
 }
 
@@ -2517,7 +2925,7 @@ gradient-4 {
 .cmd-item-tag {
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  color: var(--color-support-3);
+  color: var(--text-secondary);
   background: rgba(24, 21, 19, 0.05);
   padding: 2px 6px;
   border-radius: 4px;
@@ -2545,7 +2953,7 @@ gradient-4 {
   border-top: 1px solid var(--border-subtle);
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--color-support-3);
+  color: var(--text-secondary);
 }
 
 .cmd-hint {
@@ -3744,7 +4152,7 @@ h2 em,
   font-weight: 500;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--color-support-3);
+  color: var(--text-secondary);
   margin-top: -1px;
 }
 @media (max-width: 768px) {

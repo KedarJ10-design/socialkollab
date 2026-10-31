@@ -116,7 +116,7 @@
   <!-- Master Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23181513'/%3E%3Ctext x='50%25' y='65%25' font-family='sans-serif' font-weight='800' font-size='48' fill='%23ff4820' text-anchor='middle'%3ESK%3C/text%3E%3C/svg%3E">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2.2">
 </head>
 <body>
 
@@ -431,168 +431,180 @@
       </div>
     </section>
 
-    <!-- Services / Interactive Editorial Discipline Rail -->
+    <!-- Services / Architectural Capabilities Bento Board -->
     <section class="section services-section" id="services">
       <div class="container">
         <div class="section-header">
-          <div class="section-label">CAPABILITIES</div>
-          <h2 class="section-title">Architectural Disciplines. Hand-Authored Execution.</h2>
+          <div class="section-label">CAPABILITIES & DISCIPLINES</div>
+          <h2 class="section-title">Architectural Bento Board. Hand-Authored Execution.</h2>
           <p class="section-subtext">
-            We avoid modular card clutter. Click or hover any discipline rail to inspect architectural specifications, technical tooling, and client deliverables.
+            Modular editorial grid synthesized with Apple-grade concentric hierarchy, live telemetry specs, and zero cookie-cutter bloat.
           </p>
         </div>
 
-        <div class="discipline-rail-wrap" id="discipline-rail">
+        <div class="bento-board" id="bento-capabilities">
           
-          <!-- Discipline 01 -->
-          <div class="discipline-row active" data-discipline="0">
-            <div class="discipline-header">
-              <span class="discipline-num">01 /</span>
-              <h3 class="discipline-title">Spatial Design Systems</h3>
-              <p class="discipline-brief-desc">Ergonomic tokens, modular component libraries & Figma-to-code pipelines.</p>
-              <span class="discipline-toggle-icon">+</span>
+          <!-- Tile 1 (Hero 2x2): Flagship Digital Architecture & E-Commerce -->
+          <div class="bento-tile bento-tile-hero discipline-row active" data-discipline="2" role="region" aria-label="Flagship Digital Architecture & E-Commerce">
+            <div class="bento-tile-top">
+              <div class="bento-meta-header">
+                <span class="bento-index-badge">01 // HERO ARCHITECTURE</span>
+                <span class="bento-status-pill">
+                  <span class="bento-status-dot"></span>
+                  LIVE PRODUCTION
+                </span>
+              </div>
+              <h3 class="bento-title">Flagship Digital Architecture & Headless Commerce</h3>
+              <p class="bento-desc">
+                Decoupled Shopify Plus and Next.js platforms engineered for high-concurrency checkout throughput, sub-second LCP, and zero template compromises.
+              </p>
+              
+              <div class="bento-inner-viewport">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                  <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-terracotta); font-weight: 600;">CORE WEB VITALS BENCHMARK</span>
+                  <span class="bento-kpi-badge">99+ Lighthouse • &lt;0.01 CLS</span>
+                </div>
+                <div class="bento-specs-pill-group">
+                  <span class="bento-spec-pill">Shopify Plus Storefront API</span>
+                  <span class="bento-spec-pill">Next.js App Router</span>
+                  <span class="bento-spec-pill">Instant Algolia Search</span>
+                  <span class="bento-spec-pill">Slide-Out Cart Drawer</span>
+                  <span class="bento-spec-pill">Sanity CMS</span>
+                </div>
+              </div>
             </div>
-            <div class="discipline-drawer">
-              <div class="discipline-specs-grid">
-                <div class="spec-column">
-                  <h5>DESIGN ARCHITECTURE</h5>
-                  <ul>
-                    <li>3-Tier Token Variables (Primitive / Semantic / Component)</li>
-                    <li>Harmonized Fluid Typography Scales (Clamp Math)</li>
-                    <li>WCAG 2.1 AA Contrast Hardening</li>
-                  </ul>
-                </div>
-                <div class="spec-column">
-                  <h5>MOTION & ERGONOMICS</h5>
-                  <ul>
-                    <li>Micro-interaction physics & haptic feedback curves</li>
-                    <li>Desktop + Thumb-zone mobile layout choreography</li>
-                    <li>Zero layout shifts (CLS &lt; 0.01)</li>
-                  </ul>
-                </div>
-                <div class="spec-column">
-                  <h5>DELIVERABLES</h5>
-                  <ul>
-                    <li>Master Figma Studio Library & Autolayout Tokens</li>
-                    <li>CSS Custom Property Design Engine</li>
-                    <li>Interactive Storybook / Living Style Guide</li>
-                  </ul>
-                </div>
+
+            <div class="bento-kpi-strip">
+              <div class="bento-kpi-cell">
+                <span class="bento-kpi-num">3.8x</span>
+                <span class="bento-kpi-tag">Checkout Lift</span>
+              </div>
+              <div class="bento-kpi-cell">
+                <span class="bento-kpi-num">&lt;0.8s</span>
+                <span class="bento-kpi-tag">Median TTFB</span>
+              </div>
+              <div class="bento-kpi-cell">
+                <span class="bento-kpi-num">₹14Cr+</span>
+                <span class="bento-kpi-tag">Volume Scaled</span>
               </div>
             </div>
           </div>
 
-          <!-- Discipline 02 -->
-          <div class="discipline-row" data-discipline="1">
-            <div class="discipline-header">
-              <span class="discipline-num">02 /</span>
-              <h3 class="discipline-title">Creative Coding & Shaders</h3>
-              <p class="discipline-brief-desc">Custom Three.js WebGL fragment shaders, GSAP timelines & curated 6-color chromatics.</p>
-              <span class="discipline-toggle-icon">+</span>
+          <!-- Tile 2 (Wide 2x1): Creative Coding & WebGL Shaders -->
+          <div class="bento-tile bento-tile-wide discipline-row" data-discipline="1" role="region" aria-label="Creative Coding & WebGL Shaders">
+            <div class="bento-tile-top">
+              <div class="bento-meta-header">
+                <span class="bento-index-badge">02 // GRAPHICS PIPELINE</span>
+                <span class="bento-status-pill">
+                  <span class="bento-status-dot"></span>
+                  60 FPS RAF
+                </span>
+              </div>
+              <h3 class="bento-title">Creative Coding & WebGL GLSL Shaders</h3>
+              <p class="bento-desc">
+                Procedural noise shaders, GPU-bound vertex displacements, and spring-physics micro-interactions tailored for high-end digital monographs.
+              </p>
             </div>
-            <div class="discipline-drawer">
-              <div class="discipline-specs-grid">
-                <div class="spec-column">
-                  <h5>GRAPHICS PIPELINE</h5>
-                  <ul>
-                    <li>Custom GLSL Perlin & Simplex Noise Shaders</li>
-                    <li>GPU-accelerated vertex mesh displacement</li>
-                    <li>Device-aware LOD & performance fallbacks</li>
-                  </ul>
-                </div>
-                <div class="spec-column">
-                  <h5>MOTION ORCHESTRATION</h5>
-                  <ul>
-                    <li>GSAP 3.12 Flip, SplitText & ScrollTrigger pipelines</li>
-                    <li>Strict 6-Color Warm Master System (3 Primary + 3 Supporting)</li>
-                    <li>Cursor velocity spring tracking (quickTo)</li>
-                  </ul>
-                </div>
-                <div class="spec-column">
-                  <h5>DELIVERABLES</h5>
-                  <ul>
-                    <li>Sub-second interactive hero canvases</li>
-                    <li>Interactive 3D product viewports & spatial reveals</li>
-                    <li>Production-bundled zero-bloat JS runtime</li>
-                  </ul>
-                </div>
+            <div class="bento-inner-viewport" style="margin: 0; padding: 0.85rem 1rem;">
+              <div class="bento-specs-pill-group" style="margin: 0;">
+                <span class="bento-spec-pill">Three.js WebGL</span>
+                <span class="bento-spec-pill">Custom GLSL Perlin Shaders</span>
+                <span class="bento-spec-pill">GSAP 3.12 Timelines</span>
+                <span class="bento-spec-pill">Zero-Bloat Runtime</span>
               </div>
             </div>
           </div>
 
-          <!-- Discipline 03 -->
-          <div class="discipline-row" data-discipline="2">
-            <div class="discipline-header">
-              <span class="discipline-num">03 /</span>
-              <h3 class="discipline-title">Headless E-Commerce</h3>
-              <p class="discipline-brief-desc">Conversion-engineered storefronts built for extreme checkout throughput.</p>
-              <span class="discipline-toggle-icon">+</span>
+          <!-- Tile 3 (Tall 1x2): Spatial Design Systems & Tokens -->
+          <div class="bento-tile bento-tile-tall discipline-row" data-discipline="0" role="region" aria-label="Spatial Design Systems & Tokens">
+            <div class="bento-tile-top">
+              <div class="bento-meta-header">
+                <span class="bento-index-badge">03 // DESIGN TOKENS</span>
+              </div>
+              <h3 class="bento-title">Spatial Design Systems</h3>
+              <p class="bento-desc">
+                Mathematical design tokens, harmonic 8px spacing, and fluid clamp typography.
+              </p>
+              
+              <div class="bento-swatch-matrix">
+                <div class="bento-swatch-cell" style="background: #ece4d5; color: #181513;">#ECE4D5</div>
+                <div class="bento-swatch-cell" style="background: #181513; color: #ece4d5;">#181513</div>
+                <div class="bento-swatch-cell" style="background: #ff4820; color: #ffffff;">#FF4820</div>
+                <div class="bento-swatch-cell" style="background: #f7f3ea; color: #181513;">#F7F3EA</div>
+                <div class="bento-swatch-cell" style="background: #f59e0b; color: #181513;">#F59E0B</div>
+                <div class="bento-swatch-cell" style="background: #5e554d; color: #ffffff;">#5E554D</div>
+              </div>
+
+              <div class="bento-inner-viewport" style="padding: 0.75rem; margin-top: 0.5rem;">
+                <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-terracotta); font-weight: 600; display: block; margin-bottom: 0.35rem;">CONCENTRIC RADII FORMULA</span>
+                <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary);">$R_{outer} = R_{inner} + P$</span>
+              </div>
             </div>
-            <div class="discipline-drawer">
-              <div class="discipline-specs-grid">
-                <div class="spec-column">
-                  <h5>COMMERCE PLATFORM</h5>
-                  <ul>
-                    <li>Shopify Plus Liquid & Headless Storefront API</li>
-                    <li>Instantaneous sub-100ms catalog filtering</li>
-                    <li>Custom matrix sizing engines (The Uniform Lab)</li>
-                  </ul>
-                </div>
-                <div class="spec-column">
-                  <h5>CONVERSION OPTIMIZATION</h5>
-                  <ul>
-                    <li>1-Click slide-out cart drawers with tiered upsells</li>
-                    <li>Dynamic cross-sells & free shipping thresholds</li>
-                    <li>Edge-cached product page SSR</li>
-                  </ul>
-                </div>
-                <div class="spec-column">
-                  <h5>DELIVERABLES</h5>
-                  <ul>
-                    <li>Turnkey bespoke storefront codebase</li>
-                    <li>Custom Shopify theme schema & metaobjects</li>
-                    <li>Full GA4, Meta CAPI & conversion telemetry</li>
-                  </ul>
-                </div>
+            
+            <div class="bento-specs-pill-group" style="margin-top: 0.75rem;">
+              <span class="bento-spec-pill">Figma Studio Tokens</span>
+              <span class="bento-spec-pill">Living Styleguide</span>
+            </div>
+          </div>
+
+          <!-- Tile 4 (Unit 1x1): Sub-Second Edge Infrastructure -->
+          <div class="bento-tile bento-tile-unit" role="region" aria-label="Sub-Second Edge Infrastructure">
+            <div class="bento-tile-top">
+              <div class="bento-meta-header">
+                <span class="bento-index-badge">04 // EDGE SPEED</span>
+                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-solar); font-weight: 700;">⚡ &lt;100ms</span>
+              </div>
+              <h3 class="bento-title" style="font-size: 1.15rem;">Sub-Second Edge Infrastructure</h3>
+              <p class="bento-desc" style="font-size: 0.88rem; margin-bottom: 0.5rem;">
+                Multi-tier CDN caching headers, hover-based link prefetching, and zero waterfall SSR.
+              </p>
+            </div>
+            <div class="bento-specs-pill-group" style="margin-top: 0.5rem;">
+              <span class="bento-spec-pill">Edge CDN</span>
+              <span class="bento-spec-pill">Prefetching</span>
+            </div>
+          </div>
+
+          <!-- Tile 5 (Wide 2x1): Brand Narrative & Category Positioning -->
+          <div class="bento-tile bento-tile-wide discipline-row" data-discipline="3" role="region" aria-label="Brand Narrative & Category Positioning">
+            <div class="bento-tile-top">
+              <div class="bento-meta-header">
+                <span class="bento-index-badge">05 // BRAND POSITIONING</span>
+                <span class="bento-status-pill">
+                  <span class="bento-status-dot"></span>
+                  EDITORIAL TONE
+                </span>
+              </div>
+              <h3 class="bento-title">Brand Narrative & Category Positioning</h3>
+              <p class="bento-desc">
+                High-stakes pitch decks, category-defining manifestos, and architectural copywriting that commands premium enterprise valuation.
+              </p>
+            </div>
+            <div class="bento-inner-viewport" style="margin: 0; padding: 0.85rem 1rem;">
+              <div class="bento-specs-pill-group" style="margin: 0;">
+                <span class="bento-spec-pill">Executive Pitch Decks</span>
+                <span class="bento-spec-pill">Anti-Corporate Tone Matrix</span>
+                <span class="bento-spec-pill">Studio Brand Book</span>
+                <span class="bento-spec-pill">Media Directives</span>
               </div>
             </div>
           </div>
 
-          <!-- Discipline 04 -->
-          <div class="discipline-row" data-discipline="3">
-            <div class="discipline-header">
-              <span class="discipline-num">04 /</span>
-              <h3 class="discipline-title">Brand Narrative & Positioning</h3>
-              <p class="discipline-brief-desc">Editorial typography, high-stakes brand identity & launch strategy.</p>
-              <span class="discipline-toggle-icon">+</span>
-            </div>
-            <div class="discipline-drawer">
-              <div class="discipline-specs-grid">
-                <div class="spec-column">
-                  <h5>IDENTITY DIRECTION</h5>
-                  <ul>
-                    <li>Editorial typographic hierarchy & custom wordmarks</li>
-                    <li>Architectural color systems & brand tokens</li>
-                    <li>Comprehensive brand guidelines & asset packages</li>
-                  </ul>
-                </div>
-                <div class="spec-column">
-                  <h5>DIGITAL POSITIONING</h5>
-                  <ul>
-                    <li>Category-defining copywriting & narrative manifestos</li>
-                    <li>Investor pitch deck visual craft & interactive decks</li>
-                    <li>Art direction for commercial studio photography</li>
-                  </ul>
-                </div>
-                <div class="spec-column">
-                  <h5>DELIVERABLES</h5>
-                  <ul>
-                    <li>Complete Brand Identity Kit & Vector Graphics</li>
-                    <li>Editorial Digital Style Guide</li>
-                    <li>High-impact social launch collateral</li>
-                  </ul>
-                </div>
+          <!-- Tile 6 (Unit 1x1): WCAG 2.2 AA Inclusive Access -->
+          <div class="bento-tile bento-tile-unit" role="region" aria-label="WCAG 2.2 AA Inclusive Access">
+            <div class="bento-tile-top">
+              <div class="bento-meta-header">
+                <span class="bento-index-badge">06 // A11Y RIGOUR</span>
+                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-solar); font-weight: 700;">✓ 100/100</span>
               </div>
+              <h3 class="bento-title" style="font-size: 1.15rem;">WCAG 2.2 AA Inclusive Access</h3>
+              <p class="bento-desc" style="font-size: 0.88rem; margin-bottom: 0.5rem;">
+                5.5:1+ contrast verified, universal 2px focus rings, trapped modal navigation & screen-reader parity.
+              </p>
+            </div>
+            <div class="bento-specs-pill-group" style="margin-top: 0.5rem;">
+              <span class="bento-spec-pill">POUR Compliant</span>
+              <span class="bento-spec-pill">Focus Trapping</span>
             </div>
           </div>
 
@@ -1125,7 +1137,7 @@
   
 
   <!-- Master Application Script -->
-  <script src="script.js"></script>
+  <script src="script.js?v=2.2"></script>
 
     <!-- Top Kinetic Navigation Filament (Silk Page Transition) -->
   <div class="top-nav-filament" id="nav-filament" aria-hidden="true"></div>

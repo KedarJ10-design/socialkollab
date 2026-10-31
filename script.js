@@ -1051,13 +1051,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==========================================================================
-     14. Modal Helpers & Keyboard Accessibility
+     14. Modal Helpers & Keyboard Accessibility (WCAG 2.1 / 2.2 AA Compliant)
      ========================================================================== */
+  let lastFocusedTrigger = null;
+
+  function getFocusableElements(container) {
+    if (!container) return [];
+    return Array.from(
+      container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    ).filter(el => {
+      if (el.disabled) return false;
+      return el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0 || el.offsetParent !== null;
+    });
+  }
+
   function openModal(modal) {
     if (!modal) return;
+    lastFocusedTrigger = document.activeElement;
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    // Move focus into the modal immediately
+    const focusables = getFocusableElements(modal);
+    if (focusables.length > 0) {
+      setTimeout(() => focusables[0].focus(), 40);
+    }
   }
 
   function closeModal(modal) {
@@ -1070,6 +1089,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modal.id === 'dossier-modal' && window.location.hash.startsWith('#case-')) {
       history.replaceState(null, '', window.location.pathname + window.location.search);
     }
+    // Restore focus smoothly to trigger element outside modal
+    if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function' && !modal.contains(lastFocusedTrigger) && document.body.contains(lastFocusedTrigger)) {
+      lastFocusedTrigger.focus();
+    }
   }
 
   window.addEventListener('click', (e) => {
@@ -1080,8 +1103,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      const activeModal = document.querySelector('.modal-backdrop.active');
-      if (activeModal) closeModal(activeModal);
+      const activeModal = document.querySelector('.modal-backdrop.active, .cmd-palette-backdrop.active');
+      if (activeModal) {
+        if (activeModal.classList.contains('cmd-palette-backdrop')) {
+          closeCmdPalette();
+        } else {
+          closeModal(activeModal);
+        }
+      }
+    } else if (e.key === 'Tab') {
+      const activeModal = document.querySelector('.modal-backdrop.active, .cmd-palette-backdrop.active');
+      if (!activeModal) return;
+      const focusables = getFocusableElements(activeModal);
+      if (focusables.length === 0) return;
+      const firstEl = focusables[0];
+      const lastEl = focusables[focusables.length - 1];
+
+      // If focus is currently outside activeModal, recapture it immediately
+      if (!activeModal.contains(document.activeElement)) {
+        e.preventDefault();
+        if (e.shiftKey) {
+          lastEl.focus();
+        } else {
+          firstEl.focus();
+        }
+        return;
+      }
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstEl) {
+          e.preventDefault();
+          lastEl.focus();
+        }
+      } else {
+        if (document.activeElement === lastEl) {
+          e.preventDefault();
+          firstEl.focus();
+        }
+      }
     }
   });
 
@@ -1092,6 +1151,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openCmdPalette() {
     if (!cmdPalette) return;
+    lastFocusedTrigger = document.activeElement;
     cmdPalette.classList.add('active');
     cmdPalette.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -1108,6 +1168,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
     }
     if (cmdSearchInput) cmdSearchInput.value = '';
+    if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function' && !cmdPalette.contains(lastFocusedTrigger) && document.body.contains(lastFocusedTrigger)) {
+      lastFocusedTrigger.focus();
+    }
   }
 
   window.addEventListener('keydown', (e) => {
@@ -1118,8 +1181,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         openCmdPalette();
       }
-    } else if (e.key === 'Escape' && cmdPalette && cmdPalette.classList.contains('active')) {
-      closeCmdPalette();
     }
   });
 
@@ -1321,7 +1382,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+  // 4. Ambient Cursor Illumination on Bento Tiles (bento-board-ui & better-interface)
+  const bentoTiles = document.querySelectorAll('.bento-tile');
+  if (bentoTiles.length > 0 && !prefersReducedMotion) {
+    bentoTiles.forEach(tile => {
+      tile.addEventListener('mousemove', (e) => {
+        const rect = tile.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        tile.style.setProperty('--mouse-x', `${x}px`);
+        tile.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  }
 
+  // 5. Intelligent Edge Route Prefetching on Hover (edge-fullstack-patterns)
+  const prefetchedUrls = new Set();
+  document.querySelectorAll('a[href$=".html"]').forEach(anchor => {
+    const href = anchor.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || prefetchedUrls.has(href)) return;
 
+    const prefetch = () => {
+      if (prefetchedUrls.has(href)) return;
+      prefetchedUrls.add(href);
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = href;
+      document.head.appendChild(link);
+    };
+
+    anchor.addEventListener('mouseenter', prefetch, { once: true });
+    anchor.addEventListener('touchstart', prefetch, { passive: true, once: true });
+  });
 
 });
