@@ -72,9 +72,10 @@
 
   /* Concentric Bento Radii Scale (better-interface & bento-board-ui: Router = Rinner + Padding) */
   --radius-inner-sm: 8px;              /* Chips, badges, buttons */
-  --radius-inner-md: 12px;             /* Nested cards, image viewports */
-  --radius-tile-standard: 24px;        /* Standard 1x1, 2x1 tiles (padding 16px + inner 8px = 24px) */
-  --radius-tile-hero: 32px;            /* Hero 2x2 tiles (padding 20px + inner 12px = 32px) */
+  --radius-inner-md: 16px;             /* Nested cards, image viewports */
+  --radius-tile-standard: 32px;        /* Standard 1x1, 2x1 tiles (padding 16px + inner 16px = 32px) */
+  --radius-tile-hero: 32px;            /* Hero 2x2 tiles (padding 16px + inner 16px = 32px) */
+  --bento-tile-pad: 16px;              /* Strict concentric padding: 16px inner + 16px padding = 32px outer */
   --radius-modal: 28px;
 
   /* Typography Stacks */
@@ -1531,30 +1532,32 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-flow: dense;
-  gap: 24px;
+  gap: 20px;
   margin-top: var(--space-xl);
+  perspective: 1200px;
 }
 
 .bento-tile {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-tile-standard);
-  padding: 28px;
+  padding: var(--bento-tile-pad, 16px);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.35s var(--ease-out-expo), 
-              border-color 0.35s var(--ease-out-expo), 
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  box-shadow: 0 4px 16px rgba(24, 21, 19, 0.04);
+  transition: border-color 0.35s var(--ease-out-expo), 
               box-shadow 0.35s var(--ease-out-expo);
   will-change: transform;
 }
 
 .bento-tile:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 72, 32, 0.35);
-  box-shadow: 0 16px 36px rgba(24, 21, 19, 0.07);
+  border-color: rgba(255, 72, 32, 0.40);
+  box-shadow: 0 16px 40px rgba(255, 72, 32, 0.12), 0 16px 36px rgba(24, 21, 19, 0.07);
 }
 
 /* Bento Tile Span Presets */
@@ -1562,7 +1565,7 @@ button {
   grid-column: span 2;
   grid-row: span 2;
   border-radius: var(--radius-tile-hero);
-  padding: clamp(28px, 4vw, 36px);
+  padding: var(--bento-tile-pad, 16px);
 }
 
 .bento-tile-wide {
@@ -1766,6 +1769,885 @@ button {
   font-weight: 600;
 }
 
+/* ==========================================================================
+   HERO KINETIC TYPOGRAPHY, MAGNETIC BUTTONS & FLOATING TELEMETRY
+   ========================================================================== */
+.hero-main-title {
+  perspective: 1000px;
+}
+
+.kinetic-word {
+  display: inline-block;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Floating Glassmorphic Telemetry Badges on Hero Studio Card */
+.hero-telemetry-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(251, 248, 243, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 72, 32, 0.28);
+  box-shadow: 0 10px 28px rgba(24, 21, 19, 0.10);
+  z-index: 6;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  user-select: none;
+}
+
+.hero-telemetry-badge:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 36px rgba(255, 72, 32, 0.22);
+  border-color: var(--accent-solar);
+}
+
+.telemetry-badge-lighthouse {
+  top: 14%;
+  right: -14px;
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+.telemetry-badge-glsl {
+  bottom: 22%;
+  right: -18px;
+  animation: float-subtle 4.5s ease-in-out infinite 1.2s;
+}
+
+.telemetry-badge-bloat {
+  bottom: -10px;
+  left: 20px;
+  animation: float-subtle 5s ease-in-out infinite 2.2s;
+}
+
+.telemetry-icon {
+  font-size: 0.95rem;
+  color: var(--accent-solar);
+  display: flex;
+  align-items: center;
+}
+
+.telemetry-data {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.telemetry-val {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.telemetry-label {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.telemetry-dot-solar {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-solar);
+  box-shadow: 0 0 8px rgba(255, 72, 32, 0.7);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ==========================================================================
+   BENTO BOARD LIVING FIGMA-GRADE COMPONENTS
+   ========================================================================== */
+
+/* Header Badges & Cart Pill */
+.bento-header-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.bento-cart-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: rgba(24, 21, 19, 0.05);
+  border: 1px solid var(--border-subtle);
+  padding: 3px 9px;
+  border-radius: var(--radius-inner-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.bento-cart-pill strong {
+  color: var(--accent-solar);
+  font-weight: 700;
+}
+
+/* --- TILE 1: Flagship E-Commerce Living Luxury Product Card --- */
+.bento-product-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-inner-md);
+  padding: 16px;
+  margin: 14px 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(24, 21, 19, 0.03);
+  transform: translateZ(12px);
+  transform-style: preserve-3d;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bento-tile:hover .bento-product-card {
+  border-color: rgba(255, 72, 32, 0.25);
+  box-shadow: 0 8px 24px rgba(24, 21, 19, 0.06);
+}
+
+.bento-product-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bento-product-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent-terracotta);
+}
+
+.bento-curr-switcher {
+  display: flex;
+  gap: 4px;
+  background: rgba(24, 21, 19, 0.05);
+  padding: 2px;
+  border-radius: 6px;
+}
+
+.bento-curr-btn {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.bento-curr-btn:hover {
+  color: var(--text-primary);
+}
+
+.bento-curr-btn.active {
+  background: var(--color-primary-2);
+  color: var(--color-primary-1);
+}
+
+.bento-product-main {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.bento-product-visual-wrap {
+  position: relative;
+  width: 100px;
+  height: 110px;
+  background: linear-gradient(135deg, rgba(24, 21, 19, 0.08) 0%, rgba(255, 72, 32, 0.08) 100%);
+  border-radius: var(--radius-inner-sm);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bento-product-badge {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.bento-product-silhouette {
+  width: 64px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  margin-top: 10px;
+  transition: transform 0.3s ease;
+}
+
+.bento-product-card:hover .bento-product-silhouette {
+  transform: scale(1.08) translateY(-2px);
+  color: var(--accent-solar);
+}
+
+.trench-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.bento-product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bento-product-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.bento-product-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.bento-product-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.bento-price-tag {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-solar);
+}
+
+.bento-tax-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.bento-product-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.bento-size-selector {
+  display: flex;
+  gap: 4px;
+}
+
+.bento-size-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.bento-size-btn:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+.bento-size-btn.active {
+  background: var(--color-primary-2);
+  color: var(--color-primary-1);
+  border-color: var(--color-primary-2);
+}
+
+.bento-add-cart-btn {
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  gap: 5px;
+}
+
+/* Core Web Vitals Radar Strip */
+.bento-cwv-radar-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(24, 21, 19, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-inner-sm);
+  margin-top: 4px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bento-radar-gauge-wrap {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bento-radar-svg {
+  transform: rotate(-90deg);
+}
+
+.radar-fill-circle {
+  transition: stroke-dashoffset 1s ease;
+}
+
+.bento-radar-score {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-solar);
+}
+
+.bento-radar-metrics {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  flex-grow: 1;
+}
+
+.radar-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+}
+
+.radar-sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+}
+
+.bento-kpi-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-inner-sm);
+  background: rgba(255, 72, 32, 0.08);
+  border: 1px solid rgba(255, 72, 32, 0.25);
+  color: var(--accent-solar);
+}
+
+/* --- TILE 2: Creative Coding Live Canvas Wrap --- */
+.bento-mini-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 125px;
+  background: #110f0d;
+  border: 1px solid rgba(255, 72, 32, 0.25);
+  border-radius: var(--radius-inner-md);
+  overflow: hidden;
+  margin: 12px 0 6px;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+  cursor: crosshair;
+  transform: translateZ(12px);
+  transform-style: preserve-3d;
+}
+
+.bento-mini-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.bento-canvas-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 8px 12px;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 60%, rgba(17, 15, 13, 0.8) 100%);
+}
+
+.canvas-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: rgba(245, 158, 11, 0.9);
+  letter-spacing: 0.06em;
+}
+
+.canvas-hint {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: rgba(251, 248, 243, 0.6);
+}
+
+/* --- TILE 3: Spatial Design Living Token Sandbox --- */
+.bento-sandbox-section {
+  margin: 8px 0;
+}
+
+.bento-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent-terracotta);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.bento-swatch-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.bento-swatch-btn {
+  cursor: pointer;
+  border-radius: var(--radius-inner-sm);
+  border: 1px solid rgba(24, 21, 19, 0.12);
+  height: 44px;
+  display: flex;
+  align-items: flex-end;
+  padding: 4px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  user-select: none;
+}
+
+.bento-swatch-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(24, 21, 19, 0.16);
+}
+
+.bento-swatch-btn:active {
+  transform: scale(0.96);
+}
+
+.bento-typography-sandbox {
+  background: rgba(24, 21, 19, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-inner-md);
+  padding: 12px;
+  margin-top: 10px;
+  transform: translateZ(12px);
+  transform-style: preserve-3d;
+}
+
+.bento-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.bento-specimen-meta {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--accent-solar);
+}
+
+.bento-range-slider {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(24, 21, 19, 0.12);
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  margin: 6px 0 10px;
+}
+
+.bento-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-solar);
+  box-shadow: 0 0 10px rgba(255, 72, 32, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.bento-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+.bento-specimen-box {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-inner-sm);
+  padding: 6px 10px;
+  overflow: hidden;
+}
+
+.bento-specimen-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* --- TILE 4: Sub-Second Edge Infrastructure --- */
+.bento-edge-network-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-inner-md);
+  padding: 10px;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: translateZ(12px);
+  transform-style: preserve-3d;
+}
+
+.edge-network-svg {
+  width: 100%;
+  height: 80px;
+  overflow: visible;
+}
+
+.ping-ring-svg {
+  transform-origin: center;
+  animation: ping-ring-pulse 2.2s infinite ease-out;
+}
+
+@keyframes ping-ring-pulse {
+  0% {
+    r: 4;
+    opacity: 0.9;
+  }
+  100% {
+    r: 16;
+    opacity: 0;
+  }
+}
+
+.bento-edge-pills-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.bento-telemetry-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: rgba(24, 21, 19, 0.04);
+  border: 1px solid var(--border-subtle);
+  padding: 3px 8px;
+  border-radius: var(--radius-inner-sm);
+}
+
+.bento-telemetry-ping {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+  animation: pulse-dot 1.5s infinite ease-in-out;
+}
+
+/* --- TILE 5: Brand Narrative Dennis Snellenberg Editorial Specimen --- */
+.bento-editorial-specimen-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-inner-md);
+  padding: 16px 20px;
+  margin: 12px 0 6px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(24, 21, 19, 0.03);
+  transform: translateZ(12px);
+  transform-style: preserve-3d;
+}
+
+.bento-editorial-quote-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.editorial-monograph-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--accent-bronze);
+  letter-spacing: 0.08em;
+}
+
+.bento-editorial-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.editorial-signature-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.editorial-sign-name {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent-solar);
+}
+
+.editorial-sign-loc {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+}
+
+.bento-snellenberg-seal {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f7f3ea 40%, #ece4d5 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.45);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.bento-tile:hover .bento-snellenberg-seal {
+  transform: rotate(25deg) scale(1.06);
+}
+
+.snellenberg-seal-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.snellenberg-seal-svg {
+  width: 100%;
+  height: 100%;
+  animation: seal-rotate 20s linear infinite;
+}
+
+@keyframes seal-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.seal-svg-text {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  fill: var(--text-primary);
+}
+
+.seal-monogram {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--accent-solar);
+}
+
+/* --- TILE 6: WCAG 2.2 AA Contrast & Focus Simulator --- */
+.bento-a11y-widget {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-inner-md);
+  padding: 12px;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: translateZ(12px);
+  transform-style: preserve-3d;
+}
+
+.bento-contrast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bento-contrast-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(24, 21, 19, 0.05);
+  border: 1px solid var(--border-subtle);
+  padding: 2px 7px;
+  border-radius: var(--radius-inner-sm);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.contrast-score {
+  font-weight: 700;
+  color: var(--accent-solar);
+}
+
+.contrast-status-tag {
+  font-weight: 600;
+  color: #10b981;
+}
+
+.bento-a11y-preview-box {
+  background: #ece4d5;
+  color: #181513;
+  border: 1px solid rgba(24, 21, 19, 0.12);
+  border-radius: var(--radius-inner-sm);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.bento-a11y-preview-box.high-contrast {
+  background: #181513;
+  color: #ece4d5;
+  border-color: var(--accent-solar);
+}
+
+.bento-a11y-preview-box.high-contrast .a11y-preview-sub {
+  color: var(--text-secondary-dark);
+}
+
+.a11y-preview-text {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.a11y-preview-sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #5e554d;
+}
+
+.bento-a11y-controls {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.bento-pill-btn,
+.bento-focus-btn {
+  flex: 1;
+  min-width: 90px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 5px 8px;
+  border-radius: var(--radius-inner-sm);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.bento-pill-btn:hover {
+  background: var(--color-primary-2);
+  color: var(--color-primary-1);
+}
+
+.bento-focus-btn:focus,
+.bento-focus-btn:focus-visible,
+.bento-focus-btn.simulated-focus {
+  outline: 2px solid var(--accent-solar) !important;
+  outline-offset: 2px;
+  background: rgba(255, 72, 32, 0.08);
+}
+  background: rgba(255, 72, 32, 0.08);
+}
+
 /* Concentric Bento Radii on Services Page Spec Blocks */
 .spec-block {
   background: var(--bg-surface);
@@ -1829,6 +2711,19 @@ button {
   .bento-tile-unit:last-of-type {
     grid-column: span 2;
   }
+  /* Keep telemetry badges safely anchored within card boundaries on tablet */
+  .telemetry-badge-lighthouse {
+    top: 14px;
+    right: 14px;
+  }
+  .telemetry-badge-glsl {
+    bottom: 50px;
+    right: 14px;
+  }
+  .telemetry-badge-bloat {
+    bottom: 14px;
+    left: 14px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1842,8 +2737,38 @@ button {
   .bento-tile-unit {
     grid-column: span 1;
     grid-row: auto;
-    padding: 22px;
+    padding: var(--bento-tile-pad, 16px);
     border-radius: var(--radius-tile-standard);
+  }
+  .bento-product-main {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .bento-editorial-specimen-card {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .hero-telemetry-badge {
+    padding: 0.35rem 0.65rem;
+    gap: 0.45rem;
+  }
+  .telemetry-val {
+    font-size: 0.68rem;
+  }
+  .telemetry-label {
+    font-size: 0.55rem;
+  }
+  .telemetry-badge-lighthouse {
+    top: 10px;
+    right: 10px;
+  }
+  .telemetry-badge-glsl {
+    bottom: 42px;
+    right: 10px;
+  }
+  .telemetry-badge-bloat {
+    bottom: 10px;
+    left: 10px;
   }
 }
 
@@ -4068,34 +4993,7 @@ h2 em,
 }
 
 @media (max-width: 900px) {
-  /* Tactile Clipboard Toast */
-.copy-toast {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: var(--color-primary-2);
-  color: var(--color-primary-1);
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  box-shadow: 0 10px 30px rgba(24, 21, 19, 0.25);
-  border: 1px solid var(--accent-solar);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s var(--ease-out-expo);
-  z-index: 999999;
-}
-
-.copy-toast.active {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.guild-overview-card {
+  .guild-overview-card {
     grid-template-columns: 1fr;
     gap: 2rem;
   }

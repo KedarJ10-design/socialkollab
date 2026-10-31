@@ -1415,4 +1415,482 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.addEventListener('touchstart', prefetch, { passive: true, once: true });
   });
 
+  /* ==========================================================================
+     Shared Bento Toast Notification Manager
+     ========================================================================== */
+  let bentoToastTimeout = null;
+  function showBentoToast(msg) {
+    let toastEl = document.getElementById('bento-toast');
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.id = 'bento-toast';
+      toastEl.className = 'copy-toast';
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = msg;
+    toastEl.classList.add('active');
+    if (bentoToastTimeout) {
+      clearTimeout(bentoToastTimeout);
+    }
+    bentoToastTimeout = setTimeout(() => {
+      toastEl.classList.remove('active');
+      bentoToastTimeout = null;
+    }, 2200);
+  }
+
+  /* Universal Clipboard Copy Helper with ExecCommand Fallback */
+  async function copyTokenToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (_) {
+        // Fallback below
+      }
+    }
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
+      textArea.style.top = '0';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      return successful;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /* ==========================================================================
+     6. GSAP Kinetic Typography Perspective Reveal
+     ========================================================================== */
+  if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+    const kineticWords = document.querySelectorAll('.kinetic-word');
+    if (kineticWords.length > 0) {
+      gsap.from(kineticWords, {
+        y: 40,
+        opacity: 0,
+        rotationX: 20,
+        stagger: 0.07,
+        duration: 1.0,
+        ease: 'power3.out'
+      });
+    }
+  }
+
+  /* ==========================================================================
+     7. GSAP ScrollTrigger Bento Entrance Staggers & CWV Radar Gauge
+     ========================================================================== */
+  if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+    const servicesSection = document.getElementById('services') || document.getElementById('bento-capabilities');
+    const allBentoTiles = document.querySelectorAll('.bento-tile');
+    if (servicesSection && allBentoTiles.length > 0 && typeof ScrollTrigger !== 'undefined') {
+      gsap.from(allBentoTiles, {
+        scrollTrigger: {
+          trigger: servicesSection,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        },
+        y: 45,
+        opacity: 0,
+        scale: 0.96,
+        stagger: 0.1,
+        duration: 0.85,
+        ease: 'power3.out'
+      });
+
+      // Animated Core Web Vitals Radial Gauge
+      const radarCircle = document.querySelector('.radar-fill-circle');
+      const radarScore = document.getElementById('bento-radar-score');
+      if (radarCircle) {
+        gsap.fromTo(radarCircle, 
+          { strokeDashoffset: 113 },
+          {
+            strokeDashoffset: 1,
+            duration: 1.5,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: servicesSection,
+              start: 'top 75%',
+              toggleActions: 'play none none reverse'
+            }
+          }
+        );
+      }
+      if (radarScore) {
+        const scoreObj = { val: 0 };
+        gsap.to(scoreObj, {
+          val: 100,
+          duration: 1.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: servicesSection,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          },
+          onUpdate: () => {
+            radarScore.textContent = Math.round(scoreObj.val);
+          }
+        });
+      }
+    }
+  }
+
+  /* ==========================================================================
+     8. 3D Perspective Tilt Physics with Elastic Return
+     ========================================================================== */
+  if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+    const tiltTiles = document.querySelectorAll('.bento-tile');
+    tiltTiles.forEach(tile => {
+      tile.addEventListener('mousemove', (e) => {
+        const rect = tile.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const deltaX = (x - centerX) / centerX;
+        const deltaY = (y - centerY) / centerY;
+        
+        // Dynamic tilt calculation
+        const rotateX = -deltaY * 7;
+        const rotateY = deltaX * 7;
+
+        gsap.to(tile, {
+          rotateX: rotateX,
+          rotateY: rotateY,
+          transformPerspective: 1000,
+          duration: 0.3,
+          ease: 'power1.out',
+          overwrite: 'auto'
+        });
+      });
+
+      tile.addEventListener('mouseleave', () => {
+        gsap.to(tile, {
+          rotateX: 0,
+          rotateY: 0,
+          duration: 0.7,
+          ease: 'elastic.out(1, 0.4)',
+          overwrite: 'auto'
+        });
+      });
+    });
+  }
+
+  /* ==========================================================================
+     9. Magnetic Button Snapping Physics (quickTo with Spring Damping)
+     ========================================================================== */
+  if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+    const magneticButtons = document.querySelectorAll('.magnetic-btn');
+    magneticButtons.forEach(btn => {
+      const xTo = gsap.quickTo(btn, 'x', { duration: 0.35, ease: 'power3.out' });
+      const yTo = gsap.quickTo(btn, 'y', { duration: 0.35, ease: 'power3.out' });
+      let btnRect = null;
+
+      btn.addEventListener('mouseenter', () => {
+        btnRect = btn.getBoundingClientRect();
+      });
+
+      btn.addEventListener('mousemove', (e) => {
+        if (!btnRect) btnRect = btn.getBoundingClientRect();
+        const centerX = btnRect.left + btnRect.width / 2;
+        const centerY = btnRect.top + btnRect.height / 2;
+        const dx = (e.clientX - centerX) * 0.32;
+        const dy = (e.clientY - centerY) * 0.32;
+        xTo(dx);
+        yTo(dy);
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btnRect = null;
+        xTo(0);
+        yTo(0);
+      });
+    });
+  }
+
+  /* ==========================================================================
+     10. Bento Tile 1: Flagship E-Commerce Living Product Card
+     ========================================================================== */
+  let bentoCartCount = 0;
+  const bentoAddToCartBtn = document.getElementById('bento-add-cart-btn');
+  const bentoCartBadge = document.getElementById('bento-cart-count');
+  if (bentoAddToCartBtn && bentoCartBadge) {
+    bentoAddToCartBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      bentoCartCount++;
+      bentoCartBadge.textContent = bentoCartCount;
+
+      if (typeof gsap !== 'undefined') {
+        gsap.fromTo(bentoCartBadge, 
+          { scale: 1.8, color: '#ff4820' }, 
+          { scale: 1, color: 'inherit', duration: 0.45, ease: 'back.out(2)' }
+        );
+        gsap.fromTo(bentoAddToCartBtn, 
+          { scale: 0.94 }, 
+          { scale: 1, duration: 0.2, ease: 'power2.out' }
+        );
+      }
+
+      showBentoToast(`Technical Trench added to Cart (${bentoCartCount} items) ✓`);
+    });
+  }
+
+  // Currency Switcher for Tile 1
+  const bentoCurrButtons = document.querySelectorAll('.bento-curr-btn');
+  const bentoPriceDisplay = document.getElementById('bento-product-price');
+  const bentoPrices = {
+    INR: '₹24,500',
+    USD: '$295',
+    EUR: '€270'
+  };
+  if (bentoCurrButtons.length > 0 && bentoPriceDisplay) {
+    bentoCurrButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        bentoCurrButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        const curr = btn.getAttribute('data-curr');
+        if (bentoPrices[curr]) {
+          bentoPriceDisplay.textContent = bentoPrices[curr];
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(bentoPriceDisplay, 
+              { opacity: 0, y: -8 }, 
+              { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
+            );
+          }
+        }
+      });
+    });
+  }
+
+  // Size Selector for Tile 1
+  const bentoSizeButtons = document.querySelectorAll('.bento-size-btn');
+  if (bentoSizeButtons.length > 0) {
+    bentoSizeButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        bentoSizeButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    });
+  }
+
+  /* ==========================================================================
+     11. Bento Tile 2: Live 60 FPS Reactive Waveform Canvas (Retina + Paused off-screen)
+     ========================================================================== */
+  const bentoMiniCanvas = document.getElementById('bento-shader-canvas');
+  if (bentoMiniCanvas) {
+    const miniCtx = bentoMiniCanvas.getContext('2d');
+    let miniWidth = 600;
+    let miniHeight = 125;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let miniPointer = { x: 300, y: 62, active: false };
+    let miniTime = 0;
+    let isMiniCanvasVisible = false;
+    let miniRafId = null;
+
+    const fpsValEl = document.getElementById('bento-fps-val');
+    let lastFpsTime = performance.now();
+    let frameCount = 0;
+
+    const resizeMini = () => {
+      if (bentoMiniCanvas.parentElement) {
+        miniWidth = bentoMiniCanvas.parentElement.clientWidth || 600;
+        miniHeight = 125;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        bentoMiniCanvas.width = miniWidth * dpr;
+        bentoMiniCanvas.height = miniHeight * dpr;
+        bentoMiniCanvas.style.width = `${miniWidth}px`;
+        bentoMiniCanvas.style.height = `${miniHeight}px`;
+        miniCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+    };
+    resizeMini();
+    window.addEventListener('resize', resizeMini, { passive: true });
+
+    bentoMiniCanvas.addEventListener('mousemove', (e) => {
+      const rect = bentoMiniCanvas.getBoundingClientRect();
+      miniPointer.x = e.clientX - rect.left;
+      miniPointer.y = e.clientY - rect.top;
+      miniPointer.active = true;
+    });
+
+    bentoMiniCanvas.addEventListener('mouseleave', () => {
+      miniPointer.active = false;
+    });
+
+    // Touch support for mobile / tablet devices
+    const handleTouchCoords = (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+      const rect = bentoMiniCanvas.getBoundingClientRect();
+      miniPointer.x = e.touches[0].clientX - rect.left;
+      miniPointer.y = e.touches[0].clientY - rect.top;
+      miniPointer.active = true;
+    };
+    bentoMiniCanvas.addEventListener('touchstart', handleTouchCoords, { passive: true });
+    bentoMiniCanvas.addEventListener('touchmove', handleTouchCoords, { passive: true });
+    bentoMiniCanvas.addEventListener('touchend', () => { miniPointer.active = false; }, { passive: true });
+
+    function drawMiniWaveform() {
+      if (!isMiniCanvasVisible) {
+        miniRafId = null;
+        return;
+      }
+
+      miniCtx.clearRect(0, 0, miniWidth, miniHeight);
+      miniTime += 0.038;
+
+      // 4 harmonic wave layers in warm palette
+      const harmonicColors = [
+        'rgba(255, 72, 32, 0.55)',
+        'rgba(245, 158, 11, 0.45)',
+        'rgba(255, 72, 32, 0.28)',
+        'rgba(242, 239, 233, 0.20)'
+      ];
+
+      for (let i = 0; i < harmonicColors.length; i++) {
+        miniCtx.beginPath();
+        const freq = 0.014 + i * 0.006;
+        const amp = 14 + i * 7;
+        const phase = miniTime + i * 1.3;
+
+        for (let x = 0; x <= miniWidth; x += 4) {
+          const distToMouse = Math.abs(x - miniPointer.x);
+          const mouseReaction = (miniPointer.active && distToMouse < 90)
+            ? Math.sin((90 - distToMouse) * 0.07) * 18
+            : 0;
+
+          const y = (miniHeight * 0.5) + Math.sin(x * freq + phase) * amp + mouseReaction;
+          if (x === 0) miniCtx.moveTo(x, y);
+          else miniCtx.lineTo(x, y);
+        }
+
+        miniCtx.strokeStyle = harmonicColors[i];
+        miniCtx.lineWidth = 2.2 - i * 0.3;
+        miniCtx.stroke();
+      }
+
+      // Live Dynamic Framerate Counter
+      frameCount++;
+      const now = performance.now();
+      if (now - lastFpsTime >= 500) {
+        const measuredFps = Math.round((frameCount * 1000) / (now - lastFpsTime));
+        if (fpsValEl) {
+          fpsValEl.textContent = `${Math.min(measuredFps, 60)} FPS RAF`;
+        }
+        frameCount = 0;
+        lastFpsTime = now;
+      }
+
+      miniRafId = requestAnimationFrame(drawMiniWaveform);
+    }
+
+    // Battery & CPU Protection: Pause when scrolled off-screen
+    if ('IntersectionObserver' in window) {
+      const canvasObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isMiniCanvasVisible = entry.isIntersecting;
+          if (isMiniCanvasVisible && !miniRafId) {
+            lastFpsTime = performance.now();
+            frameCount = 0;
+            miniRafId = requestAnimationFrame(drawMiniWaveform);
+          }
+        });
+      }, { threshold: 0.05 });
+      canvasObserver.observe(bentoMiniCanvas);
+    } else {
+      isMiniCanvasVisible = true;
+      miniRafId = requestAnimationFrame(drawMiniWaveform);
+    }
+  }
+
+  /* ==========================================================================
+     12. Bento Tile 3: Living Token Sandbox (Swatches + Typography Slider)
+     ========================================================================== */
+  const bentoSwatchBtns = document.querySelectorAll('.bento-swatch-btn');
+  if (bentoSwatchBtns.length > 0) {
+    bentoSwatchBtns.forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const hex = btn.getAttribute('data-color');
+        const copied = await copyTokenToClipboard(hex);
+        if (copied) {
+          showBentoToast(`Copied token ${hex} to clipboard! ✓`);
+        } else {
+          showBentoToast(`Token: ${hex}`);
+        }
+      });
+    });
+  }
+
+  // Fluid Typography Slider
+  const bentoTypeSlider = document.getElementById('bento-type-slider');
+  const bentoSpecimenText = document.getElementById('bento-specimen-text');
+  const bentoSpecimenMeta = document.getElementById('bento-specimen-meta');
+  if (bentoTypeSlider && bentoSpecimenText) {
+    bentoTypeSlider.addEventListener('input', (e) => {
+      const pxVal = e.target.value;
+      bentoSpecimenText.style.fontSize = `${pxVal}px`;
+      if (bentoSpecimenMeta) {
+        const remVal = (pxVal / 16).toFixed(3);
+        bentoSpecimenMeta.textContent = `${pxVal}px / ${remVal}rem`;
+      }
+    });
+  }
+
+  /* ==========================================================================
+     13. Bento Tile 6: WCAG Contrast Meter & Focus Ring Simulator
+     ========================================================================== */
+  const bentoContrastToggle = document.getElementById('bento-contrast-toggle');
+  const bentoA11yBox = document.getElementById('bento-a11y-box');
+  const contrastRatioVal = document.getElementById('contrast-ratio-value');
+  const contrastStatusTag = document.getElementById('contrast-status-tag');
+  const bentoA11yLevel = document.getElementById('bento-a11y-level');
+  if (bentoContrastToggle && bentoA11yBox) {
+    let isHighContrast = false;
+    bentoContrastToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isHighContrast = !isHighContrast;
+      if (isHighContrast) {
+        bentoA11yBox.classList.add('high-contrast');
+        if (contrastRatioVal) contrastRatioVal.textContent = '12.4:1';
+        if (contrastStatusTag) contrastStatusTag.textContent = 'AAA PASS';
+        if (bentoA11yLevel) bentoA11yLevel.textContent = 'WCAG 2.2 Level AAA Compliant';
+      } else {
+        bentoA11yBox.classList.remove('high-contrast');
+        if (contrastRatioVal) contrastRatioVal.textContent = '5.77:1';
+        if (contrastStatusTag) contrastStatusTag.textContent = 'AA PASS';
+        if (bentoA11yLevel) bentoA11yLevel.textContent = 'WCAG 2.2 Level AA Compliant';
+      }
+    });
+  }
+
+  const bentoFocusSimBtn = document.getElementById('bento-focus-sim');
+  if (bentoFocusSimBtn) {
+    bentoFocusSimBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      bentoFocusSimBtn.classList.toggle('simulated-focus');
+      bentoFocusSimBtn.focus();
+    });
+    bentoFocusSimBtn.addEventListener('blur', () => {
+      bentoFocusSimBtn.classList.remove('simulated-focus');
+    });
+  }
+
 });

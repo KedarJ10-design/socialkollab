@@ -163,7 +163,7 @@
       </nav>
 
       <div class="header-actions">
-        <button class="btn btn-primary btn-sm open-modal-btn" data-tab="brand" id="header-start-project-btn">Start Project</button>
+        <button class="btn btn-primary btn-sm open-modal-btn magnetic-btn" data-tab="brand" id="header-start-project-btn">Start Project</button>
         <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
@@ -183,7 +183,8 @@
           <div class="hero-content-col">
             <div class="hero-eyebrow">INDEPENDENT STUDIO // PUNE, INDIA • EST. 2026</div>
             <h1 class="hero-main-title">
-              Bespoke digital architecture.<br>Engineered for high conversion.
+              <span class="kinetic-word">Bespoke</span> <span class="kinetic-word">digital</span> <span class="kinetic-word">architecture.</span><br>
+              <span class="kinetic-word">Engineered</span> <span class="kinetic-word">for</span> <span class="kinetic-word">high</span> <span class="kinetic-word">conversion.</span>
             </h1>
             
             <p class="hero-manifesto-text">
@@ -192,11 +193,11 @@
 
             <div class="hero-action-cluster">
               <div class="hero-cta-buttons">
-                <button class="btn btn-primary btn-lg open-modal-btn" data-tab="brand" id="hero-initiate-btn">
+                <button class="btn btn-primary btn-lg open-modal-btn magnetic-btn" data-tab="brand" id="hero-initiate-btn">
                   <span>Initiate Project Brief</span>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </button>
-                <a href="#case-studies" class="btn btn-ghost btn-lg" id="hero-explore-work-btn">
+                <a href="#case-studies" class="btn btn-ghost btn-lg magnetic-btn" id="hero-explore-work-btn">
                   <span>Explore Archive</span>
                   <span class="arrow-down">↓</span>
                 </a>
@@ -224,7 +225,27 @@
               </div>
               <div class="hero-card-badge bottom-left">
                 <span class="badge-tag">FIG 01.0</span>
-                <span>CREATIVE CODING & WEBGL BENCH</span>
+                <span>CREATIVE CODING &amp; WEBGL BENCH</span>
+              </div>
+
+              <!-- Interactive Floating Glassmorphic Telemetry Badges -->
+              <div class="hero-telemetry-badge telemetry-badge-lighthouse" id="badge-lighthouse">
+                <span class="telemetry-icon">⚡</span>
+                <div class="telemetry-data">
+                  <span class="telemetry-val">99+</span>
+                  <span class="telemetry-label">Lighthouse</span>
+                </div>
+              </div>
+              <div class="hero-telemetry-badge telemetry-badge-glsl" id="badge-glsl">
+                <span class="telemetry-icon">◈</span>
+                <div class="telemetry-data">
+                  <span class="telemetry-val">60 FPS</span>
+                  <span class="telemetry-label">GLSL WebGL</span>
+                </div>
+              </div>
+              <div class="hero-telemetry-badge telemetry-badge-bloat" id="badge-bloat">
+                <span class="telemetry-dot-solar"></span>
+                <span class="telemetry-label">Zero Template Bloat</span>
               </div>
 
               <!-- Retained Rotating Stamp Seal Anchored to Card Corner -->
@@ -449,29 +470,92 @@
             <div class="bento-tile-top">
               <div class="bento-meta-header">
                 <span class="bento-index-badge">01 // HERO ARCHITECTURE</span>
-                <span class="bento-status-pill">
-                  <span class="bento-status-dot"></span>
-                  LIVE PRODUCTION
-                </span>
+                <div class="bento-header-badges">
+                  <span class="bento-status-pill">
+                    <span class="bento-status-dot"></span>
+                    LIVE PRODUCTION
+                  </span>
+                  <div class="bento-cart-pill" aria-label="Live Shopping Cart">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span>CART (<strong id="bento-cart-count">0</strong>)</span>
+                  </div>
+                </div>
               </div>
               <h3 class="bento-title">Flagship Digital Architecture & Headless Commerce</h3>
               <p class="bento-desc">
                 Decoupled Shopify Plus and Next.js platforms engineered for high-concurrency checkout throughput, sub-second LCP, and zero template compromises.
               </p>
               
-              <div class="bento-inner-viewport">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                  <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-terracotta); font-weight: 600;">CORE WEB VITALS BENCHMARK</span>
-                  <span class="bento-kpi-badge">99+ Lighthouse • &lt;0.01 CLS</span>
+              <!-- Living Interactive Luxury Product Card -->
+              <div class="bento-product-card" id="bento-product-card">
+                <div class="bento-product-meta-row">
+                  <span class="bento-product-label">THE UNIFORM LAB // SS-26 ATELIER SPECIMEN</span>
+                  <!-- Interactive Currency Toggle -->
+                  <div class="bento-curr-switcher" role="group" aria-label="Currency Switcher">
+                    <button type="button" class="bento-curr-btn active" data-curr="INR" aria-pressed="true">INR</button>
+                    <button type="button" class="bento-curr-btn" data-curr="USD" aria-pressed="false">USD</button>
+                    <button type="button" class="bento-curr-btn" data-curr="EUR" aria-pressed="false">EUR</button>
+                  </div>
                 </div>
-                <div class="bento-specs-pill-group">
-                  <span class="bento-spec-pill">Shopify Plus Storefront API</span>
-                  <span class="bento-spec-pill">Next.js App Router</span>
-                  <span class="bento-spec-pill">Instant Algolia Search</span>
-                  <span class="bento-spec-pill">Slide-Out Cart Drawer</span>
-                  <span class="bento-spec-pill">Sanity CMS</span>
+
+                <div class="bento-product-main">
+                  <div class="bento-product-visual-wrap">
+                    <div class="bento-product-badge">REF. 042-TRENCH</div>
+                    <div class="bento-product-silhouette" aria-hidden="true">
+                      <!-- Stylized Technical Trench Silhouette SVG -->
+                      <svg viewBox="0 0 100 120" class="trench-svg">
+                        <path d="M30 15 L50 25 L70 15 L85 35 L75 45 L70 35 L72 110 L28 110 L30 35 L25 45 L15 35 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M50 25 L50 110" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+                        <circle cx="50" cy="45" r="2" fill="currentColor"/>
+                        <circle cx="50" cy="65" r="2" fill="currentColor"/>
+                        <circle cx="50" cy="85" r="2" fill="currentColor"/>
+                        <line x1="38" y1="75" x2="62" y2="75" stroke="currentColor" stroke-width="2"/>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div class="bento-product-details">
+                    <div class="bento-product-name">The Uniform Lab Technical Trench</div>
+                    <div class="bento-product-sub">Japanese High-Density Water-Repellent Gabardine</div>
+                    
+                    <div class="bento-product-pricing">
+                      <span class="bento-price-tag" id="bento-product-price">₹24,500</span>
+                      <span class="bento-tax-tag">DUTIES INCL. // INSTANT DISPATCH</span>
+                    </div>
+
+                    <div class="bento-product-controls">
+                      <div class="bento-size-selector" role="group" aria-label="Select Size">
+                        <button type="button" class="bento-size-btn" aria-pressed="false">S</button>
+                        <button type="button" class="bento-size-btn active" aria-pressed="true">M</button>
+                        <button type="button" class="bento-size-btn" aria-pressed="false">L</button>
+                        <button type="button" class="bento-size-btn" aria-pressed="false">XL</button>
+                      </div>
+
+                      <button type="button" class="btn btn-primary btn-sm bento-add-cart-btn" id="bento-add-cart-btn">
+                        <span>Add to Cart</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Animated Core Web Vitals Radial Gauge Strip -->
+                <div class="bento-cwv-radar-strip">
+                  <div class="bento-radar-gauge-wrap">
+                    <svg class="bento-radar-svg" viewBox="0 0 44 44" width="44" height="44">
+                      <circle class="radar-bg-circle" cx="22" cy="22" r="18" fill="none" stroke="rgba(24,21,19,0.12)" stroke-width="3"/>
+                      <circle class="radar-fill-circle" cx="22" cy="22" r="18" fill="none" stroke="var(--accent-solar)" stroke-width="3" stroke-dasharray="113" stroke-dashoffset="113" stroke-linecap="round"/>
+                    </svg>
+                    <span class="bento-radar-score" id="bento-radar-score">100</span>
+                  </div>
+                  <div class="bento-radar-metrics">
+                    <div class="radar-title">CORE WEB VITALS RADAR</div>
+                    <div class="radar-sub">LCP 0.62s • CLS 0.001 • FID 8ms</div>
+                  </div>
+                  <span class="bento-kpi-badge">99+ Lighthouse Verified</span>
                 </div>
               </div>
+
             </div>
 
             <div class="bento-kpi-strip">
@@ -495,9 +579,9 @@
             <div class="bento-tile-top">
               <div class="bento-meta-header">
                 <span class="bento-index-badge">02 // GRAPHICS PIPELINE</span>
-                <span class="bento-status-pill">
+                <span class="bento-status-pill" id="bento-fps-pill">
                   <span class="bento-status-dot"></span>
-                  60 FPS RAF
+                  <span id="bento-fps-val">60 FPS RAF</span>
                 </span>
               </div>
               <h3 class="bento-title">Creative Coding & WebGL GLSL Shaders</h3>
@@ -505,13 +589,21 @@
                 Procedural noise shaders, GPU-bound vertex displacements, and spring-physics micro-interactions tailored for high-end digital monographs.
               </p>
             </div>
-            <div class="bento-inner-viewport" style="margin: 0; padding: 0.85rem 1rem;">
-              <div class="bento-specs-pill-group" style="margin: 0;">
-                <span class="bento-spec-pill">Three.js WebGL</span>
-                <span class="bento-spec-pill">Custom GLSL Perlin Shaders</span>
-                <span class="bento-spec-pill">GSAP 3.12 Timelines</span>
-                <span class="bento-spec-pill">Zero-Bloat Runtime</span>
+            
+            <!-- Real-time 60 FPS Interactive Wave Canvas Container -->
+            <div class="bento-mini-canvas-wrap">
+              <canvas class="bento-mini-canvas" id="bento-shader-canvas" width="600" height="130"></canvas>
+              <div class="bento-canvas-overlay">
+                <span class="canvas-tag">GLSL WAVEFORM HARMONICS</span>
+                <span class="canvas-hint">Move cursor to deform fluid</span>
               </div>
+            </div>
+
+            <div class="bento-specs-pill-group" style="margin-top: 0.85rem;">
+              <span class="bento-spec-pill">Three.js WebGL</span>
+              <span class="bento-spec-pill">Custom GLSL Perlin Shaders</span>
+              <span class="bento-spec-pill">GSAP 3.12 Timelines</span>
+              <span class="bento-spec-pill">Zero-Bloat Runtime</span>
             </div>
           </div>
 
@@ -520,22 +612,39 @@
             <div class="bento-tile-top">
               <div class="bento-meta-header">
                 <span class="bento-index-badge">03 // DESIGN TOKENS</span>
+                <span class="bento-status-pill">LIVING SANDBOX</span>
               </div>
               <h3 class="bento-title">Spatial Design Systems</h3>
               <p class="bento-desc">
                 Mathematical design tokens, harmonic 8px spacing, and fluid clamp typography.
               </p>
               
-              <div class="bento-swatch-matrix">
-                <div class="bento-swatch-cell" style="background: #ece4d5; color: #181513;">#ECE4D5</div>
-                <div class="bento-swatch-cell" style="background: #181513; color: #ece4d5;">#181513</div>
-                <div class="bento-swatch-cell" style="background: #ff4820; color: #ffffff;">#FF4820</div>
-                <div class="bento-swatch-cell" style="background: #f7f3ea; color: #181513;">#F7F3EA</div>
-                <div class="bento-swatch-cell" style="background: #f59e0b; color: #181513;">#F59E0B</div>
-                <div class="bento-swatch-cell" style="background: #5e554d; color: #ffffff;">#5E554D</div>
+              <!-- Interactive Clickable Swatches (Copies hex to clipboard) -->
+              <div class="bento-sandbox-section">
+                <div class="bento-section-label">CLICK SWATCH TO COPY HEX</div>
+                <div class="bento-swatch-matrix" role="group" aria-label="Brand Swatches">
+                  <button type="button" class="bento-swatch-cell bento-swatch-btn" data-color="#ece4d5" style="background: #ece4d5; color: #181513;" title="Copy #ECE4D5">#ECE4D5</button>
+                  <button type="button" class="bento-swatch-cell bento-swatch-btn" data-color="#181513" style="background: #181513; color: #ece4d5;" title="Copy #181513">#181513</button>
+                  <button type="button" class="bento-swatch-cell bento-swatch-btn" data-color="#ff4820" style="background: #ff4820; color: #ffffff;" title="Copy #FF4820">#FF4820</button>
+                  <button type="button" class="bento-swatch-cell bento-swatch-btn" data-color="#f7f3ea" style="background: #f7f3ea; color: #181513;" title="Copy #F7F3EA">#F7F3EA</button>
+                  <button type="button" class="bento-swatch-cell bento-swatch-btn" data-color="#f59e0b" style="background: #f59e0b; color: #181513;" title="Copy #F59E0B">#F59E0B</button>
+                  <button type="button" class="bento-swatch-cell bento-swatch-btn" data-color="#5e554d" style="background: #5e554d; color: #ffffff;" title="Copy #5E554D">#5E554D</button>
+                </div>
               </div>
 
-              <div class="bento-inner-viewport" style="padding: 0.75rem; margin-top: 0.5rem;">
+              <!-- Interactive Fluid Typography Scale Drag Slider -->
+              <div class="bento-typography-sandbox">
+                <div class="bento-slider-header">
+                  <span class="bento-section-label">FLUID SCALE SLIDER</span>
+                  <span class="bento-specimen-meta" id="bento-specimen-meta">22px / 1.375rem</span>
+                </div>
+                <input type="range" id="bento-type-slider" min="14" max="36" value="22" class="bento-range-slider" aria-label="Fluid Typography Scale Slider">
+                <div class="bento-specimen-box">
+                  <span id="bento-specimen-text" class="bento-specimen-text" style="font-size: 22px;">Typographic Harmony</span>
+                </div>
+              </div>
+
+              <div class="bento-inner-viewport" style="padding: 0.75rem; margin-top: 0.75rem;">
                 <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-terracotta); font-weight: 600; display: block; margin-bottom: 0.35rem;">CONCENTRIC RADII FORMULA</span>
                 <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary);">$R_{outer} = R_{inner} + P$</span>
               </div>
@@ -552,13 +661,63 @@
             <div class="bento-tile-top">
               <div class="bento-meta-header">
                 <span class="bento-index-badge">04 // EDGE SPEED</span>
-                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-solar); font-weight: 700;">⚡ &lt;100ms</span>
+                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-solar); font-weight: 700;">⚡ &lt;14ms</span>
               </div>
               <h3 class="bento-title" style="font-size: 1.15rem;">Sub-Second Edge Infrastructure</h3>
-              <p class="bento-desc" style="font-size: 0.88rem; margin-bottom: 0.5rem;">
-                Multi-tier CDN caching headers, hover-based link prefetching, and zero waterfall SSR.
+              <p class="bento-desc" style="font-size: 0.88rem; margin-bottom: 0.75rem;">
+                Multi-tier CDN caching headers, hover link prefetching, and zero waterfall SSR.
               </p>
+
+              <!-- Animated Glowing SVG Network Nodes & Radar -->
+              <div class="bento-edge-network-card">
+                <svg viewBox="0 0 200 90" class="edge-network-svg" aria-hidden="true">
+                  <line x1="30" y1="45" x2="80" y2="25" stroke="rgba(255, 72, 32, 0.3)" stroke-width="1.5" stroke-dasharray="4 2"/>
+                  <line x1="80" y1="25" x2="140" y2="35" stroke="rgba(255, 72, 32, 0.3)" stroke-width="1.5" stroke-dasharray="4 2"/>
+                  <line x1="80" y1="25" x2="100" y2="70" stroke="rgba(255, 72, 32, 0.3)" stroke-width="1.5" stroke-dasharray="4 2"/>
+                  <line x1="140" y1="35" x2="175" y2="55" stroke="rgba(255, 72, 32, 0.3)" stroke-width="1.5" stroke-dasharray="4 2"/>
+                  <!-- Node 1: SFO -->
+                  <circle cx="30" cy="45" r="4" fill="var(--accent-solar)"/>
+                  <circle cx="30" cy="45" r="4" fill="none" stroke="var(--accent-solar)" stroke-width="1.2" class="ping-ring-svg">
+                    <animate attributeName="r" from="4" to="16" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" from="0.9" to="0" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <text x="30" y="62" font-family="var(--font-mono)" font-size="8" fill="var(--text-secondary)" text-anchor="middle">SFO</text>
+                  <!-- Node 2: FRA -->
+                  <circle cx="80" cy="25" r="5" fill="#f59e0b"/>
+                  <circle cx="80" cy="25" r="5" fill="none" stroke="#f59e0b" stroke-width="1.2" class="ping-ring-svg">
+                    <animate attributeName="r" from="5" to="17" dur="2.2s" begin="0.4s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" from="0.9" to="0" dur="2.2s" begin="0.4s" repeatCount="indefinite"/>
+                  </circle>
+                  <text x="80" y="16" font-family="var(--font-mono)" font-size="8" fill="var(--text-secondary)" text-anchor="middle">FRA</text>
+                  <!-- Node 3: PNQ (Home Base) -->
+                  <circle cx="100" cy="70" r="6" fill="var(--accent-solar)"/>
+                  <circle cx="100" cy="70" r="6" fill="none" stroke="var(--accent-solar)" stroke-width="1.5" class="ping-ring-svg">
+                    <animate attributeName="r" from="6" to="20" dur="1.8s" begin="0.8s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" from="1" to="0" dur="1.8s" begin="0.8s" repeatCount="indefinite"/>
+                  </circle>
+                  <text x="100" y="85" font-family="var(--font-mono)" font-weight="700" font-size="8" fill="var(--accent-solar)" text-anchor="middle">PNQ (ATELIER)</text>
+                  <!-- Node 4: NRT -->
+                  <circle cx="140" cy="35" r="4" fill="var(--accent-solar)"/>
+                  <text x="140" y="24" font-family="var(--font-mono)" font-size="8" fill="var(--text-secondary)" text-anchor="middle">NRT</text>
+                  <!-- Node 5: SYD -->
+                  <circle cx="175" cy="55" r="4" fill="#f59e0b"/>
+                  <circle cx="175" cy="55" r="4" fill="none" stroke="#f59e0b" stroke-width="1.2" class="ping-ring-svg">
+                    <animate attributeName="r" from="4" to="15" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" from="0.9" to="0" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+                  </circle>
+                  <text x="175" y="70" font-family="var(--font-mono)" font-size="8" fill="var(--text-secondary)" text-anchor="middle">SYD</text>
+                </svg>
+
+                <div class="bento-edge-pills-row">
+                  <span class="bento-telemetry-pill">
+                    <span class="bento-telemetry-ping"></span>
+                    &lt;14ms Ping
+                  </span>
+                  <span class="bento-telemetry-pill">99.8% Cache Hit</span>
+                </div>
+              </div>
             </div>
+
             <div class="bento-specs-pill-group" style="margin-top: 0.5rem;">
               <span class="bento-spec-pill">Edge CDN</span>
               <span class="bento-spec-pill">Prefetching</span>
@@ -580,13 +739,42 @@
                 High-stakes pitch decks, category-defining manifestos, and architectural copywriting that commands premium enterprise valuation.
               </p>
             </div>
-            <div class="bento-inner-viewport" style="margin: 0; padding: 0.85rem 1rem;">
-              <div class="bento-specs-pill-group" style="margin: 0;">
-                <span class="bento-spec-pill">Executive Pitch Decks</span>
-                <span class="bento-spec-pill">Anti-Corporate Tone Matrix</span>
-                <span class="bento-spec-pill">Studio Brand Book</span>
-                <span class="bento-spec-pill">Media Directives</span>
+
+            <!-- High-Fashion Editorial Specimen (Dennis Snellenberg Styling) -->
+            <div class="bento-editorial-specimen-card">
+              <div class="bento-editorial-quote-col">
+                <span class="editorial-monograph-tag">MONOGRAPH SPECIMEN // No. 05</span>
+                <blockquote class="bento-editorial-quote">
+                  “Haute-couture systems for brands that refuse commodity status.”
+                </blockquote>
+                <div class="editorial-signature-wrap">
+                  <span class="editorial-sign-name">The Social Kollab Atelier</span>
+                  <span class="editorial-sign-loc">Pune • Mumbai • International</span>
+                </div>
               </div>
+
+              <div class="bento-editorial-seal-col">
+                <div class="bento-snellenberg-seal" aria-label="Archival Gold Seal">
+                  <div class="snellenberg-seal-inner">
+                    <svg viewBox="0 0 100 100" class="snellenberg-seal-svg">
+                      <path id="seal-text-path" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                      <text class="seal-svg-text">
+                        <textPath href="#seal-text-path" xlink:href="#seal-text-path" startOffset="0%">
+                          THE SOCIAL KOLLAB • ARCHIVE 2026 •
+                        </textPath>
+                      </text>
+                    </svg>
+                    <div class="seal-monogram">SK</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bento-specs-pill-group" style="margin-top: 0.85rem;">
+              <span class="bento-spec-pill">Executive Pitch Decks</span>
+              <span class="bento-spec-pill">Anti-Corporate Tone Matrix</span>
+              <span class="bento-spec-pill">Studio Brand Book</span>
+              <span class="bento-spec-pill">Media Directives</span>
             </div>
           </div>
 
@@ -598,10 +786,36 @@
                 <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-solar); font-weight: 700;">✓ 100/100</span>
               </div>
               <h3 class="bento-title" style="font-size: 1.15rem;">WCAG 2.2 AA Inclusive Access</h3>
-              <p class="bento-desc" style="font-size: 0.88rem; margin-bottom: 0.5rem;">
-                5.5:1+ contrast verified, universal 2px focus rings, trapped modal navigation & screen-reader parity.
+              <p class="bento-desc" style="font-size: 0.88rem; margin-bottom: 0.75rem;">
+                5.77:1+ contrast verified, universal 2px focus rings, trapped modal navigation &amp; screen-reader parity.
               </p>
+
+              <!-- Interactive Contrast Meter & Simulator -->
+              <div class="bento-a11y-widget">
+                <div class="bento-contrast-header">
+                  <span class="bento-section-label">CONTRAST METER</span>
+                  <div class="bento-contrast-badge-pill">
+                    <span class="contrast-score" id="contrast-ratio-value">5.77:1</span>
+                    <span class="contrast-status-tag" id="contrast-status-tag">AA PASS</span>
+                  </div>
+                </div>
+
+                <div class="bento-a11y-preview-box" id="bento-a11y-box">
+                  <span class="a11y-preview-text">Universal Visual Clarity</span>
+                  <span class="a11y-preview-sub" id="bento-a11y-level">WCAG 2.2 Level AA Compliant</span>
+                </div>
+
+                <div class="bento-a11y-controls">
+                  <button type="button" class="bento-pill-btn" id="bento-contrast-toggle">
+                    <span>Toggle Contrast</span>
+                  </button>
+                  <button type="button" class="bento-focus-btn" id="bento-focus-sim" aria-label="Simulate keyboard tab focus">
+                    <span>Tab Focus Me</span>
+                  </button>
+                </div>
+              </div>
             </div>
+
             <div class="bento-specs-pill-group" style="margin-top: 0.5rem;">
               <span class="bento-spec-pill">POUR Compliant</span>
               <span class="bento-spec-pill">Focus Trapping</span>
@@ -1134,6 +1348,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <!-- GSAP 3.12.5 & ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
 
   <!-- Master Application Script -->
