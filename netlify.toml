@@ -1,6 +1,26 @@
 [build]
   publish = "."
 
+[[redirects]]
+  from = "/work-uniform-lab"
+  to = "/work#the-uniform-lab"
+  status = 301
+
+[[redirects]]
+  from = "/work-uniform-lab.html"
+  to = "/work#the-uniform-lab"
+  status = 301
+
+[[redirects]]
+  from = "/cursor-lab"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/cursor-lab.html"
+  to = "/"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -8,5 +28,4 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';"
-
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#17190F"/>
+  <circle cx="49" cy="15" r="5" fill="#FF9D00"/>
+  <text x="11" y="42" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="25" letter-spacing="-1" fill="#FAF5F2">SK</text>
+</svg>

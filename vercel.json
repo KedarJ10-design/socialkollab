@@ -1,6 +1,28 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/work-uniform-lab",
+      "destination": "/work#the-uniform-lab",
+      "permanent": true
+    },
+    {
+      "source": "/work-uniform-lab.html",
+      "destination": "/work#the-uniform-lab",
+      "permanent": true
+    },
+    {
+      "source": "/cursor-lab",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/cursor-lab.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)\\.html",
@@ -12,7 +34,7 @@
       ]
     },
     {
-      "source": "/(collective|contact|cursor-lab|services|work-uniform-lab|work)",
+      "source": "/(collective|contact|services|work)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -39,7 +61,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(css|js)",
+      "source": "/(styles|scripts|data)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -68,7 +90,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';"
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
         }
       ]
     }

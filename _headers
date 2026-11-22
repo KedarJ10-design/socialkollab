@@ -5,22 +5,23 @@
 /
   Cache-Control: public, max-age=0, must-revalidate
 
-# Tier 2: Static Stylesheets & Scripts
-/*.css
+# Tier 2: Static Stylesheets, Scripts & Data Modules
+/styles/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-/*.js
+/scripts/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-# Tier 3: Immutable Assets (Images, Icons, Fonts)
+/data/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Tier 3: Immutable Assets (SVGs, Brand Marks, Specimens)
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
 /*
-  # HTTP Security Hardening Headers for Cloudflare Pages / Netlify / Vercel
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
-  X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="TheSocialKollab monogram">
+  <rect x="0.5" y="0.5" width="31" height="31" rx="8" fill="#17190F"/>
+  <circle cx="24" cy="8" r="2.5" fill="#FF9D00"/>
+  <text x="6" y="21" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="13" fill="#FAF5F2">SK</text>
+  <line x1="40" y1="6" x2="40" y2="26" stroke="#E3D9CE" stroke-width="1"/>
+  <text x="48" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" letter-spacing="0.02em" fill="#17190F">TSK</text>
+</svg>
