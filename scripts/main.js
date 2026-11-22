@@ -96,23 +96,34 @@ function initMobileDrawer() {
 function initContactForm() {
   const fm = $("project-brief-form"), st = $("form-status"), b = $("submit-brief-btn");
   if (!fm || !st || !b) return;
+  let busy = 0, last = 0;
   const sh = (m, ok) => { st.textContent = m; st.className = `form-status ${ok ? "is-success" : "is-error"}`; st.hidden = false; };
+  const sl = (v, n) => String(v || "").replace(/[\r\n\x00-\x1F\x7F]+/g, " ").trim().slice(0, n);
+  const ml = (v, n) => String(v || "").replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+/g, "").replace(/\r\n?/g, "\n").trim().slice(0, n);
   on(fm, "submit", async (e) => {
-    e.preventDefault(); st.hidden = true;
+    e.preventDefault();
+    if (busy) return;
+    st.hidden = true;
+    if (Date.now() - last < 15000) return sh("Please wait a moment before sending another brief.", false);
     const d = new FormData(fm);
-    if (d.get("bot-field")) return;
-    const nm = String(d.get("name") || "").trim(), ct = String(d.get("contact") || "").trim(), br = String(d.get("brief") || "").trim();
-    if (!nm || !ct || !br) return sh("Please complete your name, contact detail, and project summary.", false);
-    b.disabled = true; sa(b, "data-loading", "true"); b.textContent = "Sending...";
+    if (String(d.get("bot-field") || "").trim()) return;
+    const nm = sl(d.get("name"), 100), ct = sl(d.get("contact"), 160), bz = sl(d.get("business"), 160), bf = ml(d.get("brief"), 2000);
+    if (!nm || !ct || !bf) return sh("Please complete your name, contact detail, and project summary.", false);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ct) && ct.replace(/\D/g, "").length < 7) return sh("Please enter a valid email address or phone number.", false);
+    busy = 1; b.disabled = true; sa(b, "data-loading", "true"); b.textContent = "Sending...";
+    const p = new URLSearchParams({ "form-name": "project-brief", name: nm, contact: ct, business: bz, brief: bf });
+    const ac = typeof AbortController === "function" ? new AbortController() : null, tm = ac ? setTimeout(() => ac.abort(), 8000) : 0;
     try {
-      const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(d).toString() });
+      const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: p.toString(), signal: ac?.signal });
       if (!res.ok) throw 0;
-      fm.reset(); sh("Brief received. Karan Chaturbhuj will reply within 24 hours.", true);
+      last = Date.now(); fm.reset(); sh("Brief received. Karan Chaturbhuj will reply within 24 hours.", true);
     } catch {
-      const s = encodeURIComponent(`Project Brief - ${nm}`), bd = encodeURIComponent(`Name: ${nm}\nContact: ${ct}\nBusiness: ${d.get("business") || "N/A"}\n\n${br}`);
+      last = Date.now();
+      const s = encodeURIComponent(`Project Brief - ${nm.slice(0, 80)}`);
+      const bd = encodeURIComponent(`Name: ${nm.slice(0, 80)}\nContact: ${ct.slice(0, 120)}\nBusiness: ${(bz || "N/A").slice(0, 120)}\n\n${bf.slice(0, 800)}`);
       location.href = `mailto:hello@thesocialkollab.com?subject=${s}&body=${bd}`;
       sh("Email draft opened to hello@thesocialkollab.com. You can also DM @thesocialkollab.", true);
-    } finally { b.disabled = false; b.removeAttribute("data-loading"); b.textContent = "Send project brief"; }
+    } finally { clearTimeout(tm); busy = 0; b.disabled = false; b.removeAttribute("data-loading"); b.textContent = "Send project brief"; }
   });
 }
 

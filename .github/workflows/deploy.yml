@@ -27,12 +27,17 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Stage Public Site Artifact
+        run: |
+          mkdir -p _site
+          cp index.html work.html services.html collective.html contact.html robots.txt sitemap.xml _site/
+          cp -r .well-known assets styles scripts data _site/
+
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

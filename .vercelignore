@@ -1,0 +1,10 @@
+# Exclude non-public repository, test, tooling, and cross-host config files
+tests/
+.kiro/
+.agents/
+.github/
+netlify.toml
+_headers
+.gitignore
+**/__pycache__/
+*.pyc

@@ -1,99 +1,48 @@
 import { PROJECTS } from "../data/studio-data.js";
 import { initPlateDepth } from "./plate-depth.js";
 
-const $ = (id) => document.getElementById(id);
-const pulse = (el, cls, off) => { el.classList.remove(cls); if (!off) { void el.offsetWidth; el.classList.add(cls); } };
-const byId = new Map(PROJECTS.map((p) => [p.id, p]));
+const $=(i)=>document.getElementById(i),qa=(s)=>[...document.querySelectorAll(s)],sa=(e,k,v)=>e.setAttribute(k,v),on=(e,t,f,o)=>e.addEventListener(t,f,o),rd=()=>matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pl=(e,c,o)=>{e.classList.remove(c);if(!o){void e.offsetWidth;e.classList.add(c);}},by=new Map(PROJECTS.map((p)=>[p.id,p]));
 
-function swapFrame(img, prev, media, p, off, valid) {
-  const apply = () => {
-    if (valid && !valid()) return;
-    if (prev) { prev.src = img.getAttribute("src") || img.src; pulse(prev, "is-leaving", off); }
-    img.src = p.specimen; img.alt = `${p.name} live website screenshot`;
-    if (media) pulse(media, "is-revealing", off);
-  };
-  const pre = new Image(); pre.src = p.specimen;
-  pre.complete || off ? apply() : (pre.onload = pre.onerror = apply);
+function swap(im,pv,md,p,o,ok){
+  const go=()=>{if(ok&&!ok())return;if(pv){pv.src=im.getAttribute("src")||im.src;pl(pv,"is-leaving",o);}im.src=p.specimen;im.alt=`${p.name} live website screenshot`;if(md)pl(md,"is-revealing",o);};
+  const pr=new Image();pr.src=p.specimen;pr.complete||o?go():(pr.onload=pr.onerror=go);
 }
 
-function initHeroStage() {
-  const btns = [...document.querySelectorAll("[data-stage-btn]")];
-  const img = $("stage-img"), title = $("stage-title"), link = $("stage-live-link");
-  if (!btns.length || !img || !title || !link) return;
-
-  const wrap = document.querySelector(".stage-tabs"), media = $("stage-media"), prev = $("stage-img-prev");
-  const sector = $("stage-sector"), loc = $("stage-location");
-  const curBtn = () => btns.find((b) => b.getAttribute("aria-pressed") === "true") || btns[0];
-  let activeId = curBtn().dataset.stageBtn, swapGen = 0;
-
-  const syncTab = (b) => {
-    if (!wrap || !b) return;
-    wrap.style.setProperty("--tab-x", `${b.offsetLeft}px`);
-    wrap.style.setProperty("--tab-w", `${b.offsetWidth}px`);
-    const wrapped = btns.some((x) => Math.abs(x.offsetTop - btns[0].offsetTop) > 4);
-    wrap.style.setProperty("--tab-o", wrapped ? "0" : "1");
-    wrap.classList.toggle("has-indicator", !wrapped);
-  };
-
-  syncTab(curBtn());
-  setTimeout(() => wrap?.classList.add("is-ready"), 32);
-  document.fonts?.ready.then(() => syncTab(curBtn()));
-  addEventListener("resize", () => syncTab(curBtn()), { passive: true });
-
-  btns.forEach((b) => b.addEventListener("click", () => {
-    const id = b.dataset.stageBtn, p = id && id !== activeId ? byId.get(id) : null;
-    if (!p) return;
-    activeId = id;
-    const gen = ++swapGen, off = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    btns.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-    syncTab(b);
-    swapFrame(img, prev, media, p, off, () => gen === swapGen);
-    title.textContent = p.name;
-    if (sector) sector.textContent = p.sectorLabel;
-    if (loc) loc.textContent = p.location;
-    link.href = p.url; link.textContent = `Visit ${p.domain} ↗`;
+function initHeroStage(){
+  const bs=qa("[data-stage-btn]"),im=$("stage-img"),tt=$("stage-title"),lk=$("stage-live-link");
+  if(!bs.length||!im||!tt||!lk)return;
+  const wp=document.querySelector(".stage-tabs"),md=$("stage-media"),pv=$("stage-img-prev"),sc=$("stage-sector"),lc=$("stage-location");
+  const cur=()=>bs.find((b)=>b.getAttribute("aria-pressed")==="true")||bs[0];
+  let aid=cur().dataset.stageBtn,gn=0;
+  const sy=(b)=>{if(!wp||!b)return;const w=bs.some((x)=>Math.abs(x.offsetTop-bs[0].offsetTop)>4),st=wp.style;st.setProperty("--tab-x",`${b.offsetLeft}px`);st.setProperty("--tab-w",`${b.offsetWidth}px`);st.setProperty("--tab-o",w?"0":"1");wp.classList.toggle("has-indicator",!w);};
+  sy(cur());setTimeout(()=>wp?.classList.add("is-ready"),32);document.fonts?.ready.then(()=>sy(cur()));on(window,"resize",()=>sy(cur()),{passive:true});
+  bs.forEach((b)=>on(b,"click",()=>{
+    const id=b.dataset.stageBtn,p=id&&id!==aid?by.get(id):null;if(!p)return;
+    aid=id;const g=++gn;bs.forEach((x)=>sa(x,"aria-pressed",String(x===b)));sy(b);swap(im,pv,md,p,rd(),()=>g===gn);
+    tt.textContent=p.name;if(sc)sc.textContent=p.sectorLabel;if(lc)lc.textContent=p.location;lk.href=p.url;lk.textContent=`Visit ${p.domain} ↗`;
   }));
 }
 
-function initWorkSpotlightAndFilters() {
-  const sBtns = [...document.querySelectorAll("[data-spotlight-btn]")];
-  const img = $("spotlight-img"), prev = $("spotlight-img-prev"), media = $("spotlight-media");
-  const title = $("spotlight-title"), summary = $("spotlight-summary"), idx = $("spotlight-index");
-  const sector = $("spotlight-sector"), loc = $("spotlight-location"), link = $("spotlight-link");
-  let activeSpot = sBtns[0]?.dataset.spotlightBtn || "", spotGen = 0;
-
-  const selectSpot = (id) => {
-    const p = id && id !== activeSpot ? byId.get(id) : null;
-    if (!p || !img || !title) return;
-    activeSpot = id;
-    const gen = ++spotGen, off = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    sBtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.spotlightBtn === id)));
-    swapFrame(img, prev, media, p, off, () => gen === spotGen);
-    if (idx) idx.textContent = `${p.index} · LIVE PRODUCTION`;
-    if (sector) sector.textContent = p.sectorLabel;
-    if (loc) loc.textContent = p.location;
-    title.textContent = p.subname ? `${p.name} — ${p.subname}` : p.name;
-    if (summary) summary.textContent = p.summary;
-    if (link) { link.href = p.url; link.textContent = `Visit ${p.domain} ↗`; }
+function initWorkSpotlightAndFilters(){
+  const sb=qa("[data-spotlight-btn]"),im=$("spotlight-img"),pv=$("spotlight-img-prev"),md=$("spotlight-media"),tt=$("spotlight-title"),sm=$("spotlight-summary"),ix=$("spotlight-index"),sc=$("spotlight-sector"),lc=$("spotlight-location"),lk=$("spotlight-link");
+  let as=sb[0]?.dataset.spotlightBtn||"",sg=0;
+  const sel=(id)=>{
+    const p=id&&id!==as?by.get(id):null;if(!p||!im||!tt)return;
+    as=id;const g=++sg;sb.forEach((b)=>sa(b,"aria-pressed",String(b.dataset.spotlightBtn===id)));swap(im,pv,md,p,rd(),()=>g===sg);
+    if(ix)ix.textContent=`${p.index} · LIVE PRODUCTION`;if(sc)sc.textContent=p.sectorLabel;if(lc)lc.textContent=p.location;
+    tt.textContent=p.subname?`${p.name} — ${p.subname}`:p.name;if(sm)sm.textContent=p.summary;if(lk){lk.href=p.url;lk.textContent=`Visit ${p.domain} ↗`;}
   };
-  sBtns.forEach((b) => b.addEventListener("click", () => selectSpot(b.dataset.spotlightBtn)));
-
-  const btns = [...document.querySelectorAll("[data-filter-btn]")];
-  const cards = [...document.querySelectorAll("[data-project-card]")];
-  const count = $("work-visible-count");
-  if (!btns.length || !cards.length) return;
-  btns.forEach((btn) => btn.addEventListener("click", () => {
-    const cat = btn.dataset.filterBtn || "all";
-    let n = 0;
-    cards.forEach((c) => { const show = cat === "all" || c.dataset.category === cat; c.hidden = !show; if (show) n += 1; });
-    sBtns.forEach((b) => { b.hidden = !(cat === "all" || b.dataset.category === cat); });
-    const firstVis = sBtns.find((b) => !b.hidden);
-    if (firstVis) selectSpot(firstVis.dataset.spotlightBtn);
-    btns.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-    if (count) count.textContent = String(n).padStart(2, "0");
+  sb.forEach((b)=>on(b,"click",()=>sel(b.dataset.spotlightBtn)));
+  const bs=qa("[data-filter-btn]"),cs=qa("[data-project-card]"),cn=$("work-visible-count");
+  if(!bs.length||!cs.length)return;
+  bs.forEach((bt)=>on(bt,"click",()=>{
+    const ct=bt.dataset.filterBtn||"all";let n=0;
+    cs.forEach((c)=>{const sh=ct==="all"||c.dataset.category===ct;c.hidden=!sh;if(sh)n+=1;});
+    sb.forEach((b)=>{b.hidden=!(ct==="all"||b.dataset.category===ct);});
+    const fv=sb.find((b)=>!b.hidden);if(fv)sel(fv.dataset.spotlightBtn);
+    bs.forEach((b)=>sa(b,"aria-pressed",String(b===bt)));if(cn)cn.textContent=String(n).padStart(2,"0");
   }));
 }
 
-initHeroStage();
-initWorkSpotlightAndFilters();
-initPlateDepth();
+initHeroStage();initWorkSpotlightAndFilters();initPlateDepth();

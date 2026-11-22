@@ -1,6 +1,56 @@
 [build]
   publish = "."
 
+# Block non-public repository, test, tooling, and config files (leaves /.well-known/* open)
+[[redirects]]
+  from = "/tests/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/vercel.json"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/_headers"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.gitignore"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.kiro/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.agents/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.github/*"
+  to = "/404"
+  status = 404
+  force = true
+
+# Permanent redirects for removed legacy URLs
 [[redirects]]
   from = "/work-uniform-lab"
   to = "/work#the-uniform-lab"
@@ -21,11 +71,22 @@
   to = "/"
   status = 301
 
+# Global Security Headers (byte-for-byte parity with _headers & vercel.json)
 [[headers]]
   for = "/*"
   [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
+    X-Permitted-Cross-Domain-Policies = "none"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+    Permissions-Policy = "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), browsing-topics=()"
+    Content-Security-Policy = "default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self' https://fonts.googleapis.com; style-src-attr 'none'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; worker-src 'none'; media-src 'none'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests;"
+
+# Defense-in-Depth SVG Sandbox CSP (overrides CSP for standalone SVG navigation)
+[[headers]]
+  for = "/assets/*.svg"
+  [headers.values]
+    Content-Security-Policy = "default-src 'none'; frame-ancestors 'none'; sandbox;"

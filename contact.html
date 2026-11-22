@@ -8,6 +8,7 @@
   <title>Contact | TheSocialKollab — Pune</title>
   <meta name="description" content="Start a web design or storefront brief with Karan Chaturbhuj at TheSocialKollab in Pune, India.">
   <link rel="canonical" href="https://thesocialkollab.com/contact.html">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#F3ECE1">
   <script src="scripts/theme-init.js?v=5"></script>
   <meta property="og:site_name" content="TheSocialKollab">
@@ -15,10 +16,10 @@
   <meta property="og:description" content="Direct inquiry form and channels for TheSocialKollab.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thesocialkollab.com/contact.html">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..600&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..600,50,0;1,9..144,300..500,50,0&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..600&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..600,50,0;1,9..144,300..500,50,0&display=swap" rel="stylesheet" referrerpolicy="no-referrer">
   <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
   <link rel="stylesheet" href="styles/main.css?v=10">
-  <script type="module" src="scripts/main.js?v=8"></script>
+  <script type="module" src="scripts/main.js?v=9"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -127,22 +128,22 @@
 
           <div class="field-group">
             <label for="brief-name" class="field-label">Your Name *</label>
-            <input type="text" id="brief-name" name="name" class="field-input" required autocomplete="name" placeholder="e.g. Rohan Deshmukh">
+            <input type="text" id="brief-name" name="name" class="field-input" required maxlength="100" autocomplete="name" placeholder="e.g. Rohan Deshmukh">
           </div>
 
           <div class="field-group">
             <label for="brief-contact" class="field-label">Email or Phone *</label>
-            <input type="text" id="brief-contact" name="contact" class="field-input" required placeholder="Email address or phone number">
+            <input type="text" id="brief-contact" name="contact" class="field-input" required maxlength="160" placeholder="Email address or phone number">
           </div>
 
           <div class="field-group">
             <label for="brief-business" class="field-label">Business Name &amp; Current Website (Optional)</label>
-            <input type="text" id="brief-business" name="business" class="field-input" placeholder="Company name or existing URL">
+            <input type="text" id="brief-business" name="business" class="field-input" maxlength="160" autocomplete="organization" placeholder="Company name or existing URL">
           </div>
 
           <div class="field-group">
             <label for="brief-notes" class="field-label">What do you need built? *</label>
-            <textarea id="brief-notes" name="brief" rows="4" class="field-textarea" required placeholder="Briefly describe your goals, timeline, and pages or store features you need."></textarea>
+            <textarea id="brief-notes" name="brief" rows="4" class="field-textarea" required maxlength="2000" placeholder="Briefly describe your goals, timeline, and pages or store features you need."></textarea>
           </div>
 
           <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
@@ -151,6 +152,7 @@
             <button type="submit" class="btn btn-primary" id="submit-brief-btn">Send project brief</button>
             <span class="eyebrow tabular">INR scopes from ₹1.5L</span>
           </div>
+          <p class="table-note">Your details are used solely to reply to your project brief and are never shared or sold.</p>
         </form>
       </div>
     </section>

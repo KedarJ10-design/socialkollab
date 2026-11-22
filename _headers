@@ -1,8 +1,20 @@
-# Tier 1: HTML Documents (Edge revalidation)
+# Tier 1: HTML Documents & Clean URLs (Edge revalidation)
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
 /
+  Cache-Control: public, max-age=0, must-revalidate
+
+/work
+  Cache-Control: public, max-age=0, must-revalidate
+
+/services
+  Cache-Control: public, max-age=0, must-revalidate
+
+/collective
+  Cache-Control: public, max-age=0, must-revalidate
+
+/contact
   Cache-Control: public, max-age=0, must-revalidate
 
 # Tier 2: Static Stylesheets, Scripts & Data Modules
@@ -15,13 +27,32 @@
 /data/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-# Tier 3: Immutable Assets (SVGs, Brand Marks, Specimens)
+# Tier 3: Immutable Assets (SVGs, Brand Marks, Specimens, Atmosphere)
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Tier 4: Metadata & Security Discovery
+/.well-known/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/robots.txt
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Global Security Headers (byte-for-byte parity with netlify.toml & vercel.json)
 /*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  X-Permitted-Cross-Domain-Policies: none
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), browsing-topics=()
+  Content-Security-Policy: default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self' https://fonts.googleapis.com; style-src-attr 'none'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; worker-src 'none'; media-src 'none'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests;
+
+# Defense-in-Depth SVG Sandbox CSP (overrides CSP for standalone SVG navigation)
+/assets/*.svg
+  Content-Security-Policy: default-src 'none'; frame-ancestors 'none'; sandbox;

@@ -3,11 +3,18 @@
 Thumbs.db
 desktop.ini
 
-# Agent & Brain Metadata
+# Agent, Spec & Brain Metadata
 .gemini/
 .system_generated/
+.kiro/
 *.tmp
 *.log
+
+# Local Environment & Private Keys
+.env
+.env.*
+*.pem
+*.key
 
 # Node & Package Managers (if added later)
 node_modules/
@@ -17,4 +24,3 @@ pnpm-lock.yaml
 # Python bytecode
 __pycache__/
 *.pyc
-
